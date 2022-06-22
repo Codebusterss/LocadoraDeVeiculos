@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32228.430
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraDeVeiculos.Dominio", "LocadoraDeVeiculos.Dominio\LocadoraDeVeiculos.Dominio.csproj", "{A73E4440-C0D2-46DC-AA6D-90D95F1C49ED}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dominio", "Dominio", "{290A12A5-9336-4F99-9B60-27B799324231}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraDeVeiculos.Infra", "LocadoraDeVeiculos.Infra\LocadoraDeVeiculos.Infra.csproj", "{625626EB-79CD-4EA4-8162-13098C6993B9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra", "Infra", "{13D1D6E1-FE77-481B-9989-DFF7524043EF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tela", "Tela", "{65CF371B-173F-40CB-AEAC-BC082D494E02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraDeVeiculos.WinApp", "LocadoraDeVeiculos.WinApp\LocadoraDeVeiculos.WinApp.csproj", "{F83BB766-2866-4452-9CA3-BBFE508DB7AD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testes", "Testes", "{00E18F1C-40AD-459E-B485-2B96070ECC44}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraDeVeiculos.Infra.Testes", "LocadoraDeVeiculos.Infra.Testes\LocadoraDeVeiculos.Infra.Testes.csproj", "{778304E5-633F-41C0-A998-30C9088C923B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraDeVeiculos.Dominio.Testes", "LocadoraDeVeiculos.Dominio.Tests\LocadoraDeVeiculos.Dominio.Testes.csproj", "{CE20427E-D059-4517-9F16-550CED76A65F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A73E4440-C0D2-46DC-AA6D-90D95F1C49ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A73E4440-C0D2-46DC-AA6D-90D95F1C49ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A73E4440-C0D2-46DC-AA6D-90D95F1C49ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A73E4440-C0D2-46DC-AA6D-90D95F1C49ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{625626EB-79CD-4EA4-8162-13098C6993B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{625626EB-79CD-4EA4-8162-13098C6993B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{625626EB-79CD-4EA4-8162-13098C6993B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{625626EB-79CD-4EA4-8162-13098C6993B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F83BB766-2866-4452-9CA3-BBFE508DB7AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F83BB766-2866-4452-9CA3-BBFE508DB7AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F83BB766-2866-4452-9CA3-BBFE508DB7AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F83BB766-2866-4452-9CA3-BBFE508DB7AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{778304E5-633F-41C0-A998-30C9088C923B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{778304E5-633F-41C0-A998-30C9088C923B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{778304E5-633F-41C0-A998-30C9088C923B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{778304E5-633F-41C0-A998-30C9088C923B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE20427E-D059-4517-9F16-550CED76A65F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE20427E-D059-4517-9F16-550CED76A65F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE20427E-D059-4517-9F16-550CED76A65F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE20427E-D059-4517-9F16-550CED76A65F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A73E4440-C0D2-46DC-AA6D-90D95F1C49ED} = {290A12A5-9336-4F99-9B60-27B799324231}
+		{625626EB-79CD-4EA4-8162-13098C6993B9} = {13D1D6E1-FE77-481B-9989-DFF7524043EF}
+		{F83BB766-2866-4452-9CA3-BBFE508DB7AD} = {65CF371B-173F-40CB-AEAC-BC082D494E02}
+		{778304E5-633F-41C0-A998-30C9088C923B} = {00E18F1C-40AD-459E-B485-2B96070ECC44}
+		{CE20427E-D059-4517-9F16-550CED76A65F} = {00E18F1C-40AD-459E-B485-2B96070ECC44}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7644D147-9CAB-4EE8-A22B-8206ACF3DB14}
+	EndGlobalSection
+EndGlobal
