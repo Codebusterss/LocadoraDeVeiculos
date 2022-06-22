@@ -8,6 +8,7 @@ namespace LocadoraDeVeiculos.Dominio.Testes
         [TestMethod]
         public void TestMethod1()
         {
+            // Teste.
         }
     }
 }
