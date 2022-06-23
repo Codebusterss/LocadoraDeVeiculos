@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using LocadoraDeVeiculos.Dominio.Compartilhado;
 using FluentValidation;
+using System.Text.RegularExpressions;
 
 namespace LocadoraDeVeiculos.Dominio.ModuloGrupoDeVeiculo
 {
@@ -13,7 +14,10 @@ namespace LocadoraDeVeiculos.Dominio.ModuloGrupoDeVeiculo
         public ValidadorGrupoDeVeiculo()
         {
             RuleFor(x => x.Nome)
-              .NotNull().NotEmpty().MinimumLength(3);
+                .MinimumLength(3)
+                .MaximumLength(60)
+                .Matches(new Regex(@"^([^0-9]*)$"))
+                .NotEmpty();
         }
     }
 }

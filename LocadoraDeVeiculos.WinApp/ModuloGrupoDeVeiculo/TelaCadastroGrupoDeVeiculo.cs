@@ -34,6 +34,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculo
             {
                 grupoDeVeiculo = value;
                 txtBoxNomeDoGrupo.Text = grupoDeVeiculo.Nome;
+                txtBoxID.Text = grupoDeVeiculo.ID.ToString();
             }
         }
 
