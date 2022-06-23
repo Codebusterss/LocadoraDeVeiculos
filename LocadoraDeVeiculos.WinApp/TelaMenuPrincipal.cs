@@ -4,6 +4,8 @@ using System.Drawing;
 using System.Windows.Forms;
 using LocadoraDeVeiculos.Infra.Compartilhado;
 using LocadoraDeVeiculos.WinApp.Compartilhado;
+using LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculo;
+using LocadoraDeVeiculos.Infra.ModuloGrupoDeVeiculos;
 
 namespace LocadoraDeVeiculos.WinApp
 {
@@ -17,7 +19,7 @@ namespace LocadoraDeVeiculos.WinApp
             InitializeComponent();
             Instancia = this;
             lblStatusRodape.Text = string.Empty;
-            // InicializarControladores();
+            InicializarControladores();
         }
 
         public static TelaMenuPrincipal Instancia
@@ -31,13 +33,16 @@ namespace LocadoraDeVeiculos.WinApp
             lblStatusRodape.Text = mensagem;
         }
 
-        /*
-         * Quando tiverem prontos.
+
         private void InicializarControladores()
         {
-            
+            var repositorioGrupoDeVeiculos = new RepositorioGrupoDeVeiculosEmBancoDeDados();
+
+            controladores = new Dictionary<string, ControladorBase>();
+
+            controladores.Add("Grupos de Veículos", new ControladorGrupoDeVeiculo(repositorioGrupoDeVeiculos));
         }
-        */
+        
 
         #region botoes.
 
