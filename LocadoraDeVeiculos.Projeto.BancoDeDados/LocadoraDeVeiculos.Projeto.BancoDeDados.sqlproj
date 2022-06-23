@@ -6,7 +6,7 @@
     <Name>LocadoraDeVeiculos.Projeto.BancoDeDados</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{e8e2e58f-77a3-46f6-a1b2-e97eef7dc4af}</ProjectGuid>
+    <ProjectGuid>{f0b0e4a7-be89-4923-980e-b2529ee8059c}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
