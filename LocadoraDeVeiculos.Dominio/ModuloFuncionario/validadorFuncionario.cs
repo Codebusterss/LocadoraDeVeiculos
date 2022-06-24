@@ -1,8 +1,18 @@
-﻿using System;
+﻿using FluentValidation;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class Class1
+namespace LocadoraDeVeiculos.Dominio.ModuloFuncionario
 {
-	public Class1()
-	{
-	}
+    public class ValidadorFuncionario : AbstractValidator<Funcionario>
+    {
+        public ValidadorFuncionario()
+        {
+            RuleFor(x => x.Nome)
+                .NotNull().NotEmpty().MinimumLength(2);
+        }
+    }
 }
