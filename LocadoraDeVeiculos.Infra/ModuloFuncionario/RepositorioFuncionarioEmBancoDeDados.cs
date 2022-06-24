@@ -8,17 +8,27 @@ using LocadoraDeVeiculos.Infra.Compartilhado;
 
 namespace LocadoraDeVeiculos.Infra.ModuloFuncionario
 {
-    internal class RepositorioFuncionarioEmBancoDeDados :
+    public class RepositorioFuncionarioEmBancoDeDados :
         RepositorioBase<Funcionario, ValidadorFuncionario, MapeadorFuncionario>
     {
         protected override string sqlInserir =>
             @"INSERT INTO [FUNCIONARIO]
                 (
-                    [NOME]      
+                    [NOME],  
+                    [LOGIN],
+                    [SENHA],
+                    [SALARIO],
+                    [DATADEADMISSAO],
+                    [ADMIN]
                 )
             VALUES
                 (
-                    @NOME
+                    @NOME,
+                    @LOGIN,
+                    @SENHA,
+                    @SALARIO,
+                    @DATADEADMISSAO,
+                    @ADMIN
                 ); SELECT SCOPE_IDENTITY();";
 
         protected override string sqlEditar =>

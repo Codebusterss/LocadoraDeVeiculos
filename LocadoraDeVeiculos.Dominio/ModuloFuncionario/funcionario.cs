@@ -7,8 +7,6 @@ using LocadoraDeVeiculos.Dominio.Compartilhado;
 
 public class Funcionario : EntidadeBase<Funcionario>
 {
-
-
     public Funcionario()
     {
 
