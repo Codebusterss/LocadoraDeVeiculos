@@ -135,6 +135,18 @@ namespace LocadoraDeVeiculos.Infra.Compartilhado
             return registros;
         }
 
+        public virtual ValidationResult Validar(T registro)
+        {
+            var validator = new TValidador();
+
+            var resultadoValidacao = validator.Validate(registro);
+
+            if (resultadoValidacao.IsValid == false)
+                return resultadoValidacao;
+
+            return resultadoValidacao;
+        }
+
 
     }
 }

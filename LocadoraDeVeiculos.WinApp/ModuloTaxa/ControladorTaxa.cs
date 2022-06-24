@@ -1,5 +1,6 @@
 ﻿using LocadoraDeVeiculos.Dominio.ModuloTaxa;
 using LocadoraDeVeiculos.WinApp.Compartilhado;
+using LocadoraDeVeiculos.Infra.ModuloTaxa;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,10 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxa
 {
     public class ControladorTaxa : ControladorBase
     {
-        private IRepositorioTaxa repositorioTaxa;
+        private RepositorioTaxaEmBancoDeDados repositorioTaxa;
         TabelaTaxaControl tabelataxa;
 
-        public ControladorTaxa(IRepositorioTaxa repositorioTaxa)
+        public ControladorTaxa(RepositorioTaxaEmBancoDeDados repositorioTaxa)
         {
             this.repositorioTaxa = repositorioTaxa;
         }
@@ -95,7 +96,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxa
         {
             var ID = tabelataxa.ObtemTaxaSelecionada();
 
-            return repositorioTaxa.SelecionarPorID(ID);
+            return repositorioTaxa.SelecionarPorId(ID);
         }
 
 

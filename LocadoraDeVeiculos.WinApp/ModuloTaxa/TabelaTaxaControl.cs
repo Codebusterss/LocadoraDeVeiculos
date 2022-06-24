@@ -25,6 +25,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxa
         {
 
             var colunas = new DataGridViewColumn[] {
+                 new DataGridViewTextBoxColumn { DataPropertyName = "ID", HeaderText = "ID"},
+
                 new DataGridViewTextBoxColumn { DataPropertyName = "Valor", HeaderText = "Valor"},
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Tipo", HeaderText = "Tipo"},
@@ -42,7 +44,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxa
             grid.Rows.Clear();
             foreach (Taxa t in taxas)
             {
-                grid.Rows.Add(t.Valor, t.Tipo, t.Descricao);
+                grid.Rows.Add(t.ID, t.Valor, t.Tipo, t.Descricao);
             }
         }
         public int ObtemTaxaSelecionada()

@@ -12,13 +12,13 @@ namespace LocadoraDeVeiculos.Dominio.ModuloTaxa
         public ValidadorTaxa()
         {
             RuleFor(x => x.Valor)
-          .NotNull().NotEmpty();
+          .NotNull().NotEmpty().GreaterThanOrEqualTo(0);
 
             RuleFor(x => x.Tipo)
             .NotNull().NotEmpty();
 
             RuleFor(x => x.Descricao)
-            .NotNull().NotEmpty().MinimumLength(5);
+            .NotNull().NotEmpty().MinimumLength(3);
         }
     }
 }

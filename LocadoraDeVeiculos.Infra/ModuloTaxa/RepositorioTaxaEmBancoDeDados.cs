@@ -1,5 +1,4 @@
-﻿
-using FluentValidation.Results;
+﻿using FluentValidation.Results;
 using LocadoraDeVeiculos.Dominio.ModuloTaxa;
 using LocadoraDeVeiculos.Infra.Compartilhado;
 using System;
@@ -13,10 +12,6 @@ namespace LocadoraDeVeiculos.Infra.ModuloTaxa
 {
     public class RepositorioTaxaEmBancoDeDados : RepositorioBase<Taxa, ValidadorTaxa, MapeadorTaxa> 
     {
-        private const string enderecoBanco =
-         @"(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-
-
 
         protected override string sqlInserir =>
             @"INSERT INTO [TAXA]
@@ -64,32 +59,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloTaxa
             WHERE 
                 [ID] = @ID";
 
-        public ValidationResult Inserir( Taxa novoRegistro)
-        {
-            var validador = new ValidadorTaxa();
-
-            var resultadoValidacao = validador.Validate(novoRegistro);
-
-            if (resultadoValidacao.IsValid == false)
-            {
-                return resultadoValidacao;
-            }
-
-            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
-
-            SqlCommand comandoInsercao = new SqlCommand(sqlInserir, conexaoComBanco);
-
-            ConfigurarParametrosTaxas(novoRegistro, comandoInsercao);
-
-            conexaoComBanco.Open();
-            var id = comandoInsercao.ExecuteScalar();
-            novoRegistro.ID = Convert.ToInt32(id);
-
-            conexaoComBanco.Close();
-
-            return resultadoValidacao;
-        }
-        public ValidationResult Editar(Taxa registro)
+        public override ValidationResult Validar(Taxa registro)
         {
             var validador = new ValidadorTaxa();
 
@@ -98,111 +68,22 @@ namespace LocadoraDeVeiculos.Infra.ModuloTaxa
             if (resultadoValidacao.IsValid == false)
                 return resultadoValidacao;
 
-            var x = SelecionarPorID(registro.ID);
+            var registroEncontrado = SelecionarTodos()
+                .Select(x => x.Descricao.ToLower())
+                .Contains(registro.Descricao.ToLower());
 
-            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
-
-            SqlCommand comandoEdicao = new SqlCommand(sqlEditar, conexaoComBanco);
-
-            ConfigurarParametrosTaxas(registro, comandoEdicao);
-
-            conexaoComBanco.Open();
-            comandoEdicao.ExecuteNonQuery();
-            conexaoComBanco.Close();
-
-            return resultadoValidacao;
-        }
-        public ValidationResult Excluir(Taxa registro)
-        {
-            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
-
-            SqlCommand comandoExclusao = new SqlCommand(sqlExcluir, conexaoComBanco);
-
-            comandoExclusao.Parameters.AddWithValue("ID", registro.ID);
-
-            conexaoComBanco.Open();
-            int numeroRegistrosExcluidos = comandoExclusao.ExecuteNonQuery();
-
-            var resultadoValidacao = new ValidationResult();
-
-            if (numeroRegistrosExcluidos == 0)
-                resultadoValidacao.Errors.Add(new ValidationFailure("", "Não foi possível remover o registro"));
-
-            conexaoComBanco.Close();
-
-            return resultadoValidacao;
-        }
-
-        public Taxa SelecionarPorID(int id)
-        {
-            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
-
-            SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarPorId, conexaoComBanco);
-
-            comandoSelecao.Parameters.AddWithValue("ID", id);
-
-            conexaoComBanco.Open();
-            SqlDataReader leitorTaxa = comandoSelecao.ExecuteReader();
-
-            Taxa taxas = null;
-            if (leitorTaxa.Read())
-                taxas = ConverterParaTaxa(leitorTaxa);
-
-            conexaoComBanco.Close();
-
-            return taxas;
-        }
-        public List<Taxa> SelecionarTodos()
-        {
-            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
-
-            SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarTodos, conexaoComBanco);
-
-            conexaoComBanco.Open();
-            SqlDataReader leitorTaxa = comandoSelecao.ExecuteReader();
-
-            List<Taxa> taxa = new List<Taxa>();
-
-            while (leitorTaxa.Read())
+            if (registroEncontrado)
             {
-                Taxa taxas = ConverterParaTaxa(leitorTaxa);
-
-                taxa.Add(taxas);
+                if (registro.ID == 0)
+                    resultadoValidacao.Errors.Add(new ValidationFailure("", "Taxa já cadastrado"));
+                else if (registro.ID != 0)
+                {
+                    resultadoValidacao.Errors.Add(new ValidationFailure("", "Taxa já cadastrado"));
+                }
             }
 
-            conexaoComBanco.Close();
-
-            return taxa;
-        }
-        private Taxa ConverterParaTaxa(SqlDataReader leitorTaxa)
-        {
-            var id = Convert.ToInt32(leitorTaxa["ID"]);
-            var tipo = Convert.ToString(leitorTaxa["TIPO"]);
-            var descricao = Convert.ToString(leitorTaxa["DESCRICAO"]);
-            var valor = Convert.ToInt32(leitorTaxa["VALOR"]);
-          
-
-            Taxa taxas = new Taxa();
-            taxas.ID = id;
-            taxas.Tipo = tipo;
-            taxas.Descricao = descricao;
-            taxas.Valor = valor;
-          
-
-            return taxas;
-        }
-        private void ConfigurarParametrosTaxas(Taxa taxas, SqlCommand comando)
-        {
-            comando.Parameters.AddWithValue("ID", taxas.ID);
-            comando.Parameters.AddWithValue("TIPO", taxas.Tipo);
-            comando.Parameters.AddWithValue("DESCRICAO", taxas.Descricao);
-            comando.Parameters.AddWithValue("VALOR", taxas.Valor);
-           
-
-            
-
+            return resultadoValidacao;
         }
     }
-
 }
 

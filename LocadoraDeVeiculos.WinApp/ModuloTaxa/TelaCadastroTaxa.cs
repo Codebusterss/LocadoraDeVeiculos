@@ -53,15 +53,16 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxa
             set
             {
                 taxa = value;
-                taxa.Tipo = GravarTipoTaxa();
-                taxa.Valor = ConverterValor();
-                taxa.Descricao = txtTaxaDescricao.Text;
+                ColarTipoTaxa();
+                txtBoxTaxaValor.Text = taxa.Valor.ToString();
+                txtTaxaDescricao.Text = taxa.Descricao;
 
 
 
 
             }
         }
+
         private double ConverterValor()
         {
 
@@ -75,6 +76,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxa
             return valor;
             
         }
+
         private string GravarTipoTaxa()
         {
             string tipo = "";
@@ -88,7 +90,21 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxa
             }
             return tipo;
         }
-       
+
+        private string ColarTipoTaxa()
+        {
+            string tipo = "";
+            if (taxa.Tipo == "Fixo")
+            {
+                radioBtnFixoTaxa.Checked = true;
+            }
+            if (taxa.Tipo == "Diaria")
+            {
+                radioBtnDiarioTaxa.Checked = true;
+            }
+            return tipo;
+        }
+
 
     }
 }
