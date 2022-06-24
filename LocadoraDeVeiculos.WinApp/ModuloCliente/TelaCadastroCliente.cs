@@ -49,10 +49,21 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
             if (validador.ApenasLetra(txtBoxNome.Text))
             {
                 cliente.Nome = txtBoxNome.Text;
-                CPFouCNPJ();
                 cliente.Email = txtBoxEmail.Text;
                 cliente.Telefone = txtBoxTelefone.Text;
                 cliente.Endereco = txtBoxEndereco.Text;
+                if(rdBtnCPF.Checked == true)
+                {
+                    cliente.PessoaFisica = true;
+                    cliente.CPF = txtBoxCPFCNPJ.Text;
+                    cliente.CNPJ = "";
+                }
+                else
+                {
+                    cliente.PessoaFisica = false;
+                    cliente.CPF = "";
+                    cliente.CNPJ = txtBoxCPFCNPJ.Text;
+                }
 
                 var resultadoValidacao = GravarRegistro(cliente);
                 if (resultadoValidacao.IsValid == false)
@@ -81,27 +92,14 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
         }
 
         private void rdBtnCPF_CheckedChanged(object sender, EventArgs e)
-        {
+        { 
             txtBoxCPFCNPJ.Enabled = true;
         }
 
         private void rdBtnCNPJ_CheckedChanged(object sender, EventArgs e)
         {
+            cliente.PessoaFisica = false;
             txtBoxCPFCNPJ.Enabled = true;
-        }
-
-        private void CPFouCNPJ()
-        {
-            if (rdBtnCPF.Checked == true)
-            {
-                cliente.CPF = txtBoxCPFCNPJ.Text;
-                cliente.CNPJ = null;
-            }
-            else if (rdBtnCNPJ.Checked == true)
-            {
-                cliente.CPF = null;
-                cliente.CNPJ = txtBoxCPFCNPJ.Text;
-            }
         }
 
         #endregion
@@ -122,17 +120,17 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
 
         private void ChecarCPFCNPJ()
         {
-            if(cliente.CPF == null && cliente.CNPJ == null)
+            if(cliente.CPF == "" && cliente.CNPJ == "")
             {
                 txtBoxCPFCNPJ.Text = "";
             }
-            else if(cliente.CPF == null)
+            else if(cliente.CPF != "")
             {
-                txtBoxCPFCNPJ.Text = cliente.CNPJ;
+                txtBoxCPFCNPJ.Text = cliente.CPF;
             }
             else
             {
-                txtBoxCPFCNPJ.Text = cliente.CPF;
+                txtBoxCPFCNPJ.Text = cliente.CNPJ;
             }
         }
         

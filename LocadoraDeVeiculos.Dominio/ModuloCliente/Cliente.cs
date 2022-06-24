@@ -10,19 +10,19 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCliente
     public class Cliente : EntidadeBase<Cliente>
     {
         public string Nome { get; set; }
-        public Nullable<string> CNPJ { get; set; }
-        public Nullable<string> CPF { get; set; }
+        public string CNPJ { get; set; }
+        public string CPF { get; set; }
         public string Endereco { get; set; }
         public string Email { get; set; }
         public string Telefone { get; set; }
-
+        public bool PessoaFisica { get; set; }
 
         public Cliente()
         {
 
         }
 
-        public Cliente(int n, string nome, string cnpj, string cpf, string endereco, string email, string telefone) : this()
+        public Cliente(int n, string nome, string cnpj, string cpf, string endereco, string email, string telefone, bool pessoaFisica) : this()
         {
             ID = n;
             Nome = nome;
@@ -31,6 +31,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCliente
             Endereco = endereco;
             Email = email;
             Telefone = telefone;
+            PessoaFisica = pessoaFisica;
         }
 
         public override void Atualizar(Cliente registro)
@@ -41,6 +42,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCliente
             this.Endereco = registro.Endereco;
             this.Email = registro.Endereco;
             this.Telefone = registro.Telefone;
+            this.PessoaFisica = registro.PessoaFisica;
         }
 
         public override string? ToString()
@@ -57,7 +59,8 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCliente
                    CPF == cliente.CPF &&
                    Endereco == cliente.Endereco &&
                    Email == cliente.Email &&
-                   Telefone == cliente.Telefone;
+                   Telefone == cliente.Telefone &&
+                   PessoaFisica == cliente.PessoaFisica;
         }
     }
 }

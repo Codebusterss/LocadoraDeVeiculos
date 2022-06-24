@@ -21,7 +21,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloCliente
             comando.Parameters.AddWithValue("EMAIL", cliente.Email);
             comando.Parameters.AddWithValue("TELEFONE", cliente.Telefone);
 
-            if(cliente.CPF == null)
+            if(cliente.PessoaFisica == true)
             {
                 comando.Parameters.AddWithValue("TIPOCLIENTE", 1);
             }
@@ -41,6 +41,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloCliente
             var endereco = Convert.ToString(leitorCliente["ENDERECO"]);
             var email = Convert.ToString(leitorCliente["EMAIL"]);
             var telefone = Convert.ToString(leitorCliente["TELEFONE"]);
+            var pessoaFisica = Convert.ToBoolean(leitorCliente["TIPOCLIENTE"]);
 
             Cliente cliente = new Cliente();
             cliente.ID = id;
@@ -50,6 +51,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloCliente
             cliente.Endereco = endereco;
             cliente.Email = email;
             cliente.Telefone = telefone;
+            cliente.PessoaFisica = pessoaFisica;
 
 
             return cliente;

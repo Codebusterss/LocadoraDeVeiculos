@@ -19,7 +19,8 @@ namespace LocadoraDeVeiculos.Infra.ModuloCliente
                     [CPF],
                     [ENDERECO],
                     [EMAIL],
-                    [TELEFONE]
+                    [TELEFONE],
+                    [TIPOCLIENTE]
                 )
             VALUES
                 (
@@ -28,7 +29,8 @@ namespace LocadoraDeVeiculos.Infra.ModuloCliente
                     @CPF,
                     @ENDERECO,
                     @EMAIL,
-                    @TELEFONE
+                    @TELEFONE,
+                    @TIPOCLIENTE
                 ); SELECT SCOPE_IDENTITY();";
 
         protected override string sqlEditar =>
@@ -39,7 +41,8 @@ namespace LocadoraDeVeiculos.Infra.ModuloCliente
                         [CPF] = @CPF,
                         [ENDERECO] = @ENDERECO,
                         [EMAIL] = @EMAIL,
-                        [TELEFONE] = @TELEFONE
+                        [TELEFONE] = @TELEFONE,
+                        [TIPOCLIENTE] = @TIPOCLIENTE
                     WHERE [ID] = @ID";
 
         protected override string sqlExcluir =>
@@ -54,7 +57,8 @@ namespace LocadoraDeVeiculos.Infra.ModuloCliente
                 [CPF],
                 [ENDERECO],
                 [EMAIL],
-                [TELEFONE]
+                [TELEFONE],
+                [TIPOCLIENTE]
             FROM
                 [CLIENTE]";
 
@@ -66,7 +70,8 @@ namespace LocadoraDeVeiculos.Infra.ModuloCliente
                 [CPF],
                 [ENDERECO],
                 [EMAIL],
-                [TELEFONE]
+                [TELEFONE],
+                [TIPOCLIENTE]
             FROM
                 [CLIENTE]
             WHERE 
