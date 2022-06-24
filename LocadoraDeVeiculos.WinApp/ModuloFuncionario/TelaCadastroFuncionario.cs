@@ -15,6 +15,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
     public partial class TelaCadastroFuncionario : Form
     {
         private Funcionario funcionario;
+        private DateTime dataBase = new DateTime(0001, 01, 01, 00, 00, 00);
+        private DateTime dataAtual = DateTime.Now;
         ValidadorRegex validador = new ValidadorRegex();
 
         public TelaCadastroFuncionario()
@@ -24,7 +26,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
 
         public Func<Funcionario, ValidationResult> GravarRegistro { get; set; }
 
-        public Funcionario GrupoDeVeiculo
+        public Funcionario Funcionario
         {
             get
             {
@@ -33,20 +35,46 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
             set
             {
                 funcionario = value;
+                txtBoxNome.Text = funcionario.Nome;
                 txtBoxFuncionarioLogin.Text = funcionario.Login;
                 txtboxFuncionarioSenha.Text = funcionario.Senha;
-                //dateTimeFuncionarioData. = funcionario.DataAdmissao; //ver como usa o datetime 
+                txtBoxSalario.Text = funcionario.Salario.ToString();
+                if (funcionario.DataAdmissao != dataBase)
+                {
+                    dateTimeFuncionarioData.Text = funcionario.DataAdmissao.ToString();
+                }
+                else
+                {
+                    dateTimeFuncionarioData.Text = dataAtual.ToString();
+                }
                 txtBoxFuncionarioID.Text = funcionario.ID.ToString();
+                if(funcionario.Admin == true)
+                {
+                    checkBoxFuncionarioAdmin.Checked = true;
+                }
             }
         }
 
+        #region botoes.
+
         private void btnCadastrarFuncionario_Click(object sender, EventArgs e)
         {
-            if (validador.ApenasLetra(txtBoxFuncionarioLogin.Text))
+            if (validador.ApenasLetra(txtBoxNome.Text))
             {
+                funcionario.Nome = txtBoxNome.Text;
                 funcionario.Login = txtBoxFuncionarioLogin.Text;
-                //ver sobre a senha/id/data admissao
-               
+                funcionario.Senha = txtboxFuncionarioSenha.Text;
+                funcionario.Salario = Convert.ToSingle(txtBoxSalario.Text);
+                funcionario.DataAdmissao = Convert.ToDateTime(dateTimeFuncionarioData.Text);
+                if (checkBoxFuncionarioAdmin.Checked == true)
+                {
+                    funcionario.Admin = true;
+                }
+                else
+                {
+                    funcionario.Admin = false;
+                }
+
 
                 var resultadoValidacao = GravarRegistro(funcionario);
                 if (resultadoValidacao.IsValid == false)
@@ -61,7 +89,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
             else
             {
                 MessageBox.Show("Insira apenas letras no campo 'Nome'",
-                "Cadastro de Grupo de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                "Cadastro de Funcionários", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
                 DialogResult = DialogResult.None;
 
@@ -69,22 +97,21 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
             }
 
         }
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
 
+        #endregion
 
-        private void TelaCadastroGrupoDeVeiculo_Load(object sender, EventArgs e)
-        {
-            TelaMenuPrincipal.Instancia.AtualizarRodape("");
-        }
+        #region rodape.
 
-        private void TelaCadastroGrupoDeVeiculo_FormClosing(object sender, FormClosingEventArgs e)
+        private void TelaCadastroFuncionario_Load(object sender, EventArgs e)
         {
             TelaMenuPrincipal.Instancia.AtualizarRodape("");
         }
 
+        private void TelaCadastroFuncionario_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            TelaMenuPrincipal.Instancia.AtualizarRodape("");
+        }
 
+        #endregion
     }
 }

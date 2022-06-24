@@ -27,12 +27,12 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
 
             DialogResult resultado = tela.ShowDialog();
             if (resultado == DialogResult.OK)
-                CarregarGrupos();
+                CarregarFuncionarios();
         }
 
         public override void Editar()
         {
-            Funcionario funcionarioSelecionado = ObtemGrupoSelecionado();
+            Funcionario funcionarioSelecionado = ObtemFuncionarSelecionado();
 
             if (funcionarioSelecionado == null)
             {
@@ -50,13 +50,13 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
             DialogResult resultado = tela.ShowDialog();
 
             if (resultado == DialogResult.OK)
-                CarregarGrupos();
+                CarregarFuncionarios();
 
         }
 
         public override void Excluir()
         {
-            Funcionario funcionarioSelecionado = ObtemGrupoSelecionado();
+            Funcionario funcionarioSelecionado = ObtemFuncionarSelecionado();
 
             if (funcionarioSelecionado == null)
             {
@@ -71,7 +71,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
             if (resultado == DialogResult.OK)
             {
                 repositorioFuncionario.Excluir(funcionarioSelecionado);
-                CarregarGrupos();
+                CarregarFuncionarios();
             }
         }
 
@@ -84,12 +84,12 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
         {
             tabelaFuncionarioControl = new TabelaFuncionarioControl();
 
-            CarregarGrupos();
+            CarregarFuncionarios();
 
             return tabelaFuncionarioControl;
         }
 
-        private void CarregarGrupos()
+        private void CarregarFuncionarios()
         {
             List<Funcionario> funcionarios = repositorioFuncionario.SelecionarTodos();
 
@@ -98,7 +98,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
 
         }
 
-        private GrupoDeVeiculo ObtemGrupoSelecionado()
+        private Funcionario ObtemFuncionarSelecionado()
         {
             var id = tabelaFuncionarioControl.ObtemGrupoDeVeiculoSelecionado();
 

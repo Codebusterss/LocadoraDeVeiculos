@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace LocadoraDeVeiculos.Dominio.ModuloFuncionario
 {
@@ -12,7 +13,25 @@ namespace LocadoraDeVeiculos.Dominio.ModuloFuncionario
         public ValidadorFuncionario()
         {
             RuleFor(x => x.Nome)
-                .NotNull().NotEmpty().MinimumLength(2);
+                .MinimumLength(3)
+                .MaximumLength(60)
+                .Matches(new Regex(@"^([^0-9]*)$"))
+                .NotEmpty()
+                .NotNull();
+            RuleFor(x => x.Login)
+                .NotEmpty()
+                .NotNull();
+            RuleFor(x => x.Senha)
+                .NotEmpty()
+                .NotNull();
+            RuleFor(x => x.DataAdmissao)
+                .NotEmpty()
+                .NotNull();
+            RuleFor(x => x.Salario)
+                .NotEmpty()
+                .NotNull()
+                .GreaterThanOrEqualTo(0);
+
         }
     }
 }
