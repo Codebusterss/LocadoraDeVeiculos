@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[TAXA] (
+    [ID]        INT           IDENTITY (1, 1) NOT NULL,
+    [VALOR]     FLOAT (53)    NOT NULL,
+    [DESCRICAO] VARCHAR (300) NOT NULL,
+    [TIPO]      VARCHAR (10)  NOT NULL,
+    CONSTRAINT [PK_TAXA] PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+
