@@ -6,6 +6,8 @@ using LocadoraDeVeiculos.Infra.Compartilhado;
 using LocadoraDeVeiculos.WinApp.Compartilhado;
 using LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculo;
 using LocadoraDeVeiculos.Infra.ModuloGrupoDeVeiculos;
+using LocadoraDeVeiculos.WinApp.ModuloFuncionario;
+using LocadoraDeVeiculos.Infra.ModuloFuncionario;
 using LocadoraDeVeiculos.WinApp.ModuloTaxa;
 using LocadoraDeVeiculos.Infra.ModuloTaxa;
 
@@ -39,11 +41,13 @@ namespace LocadoraDeVeiculos.WinApp
         private void InicializarControladores()
         {
             var repositorioGrupoDeVeiculos = new RepositorioGrupoDeVeiculosEmBancoDeDados();
+            var repositorioFuncionario = new RepositorioFuncionarioEmBancoDeDados();
             var repositorioTaxa = new RepositorioTaxaEmBancoDeDados();
 
             controladores = new Dictionary<string, ControladorBase>();
 
             controladores.Add("Grupos de Veículos", new ControladorGrupoDeVeiculo(repositorioGrupoDeVeiculos));
+            controladores.Add("Funcionários", new ControladorFuncionario(repositorioFuncionario));
             controladores.Add("Taxas", new ControladorTaxa(repositorioTaxa));
         }
         
