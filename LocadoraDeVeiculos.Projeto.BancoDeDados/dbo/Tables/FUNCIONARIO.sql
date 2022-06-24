@@ -1,0 +1,10 @@
+﻿CREATE TABLE [dbo].[FUNCIONARIO] (
+    [ID]             INT           IDENTITY (1, 1) NOT NULL,
+    [LOGIN]          VARCHAR (300) NOT NULL,
+    [SENHA]          VARCHAR (300) NOT NULL,
+    [DATADEADMISSAO] DATETIME      NOT NULL,
+    [SALARIO]        FLOAT (53)    NOT NULL,
+    [ADMIN]          BIT           NULL,
+    CONSTRAINT [PK_FUNCIONARIO] PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+
