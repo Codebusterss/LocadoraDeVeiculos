@@ -91,9 +91,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculo
 
         private void CarregarGrupos()
         {
-            List<GrupoDeVeiculo> disciplinas = repositorioGrupoDeVeiculo.SelecionarTodos();
+            List<GrupoDeVeiculo> grupoDeVeiculos = repositorioGrupoDeVeiculo.SelecionarTodos();
 
-            tabelaGrupoDeVeiculoControl.AtualizarRegistros(disciplinas);
+            tabelaGrupoDeVeiculoControl.AtualizarRegistros(grupoDeVeiculos);
             TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando Grupos de Veículos");
 
         }

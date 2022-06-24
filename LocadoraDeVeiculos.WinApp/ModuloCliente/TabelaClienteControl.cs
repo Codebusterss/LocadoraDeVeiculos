@@ -1,0 +1,66 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using LocadoraDeVeiculos.WinApp.Compartilhado;
+using LocadoraDeVeiculos.Dominio.ModuloCliente;
+
+namespace LocadoraDeVeiculos.WinApp.ModuloCliente
+{
+
+    public partial class TabelaClienteControl : UserControl
+    {
+        public TabelaClienteControl()
+        {
+            InitializeComponent();
+            grid.ConfigurarGrid();
+            grid.ConfigurarGridSomenteLeitura();
+            grid.Columns.AddRange(ObterColunas());
+
+        }
+
+        private DataGridViewColumn[] ObterColunas()
+        {
+
+            var colunas = new DataGridViewColumn[]
+            {
+                new DataGridViewTextBoxColumn { DataPropertyName = "ID", HeaderText = "ID"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome"},
+                
+                //new DataGridViewTextBoxColumn { DataPropertyName = "CPF", HeaderText = "CPF"},
+
+                //new DataGridViewTextBoxColumn { DataPropertyName = "CNPJ", HeaderText = "CNPJ"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "ENDERECO", HeaderText = "ENDERECO"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "EMAIL", HeaderText = "EMAIL"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "TELEFONE", HeaderText = "TELEFONE"},
+            };
+
+            return colunas;
+        }
+
+
+        public void AtualizarRegistros(List<Cliente> cliente)
+        {
+            grid.Rows.Clear();
+            foreach (Cliente cl in cliente)
+            {
+                grid.Rows.Add(cl.ID, cl.Nome);
+            }
+        }
+
+        public int ObtemClienteSelecionado()
+        {
+            return grid.SelecionarPorID<int>();
+        }
+
+    }
+}
