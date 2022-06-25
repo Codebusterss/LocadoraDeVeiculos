@@ -43,12 +43,14 @@
             this.txtBoxEndereco = new System.Windows.Forms.TextBox();
             this.btnAdicionar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtBoxCNH = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(29, 27);
+            this.label1.Location = new System.Drawing.Point(27, 36);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(21, 15);
             this.label1.TabIndex = 0;
@@ -57,7 +59,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 66);
+            this.label2.Location = new System.Drawing.Point(12, 71);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(43, 15);
             this.label2.TabIndex = 1;
@@ -66,7 +68,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 176);
+            this.label3.Location = new System.Drawing.Point(11, 201);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(39, 15);
             this.label3.TabIndex = 2;
@@ -99,21 +101,20 @@
             // txtBoxID
             // 
             this.txtBoxID.Enabled = false;
-            this.txtBoxID.Location = new System.Drawing.Point(56, 24);
+            this.txtBoxID.Location = new System.Drawing.Point(54, 33);
             this.txtBoxID.Name = "txtBoxID";
             this.txtBoxID.Size = new System.Drawing.Size(50, 23);
             this.txtBoxID.TabIndex = 5;
             // 
             // txtBoxNome
             // 
-            this.txtBoxNome.Location = new System.Drawing.Point(56, 63);
+            this.txtBoxNome.Location = new System.Drawing.Point(61, 68);
             this.txtBoxNome.Name = "txtBoxNome";
             this.txtBoxNome.Size = new System.Drawing.Size(179, 23);
             this.txtBoxNome.TabIndex = 6;
             // 
             // txtBoxCPFCNPJ
             // 
-            this.txtBoxCPFCNPJ.Enabled = false;
             this.txtBoxCPFCNPJ.Location = new System.Drawing.Point(78, 115);
             this.txtBoxCPFCNPJ.Name = "txtBoxCPFCNPJ";
             this.txtBoxCPFCNPJ.Size = new System.Drawing.Size(166, 23);
@@ -122,7 +123,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 212);
+            this.label4.Location = new System.Drawing.Point(12, 230);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(54, 15);
             this.label4.TabIndex = 8;
@@ -131,7 +132,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 247);
+            this.label5.Location = new System.Drawing.Point(12, 262);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(59, 15);
             this.label5.TabIndex = 9;
@@ -139,21 +140,21 @@
             // 
             // txtBoxEmail
             // 
-            this.txtBoxEmail.Location = new System.Drawing.Point(56, 173);
+            this.txtBoxEmail.Location = new System.Drawing.Point(54, 198);
             this.txtBoxEmail.Name = "txtBoxEmail";
             this.txtBoxEmail.Size = new System.Drawing.Size(166, 23);
             this.txtBoxEmail.TabIndex = 10;
             // 
             // txtBoxTelefone
             // 
-            this.txtBoxTelefone.Location = new System.Drawing.Point(72, 209);
+            this.txtBoxTelefone.Location = new System.Drawing.Point(70, 227);
             this.txtBoxTelefone.Name = "txtBoxTelefone";
             this.txtBoxTelefone.Size = new System.Drawing.Size(150, 23);
             this.txtBoxTelefone.TabIndex = 11;
             // 
             // txtBoxEndereco
             // 
-            this.txtBoxEndereco.Location = new System.Drawing.Point(72, 244);
+            this.txtBoxEndereco.Location = new System.Drawing.Point(70, 259);
             this.txtBoxEndereco.Name = "txtBoxEndereco";
             this.txtBoxEndereco.Size = new System.Drawing.Size(202, 23);
             this.txtBoxEndereco.TabIndex = 12;
@@ -179,11 +180,29 @@
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(12, 164);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(36, 15);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "CNH:";
+            // 
+            // txtBoxCNH
+            // 
+            this.txtBoxCNH.Location = new System.Drawing.Point(54, 161);
+            this.txtBoxCNH.Name = "txtBoxCNH";
+            this.txtBoxCNH.Size = new System.Drawing.Size(166, 23);
+            this.txtBoxCNH.TabIndex = 16;
+            // 
             // TelaCadastroCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(328, 337);
+            this.Controls.Add(this.txtBoxCNH);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAdicionar);
             this.Controls.Add(this.txtBoxEndereco);
@@ -225,5 +244,7 @@
         private TextBox txtBoxEndereco;
         private Button btnAdicionar;
         private Button btnCancelar;
+        private Label label6;
+        private TextBox txtBoxCNH;
     }
 }

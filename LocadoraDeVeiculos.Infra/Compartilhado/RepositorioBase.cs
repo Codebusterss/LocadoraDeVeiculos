@@ -32,9 +32,7 @@ namespace LocadoraDeVeiculos.Infra.Compartilhado
 
         public ValidationResult Inserir(T registro)
         {
-            var validador = new TValidador();
-
-            var resultadoValidacao = validador.Validate(registro);
+            var resultadoValidacao = Validar(registro);
 
             if (resultadoValidacao.IsValid == false)
                 return resultadoValidacao;
@@ -133,6 +131,18 @@ namespace LocadoraDeVeiculos.Infra.Compartilhado
             conexaoComBanco.Close();
 
             return registros;
+        }
+
+        public virtual ValidationResult Validar(T registro)
+        {
+            var validator = new TValidador();
+
+            var resultadoValidacao = validator.Validate(registro);
+
+            if (resultadoValidacao.IsValid == false)
+                return resultadoValidacao;
+
+            return resultadoValidacao;
         }
 
 

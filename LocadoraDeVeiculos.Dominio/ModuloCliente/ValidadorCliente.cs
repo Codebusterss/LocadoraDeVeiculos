@@ -24,19 +24,26 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCliente
             RuleFor(x => x.Email)
                 .MinimumLength(4)
                 .MaximumLength(60)
-                .Matches(new Regex(@"^[a-z0-9][-a-z0-9._]+@([-a-z0-9]+.)+[a-z]{2,5}$"));
+                .Matches(new Regex(@"^[a-z0-9][-a-z0-9._]+@([-a-z0-9]+.)+[a-z]{2,5}$"))
+                .NotEmpty();
             RuleFor(x => x.Telefone)
-                .Matches(new Regex(@"^\(?\d{2}\)?[\s-]?[\s9]?\d{4}-?\d{4}$"));
+                .Matches(new Regex(@"^\(?\d{2}\)?[\s-]?[\s9]?\d{4}-?\d{4}$"))
+                .NotEmpty();
 
             When(x => x.PessoaFisica == true, () => {
                 RuleFor(x => x.CPF)
-                .Matches(new Regex(@"^\d{3}\.\d{3}\.\d{3}-\d{2}$"));
+                .Matches(new Regex(@"^\d{3}\.\d{3}\.\d{3}-\d{2}$"))
+                .NotEmpty();
+                RuleFor(x => x.CNH)
+                .Matches(new Regex(@"^\d{3}\.\d{3}\.\d{3}-\d{3}$"))
+                .NotEmpty();
             });
 
             When(x => x.PessoaFisica == false, () =>
             {
                 RuleFor(x => x.CNPJ)
-                .Matches(new Regex(@"^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/"));
+                .Matches(new Regex(@"^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/"))
+                .NotEmpty();
             });
         }
     }

@@ -38,6 +38,10 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
                 txtBoxEndereco.Text = cliente.Endereco;
                 txtBoxNome.Text = cliente.Nome;
                 txtBoxTelefone.Text = cliente.Telefone;
+                if(cliente.CNH != "")
+                {
+                    txtBoxCNH.Text = cliente.CNH;
+                }
                 ChecarCPFCNPJ();
             }
         }
@@ -56,12 +60,14 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
                 {
                     cliente.PessoaFisica = true;
                     cliente.CPF = txtBoxCPFCNPJ.Text;
+                    cliente.CNH = txtBoxCNH.Text;
                     cliente.CNPJ = "";
                 }
                 else
                 {
                     cliente.PessoaFisica = false;
                     cliente.CPF = "";
+                    cliente.CNH = "";
                     cliente.CNPJ = txtBoxCPFCNPJ.Text;
                 }
 
@@ -92,14 +98,14 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
         }
 
         private void rdBtnCPF_CheckedChanged(object sender, EventArgs e)
-        { 
-            txtBoxCPFCNPJ.Enabled = true;
+        {
+            txtBoxCNH.Enabled = true;
         }
 
         private void rdBtnCNPJ_CheckedChanged(object sender, EventArgs e)
         {
-            cliente.PessoaFisica = false;
-            txtBoxCPFCNPJ.Enabled = true;
+            txtBoxCNH.Enabled = false;
+
         }
 
         #endregion
