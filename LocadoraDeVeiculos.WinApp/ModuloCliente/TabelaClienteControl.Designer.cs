@@ -1,6 +1,6 @@
-﻿namespace LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculo
+﻿namespace LocadoraDeVeiculos.WinApp.ModuloCliente
 {
-    partial class TabelaGrupoDeVeiculoControl
+    partial class TabelaClienteControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -42,12 +42,12 @@
             this.grid.Size = new System.Drawing.Size(401, 290);
             this.grid.TabIndex = 0;
             // 
-            // ListagemGrupoDeVeiculosControl
+            // ListagemClientesControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.grid);
-            this.Name = "ListagemGrupoDeVeiculosControl";
+            this.Name = "ListagemClientesControl";
             this.Size = new System.Drawing.Size(401, 290);
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             this.ResumeLayout(false);
