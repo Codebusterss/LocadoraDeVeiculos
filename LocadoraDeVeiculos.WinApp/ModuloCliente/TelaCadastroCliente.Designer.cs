@@ -50,7 +50,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 36);
+            this.label1.Location = new System.Drawing.Point(45, 36);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(21, 15);
             this.label1.TabIndex = 0;
@@ -59,7 +59,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 71);
+            this.label2.Location = new System.Drawing.Point(23, 71);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(43, 15);
             this.label2.TabIndex = 1;
@@ -68,7 +68,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(11, 201);
+            this.label3.Location = new System.Drawing.Point(27, 201);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(39, 15);
             this.label3.TabIndex = 2;
@@ -101,16 +101,16 @@
             // txtBoxID
             // 
             this.txtBoxID.Enabled = false;
-            this.txtBoxID.Location = new System.Drawing.Point(54, 33);
+            this.txtBoxID.Location = new System.Drawing.Point(78, 33);
             this.txtBoxID.Name = "txtBoxID";
             this.txtBoxID.Size = new System.Drawing.Size(50, 23);
             this.txtBoxID.TabIndex = 5;
             // 
             // txtBoxNome
             // 
-            this.txtBoxNome.Location = new System.Drawing.Point(61, 68);
+            this.txtBoxNome.Location = new System.Drawing.Point(78, 68);
             this.txtBoxNome.Name = "txtBoxNome";
-            this.txtBoxNome.Size = new System.Drawing.Size(179, 23);
+            this.txtBoxNome.Size = new System.Drawing.Size(206, 23);
             this.txtBoxNome.TabIndex = 6;
             // 
             // txtBoxCPFCNPJ
@@ -123,7 +123,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 230);
+            this.label4.Location = new System.Drawing.Point(12, 240);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(54, 15);
             this.label4.TabIndex = 8;
@@ -132,7 +132,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 262);
+            this.label5.Location = new System.Drawing.Point(13, 278);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(59, 15);
             this.label5.TabIndex = 9;
@@ -140,29 +140,31 @@
             // 
             // txtBoxEmail
             // 
-            this.txtBoxEmail.Location = new System.Drawing.Point(54, 198);
+            this.txtBoxEmail.Location = new System.Drawing.Point(78, 198);
             this.txtBoxEmail.Name = "txtBoxEmail";
+            this.txtBoxEmail.PlaceholderText = "email@email.com";
             this.txtBoxEmail.Size = new System.Drawing.Size(166, 23);
             this.txtBoxEmail.TabIndex = 10;
             // 
             // txtBoxTelefone
             // 
-            this.txtBoxTelefone.Location = new System.Drawing.Point(70, 227);
+            this.txtBoxTelefone.Location = new System.Drawing.Point(78, 237);
             this.txtBoxTelefone.Name = "txtBoxTelefone";
-            this.txtBoxTelefone.Size = new System.Drawing.Size(150, 23);
+            this.txtBoxTelefone.PlaceholderText = "(xx) xxxx-xxxx";
+            this.txtBoxTelefone.Size = new System.Drawing.Size(166, 23);
             this.txtBoxTelefone.TabIndex = 11;
             // 
             // txtBoxEndereco
             // 
-            this.txtBoxEndereco.Location = new System.Drawing.Point(70, 259);
+            this.txtBoxEndereco.Location = new System.Drawing.Point(78, 275);
             this.txtBoxEndereco.Name = "txtBoxEndereco";
-            this.txtBoxEndereco.Size = new System.Drawing.Size(202, 23);
+            this.txtBoxEndereco.Size = new System.Drawing.Size(206, 23);
             this.txtBoxEndereco.TabIndex = 12;
             // 
             // btnAdicionar
             // 
             this.btnAdicionar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnAdicionar.Location = new System.Drawing.Point(160, 302);
+            this.btnAdicionar.Location = new System.Drawing.Point(160, 324);
             this.btnAdicionar.Name = "btnAdicionar";
             this.btnAdicionar.Size = new System.Drawing.Size(75, 23);
             this.btnAdicionar.TabIndex = 13;
@@ -173,7 +175,7 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(241, 302);
+            this.btnCancelar.Location = new System.Drawing.Point(241, 324);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 14;
@@ -183,7 +185,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 164);
+            this.label6.Location = new System.Drawing.Point(30, 164);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(36, 15);
             this.label6.TabIndex = 15;
@@ -191,7 +193,7 @@
             // 
             // txtBoxCNH
             // 
-            this.txtBoxCNH.Location = new System.Drawing.Point(54, 161);
+            this.txtBoxCNH.Location = new System.Drawing.Point(78, 161);
             this.txtBoxCNH.Name = "txtBoxCNH";
             this.txtBoxCNH.Size = new System.Drawing.Size(166, 23);
             this.txtBoxCNH.TabIndex = 16;
@@ -200,7 +202,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(328, 337);
+            this.ClientSize = new System.Drawing.Size(328, 359);
             this.Controls.Add(this.txtBoxCNH);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btnCancelar);
@@ -218,7 +220,10 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "TelaCadastroCliente";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Cliente";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TelaCadastroCliente_FormClosing);
             this.Load += new System.EventHandler(this.TelaCadastroCliente_Load);
