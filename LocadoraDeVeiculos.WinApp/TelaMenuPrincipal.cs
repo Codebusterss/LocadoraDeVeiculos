@@ -19,12 +19,14 @@ namespace LocadoraDeVeiculos.WinApp
     {
         private ControladorBase controlador;
         private Dictionary<string, ControladorBase> controladores;
+        private Funcionario funcionarioLogado;
 
-        public TelaMenuPrincipal()
+        public TelaMenuPrincipal(Funcionario funcionarioLogado)
         {
             InitializeComponent();
             Instancia = this;
             lblStatusRodape.Text = string.Empty;
+            this.funcionarioLogado = funcionarioLogado;
             InicializarControladores();
         }
 
@@ -114,7 +116,15 @@ namespace LocadoraDeVeiculos.WinApp
 
         private void funcionáriosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+            if(funcionarioLogado.Admin == false)
+            {
+                MessageBox.Show("Você não tem permissão suficiente para verificar os funcionários.",
+                    "Usuário sem permissão.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+            }           
         }
 
         private void taxasToolStripMenuItem_Click(object sender, EventArgs e)
@@ -182,5 +192,13 @@ namespace LocadoraDeVeiculos.WinApp
         }
         #endregion
 
+        #region Eventos.
+
+        private void TelaMenuPrincipal_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        #endregion
     }
 }
