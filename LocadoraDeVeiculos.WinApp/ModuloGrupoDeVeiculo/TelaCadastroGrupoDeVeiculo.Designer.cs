@@ -107,7 +107,7 @@
             this.MaximizeBox = false;
             this.Name = "TelaCadastroGrupoDeVeiculo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Cadastro de Grupo De Veículos";
+            this.Text = "Cadastro de Grupo de Veículos";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TelaCadastroGrupoDeVeiculo_FormClosing);
             this.Load += new System.EventHandler(this.TelaCadastroGrupoDeVeiculo_Load);
             this.ResumeLayout(false);

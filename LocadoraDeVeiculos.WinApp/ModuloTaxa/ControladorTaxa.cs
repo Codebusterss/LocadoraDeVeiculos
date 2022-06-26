@@ -36,7 +36,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxa
             Taxa taxaselecionada = ObtemTaxaSelecionada();
             if(taxaselecionada == null)
             {
-                MessageBox.Show("Selecione uma taxa primeiro", "Edição de taxa", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione uma taxa primeiro.", "Edição de Taxas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
             TelaCadastroTaxa tela = new TelaCadastroTaxa();
@@ -57,12 +57,12 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxa
 
             if (taxaselecionada == null)
             {
-                MessageBox.Show("Selecione um taxa primeiro", "Exclusão de taxa", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione um taxa primeiro.", "Exclusão de Taxas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            DialogResult resultado = MessageBox.Show("Deseja realmente excluir a disciplina?",
-               "Exclusão de Disciplinas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            DialogResult resultado = MessageBox.Show("Deseja realmente excluir a taxa?",
+               "Exclusão de Taxas", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
             if(resultado == DialogResult.OK)
             {
@@ -80,7 +80,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxa
             List<Taxa> disciplinas = repositorioTaxa.SelecionarTodos();
 
             tabelataxa.AtualizarRegistros(disciplinas);
-            TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando Taxa");
+            TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando Taxas.");
 
         }
         public override UserControl ObtemListagem()

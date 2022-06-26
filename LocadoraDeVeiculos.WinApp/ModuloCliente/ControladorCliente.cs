@@ -94,7 +94,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
             List<Cliente> clientes = repositorioCliente.SelecionarTodos();
 
             tabelaClienteControl.AtualizarRegistros(clientes);
-            TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando Clientes");
+            TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando Clientes.");
 
         }
 

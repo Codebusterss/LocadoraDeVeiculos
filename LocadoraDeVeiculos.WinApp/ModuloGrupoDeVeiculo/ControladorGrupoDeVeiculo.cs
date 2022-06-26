@@ -36,7 +36,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculo
 
             if (grupoSelecionado == null)
             {
-                MessageBox.Show("Selecione um grupo de veículos primeiro",
+                MessageBox.Show("Selecione um grupo de veículos primeiro.",
                 "Edição de Grupos de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -60,7 +60,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculo
 
             if (grupoSelecionado == null)
             {
-                MessageBox.Show("Selecione um grupo de veículos primeiro",
+                MessageBox.Show("Selecione um grupo de veículos primeiro.",
                 "Exclusão de Grupos de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -94,7 +94,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculo
             List<GrupoDeVeiculo> grupoDeVeiculos = repositorioGrupoDeVeiculo.SelecionarTodos();
 
             tabelaGrupoDeVeiculoControl.AtualizarRegistros(grupoDeVeiculos);
-            TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando Grupos de Veículos");
+            TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando Grupos de Veículos.");
 
         }
 

@@ -209,8 +209,11 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
             this.Name = "TelaCadastroFuncionario";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Funcionários";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TelaCadastroFuncionario_FormClosing);
             this.Load += new System.EventHandler(this.TelaCadastroFuncionario_Load);

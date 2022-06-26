@@ -36,7 +36,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
 
             if (funcionarioSelecionado == null)
             {
-                MessageBox.Show("Selecione um funcionário primeiro",
+                MessageBox.Show("Selecione um funcionário primeiro.",
                 "Edição de Funcionários", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -60,7 +60,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
 
             if (funcionarioSelecionado == null)
             {
-                MessageBox.Show("Selecione um funcionário primeiro",
+                MessageBox.Show("Selecione um funcionário primeiro.",
                 "Exclusão de Funcionários", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -94,7 +94,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
             List<Funcionario> funcionarios = repositorioFuncionario.SelecionarTodos();
 
             tabelaFuncionarioControl.AtualizarRegistros(funcionarios);
-            TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando Funcionários");
+            TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando Funcionários.");
 
         }
 
