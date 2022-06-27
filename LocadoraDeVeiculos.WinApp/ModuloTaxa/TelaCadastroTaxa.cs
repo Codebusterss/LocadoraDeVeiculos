@@ -71,7 +71,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxa
             bool estavalido = double.TryParse(txtBoxTaxaValor.Text, out valor);
             if(estavalido == false)
             {
-                MessageBox.Show("Valor tem que ser apenas numeros!", "Valor invalido", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Insira apenas números no campo 'Valor'",
+                "Cadastro de Taxas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             return valor;
             

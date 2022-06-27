@@ -64,7 +64,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
                 funcionario.Nome = txtBoxNome.Text;
                 funcionario.Login = txtBoxFuncionarioLogin.Text;
                 funcionario.Senha = txtboxFuncionarioSenha.Text;
-                funcionario.Salario = Convert.ToSingle(txtBoxSalario.Text);
+                funcionario.Salario = converterSalario();
                 funcionario.DataAdmissao = Convert.ToDateTime(dateTimeFuncionarioData.Text);
                 if (checkBoxFuncionarioAdmin.Checked == true)
                 {
@@ -113,5 +113,25 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
         }
 
         #endregion
+
+
+        private float converterSalario()
+        {
+            float valorFinal = 0;
+
+            bool estaValido = float.TryParse(txtBoxSalario.Text, out valorFinal);
+
+            if(estaValido == false)
+            {
+                MessageBox.Show("Insira apenas números no campo 'Salário'",
+                "Cadastro de Funcionários", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return valorFinal;
+            }
+            else
+            {
+                return valorFinal;
+            }
+
+        }
     }
 }
