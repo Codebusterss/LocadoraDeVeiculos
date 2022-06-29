@@ -22,7 +22,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCliente
             var resultadoValidacao = Validar(cliente);
 
             if (resultadoValidacao.IsValid)
-                repositorioCliente.Editar(cliente);
+                repositorioCliente.Inserir(cliente);
 
             return resultadoValidacao;
         }

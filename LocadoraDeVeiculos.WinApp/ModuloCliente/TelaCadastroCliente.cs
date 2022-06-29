@@ -100,15 +100,16 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
         private void rdBtnCPF_CheckedChanged(object sender, EventArgs e)
         {
             txtBoxCNH.Enabled = true;
-            txtBoxCNH.PlaceholderText = "xxx.xxx.xxx-xxx";
-            txtBoxCPFCNPJ.PlaceholderText = "xxx.xxx.xxx-xx";
+            txtBoxCNH.Mask = "000,000,000-000";
+            txtBoxCPFCNPJ.Mask = "000,000,000-00";
         }
 
         private void rdBtnCNPJ_CheckedChanged(object sender, EventArgs e)
         {
             txtBoxCNH.Enabled = false;
-            txtBoxCNH.PlaceholderText = "";
-            txtBoxCPFCNPJ.PlaceholderText = "xx.xxx.xxx/xxxx-xx";
+            txtBoxCNH.Mask = "";
+            txtBoxCNH.Text = "";
+            txtBoxCPFCNPJ.Mask = "00.000.000/0000-00";
         }
 
         #endregion
