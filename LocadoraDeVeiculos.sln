@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraDeVeiculos.Dominio.
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "LocadoraDeVeiculos.Projeto.BancoDeDados", "LocadoraDeVeiculos.Projeto.BancoDeDados\LocadoraDeVeiculos.Projeto.BancoDeDados.sqlproj", "{F0B0E4A7-BE89-4923-980E-B2529EE8059C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraDeVeiculos.Aplicacao", "LocadoraDeVeiculos.Aplicacao\LocadoraDeVeiculos.Aplicacao.csproj", "{A9191017-C2F2-4BE9-82B2-462D5A5EF9A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{F0B0E4A7-BE89-4923-980E-B2529EE8059C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F0B0E4A7-BE89-4923-980E-B2529EE8059C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F0B0E4A7-BE89-4923-980E-B2529EE8059C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{A9191017-C2F2-4BE9-82B2-462D5A5EF9A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9191017-C2F2-4BE9-82B2-462D5A5EF9A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9191017-C2F2-4BE9-82B2-462D5A5EF9A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9191017-C2F2-4BE9-82B2-462D5A5EF9A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
