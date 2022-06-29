@@ -22,7 +22,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloTaxa
             var resultadoValidacao = Validar(taxa);
 
             if (resultadoValidacao.IsValid)
-                repositorioTaxa.Editar(taxa);
+                repositorioTaxa.Inserir(taxa);
 
             return resultadoValidacao;
         }

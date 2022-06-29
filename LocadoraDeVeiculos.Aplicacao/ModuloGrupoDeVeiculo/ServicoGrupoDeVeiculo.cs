@@ -22,7 +22,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculo
             var resultadoValidacao = Validar(grupoDeVeiculo);
 
             if (resultadoValidacao.IsValid)
-                repositorioGrupoDeVeiculo.Editar(grupoDeVeiculo);
+                repositorioGrupoDeVeiculo.Inserir(grupoDeVeiculo);
 
             return resultadoValidacao;
         }
