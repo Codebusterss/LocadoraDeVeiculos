@@ -1,6 +1,6 @@
 ﻿using LocadoraDeVeiculos.Dominio.ModuloTaxa;
 using LocadoraDeVeiculos.WinApp.Compartilhado;
-using LocadoraDeVeiculos.Infra.ModuloTaxa;
+using LocadoraDeVeiculos.Aplicacao.ModuloTaxa;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,19 +11,21 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxa
 {
     public class ControladorTaxa : ControladorBase
     {
-        private RepositorioTaxaEmBancoDeDados repositorioTaxa;
+        private IRepositorioTaxa repositorioTaxa;
         TabelaTaxaControl tabelataxa;
+        private readonly ServicoTaxa servicoTaxa;
 
-        public ControladorTaxa(RepositorioTaxaEmBancoDeDados repositorioTaxa)
+        public ControladorTaxa(IRepositorioTaxa repositorioTaxa, ServicoTaxa servicoTaxa)
         {
             this.repositorioTaxa = repositorioTaxa;
+            this.servicoTaxa = servicoTaxa;
         }
         public override void Inserir()
         {
             TelaCadastroTaxa tela = new TelaCadastroTaxa();
             tela.Taxa = new Taxa();
 
-            tela.GravarRegistro = repositorioTaxa.Inserir;
+            tela.GravarRegistro = servicoTaxa.Inserir;
 
             DialogResult resultado = tela.ShowDialog();
             if (resultado == DialogResult.OK)
@@ -41,7 +43,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxa
             }
             TelaCadastroTaxa tela = new TelaCadastroTaxa();
             tela.Taxa = taxaselecionada;
-            tela.GravarRegistro = repositorioTaxa.Editar;
+            tela.GravarRegistro = servicoTaxa.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -77,10 +79,10 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxa
         }
         private void CarregarTaxa()
         {
-            List<Taxa> disciplinas = repositorioTaxa.SelecionarTodos();
+            List<Taxa> taxas = repositorioTaxa.SelecionarTodos();
 
-            tabelataxa.AtualizarRegistros(disciplinas);
-            TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando Taxas.");
+            tabelataxa.AtualizarRegistros(taxas);
+            TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando {taxas.Count} Taxas.");
 
         }
         public override UserControl ObtemListagem()
@@ -98,7 +100,5 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxa
 
             return repositorioTaxa.SelecionarPorId(ID);
         }
-
-
     }
 }

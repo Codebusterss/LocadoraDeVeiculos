@@ -5,12 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using LocadoraDeVeiculos.Dominio.ModuloGrupoDeVeiculo;
 using LocadoraDeVeiculos.Infra.Compartilhado;
-using FluentValidation.Results;
+using System.Data.SqlClient;
 
 namespace LocadoraDeVeiculos.Infra.ModuloGrupoDeVeiculos
 {
     public class RepositorioGrupoDeVeiculosEmBancoDeDados :
-        RepositorioBase<GrupoDeVeiculo, MapeadorGrupoDeVeiculo>
+        RepositorioBase<GrupoDeVeiculo, MapeadorGrupoDeVeiculo>,
+        IRepositorioGrupoDeVeiculo
     {
         protected override string sqlInserir =>
             @"INSERT INTO [GRUPODEVEICULOS]
@@ -48,6 +49,19 @@ namespace LocadoraDeVeiculos.Infra.ModuloGrupoDeVeiculos
             WHERE 
                 [ID] = @ID";
 
+        protected string sqlSelecionarPorNome =>
+                @"SELECT 
+                   [ID] ID,       
+                   [NOME] NOME
+            FROM
+                [GRUPODEVEICULOS]
+            WHERE 
+                [NOME] = @NOME";
+
+        public GrupoDeVeiculo SelecionarGrupoPorNome(string nome)
+        {
+            return SelecionarPorParametro(sqlSelecionarPorNome, new SqlParameter("NOME", nome));
+        }
     }
 }
 

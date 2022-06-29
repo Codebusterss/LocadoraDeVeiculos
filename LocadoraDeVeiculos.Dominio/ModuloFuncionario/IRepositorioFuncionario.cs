@@ -9,5 +9,8 @@ namespace LocadoraDeVeiculos.Dominio.ModuloFuncionario
 {
     public interface IRepositorioFuncionario : IRepositorioBase<Funcionario>
     {
+        Funcionario SelecionarFuncionarioPorNome(string nome);
+
+        Funcionario SelecionarFuncionarioPorLogin(string login);
     }
 }

@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 using LocadoraDeVeiculos.Dominio.ModuloFuncionario;
 using LocadoraDeVeiculos.Infra.Compartilhado;
 using FluentValidation.Results;
+using System.Data.SqlClient;
 
 namespace LocadoraDeVeiculos.Infra.ModuloFuncionario
 {
     public class RepositorioFuncionarioEmBancoDeDados :
-        RepositorioBase<Funcionario, MapeadorFuncionario>
+        RepositorioBase<Funcionario, MapeadorFuncionario>,
+        IRepositorioFuncionario
+
     {
         protected override string sqlInserir =>
             @"INSERT INTO [FUNCIONARIO]
@@ -73,6 +76,43 @@ namespace LocadoraDeVeiculos.Infra.ModuloFuncionario
             WHERE 
                 [ID] = @ID";
 
+        protected string sqlSelecionarPorNome =>
+               @"SELECT 
+                   [ID] ID,       
+                   [NOME] NOME,
+                   [LOGIN] LOGIN,
+                   [SENHA] SENHA,
+                   [DATADEADMISSAO] DATADEADMISSAO,
+                   [SALARIO] SALARIO,
+                   [ADMIN] ADMIN
+            FROM
+                [FUNCIONARIO]
+            WHERE 
+                [NOME] = @NOME";
+
+        protected string sqlSelecionarPorLogin =>
+            @"SELECT 
+                   [ID] ID,       
+                   [NOME] NOME,
+                   [LOGIN] LOGIN,
+                   [SENHA] SENHA,
+                   [DATADEADMISSAO] DATADEADMISSAO,
+                   [SALARIO] SALARIO,
+                   [ADMIN] ADMIN
+            FROM
+                [FUNCIONARIO]
+            WHERE 
+                [LOGIN] = @LOGIN";
+
+        public Funcionario SelecionarFuncionarioPorNome(string nome)
+        {
+            return SelecionarPorParametro(sqlSelecionarPorNome, new SqlParameter("NOME", nome));
+        }
+
+        public Funcionario SelecionarFuncionarioPorLogin(string login)
+        {
+            return SelecionarPorParametro(sqlSelecionarPorLogin, new SqlParameter("LOGIN", login));
+        }
     }
 }
 

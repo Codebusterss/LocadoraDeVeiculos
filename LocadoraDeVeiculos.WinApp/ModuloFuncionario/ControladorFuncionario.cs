@@ -5,25 +5,27 @@ using System.Text;
 using System.Threading.Tasks;
 using LocadoraDeVeiculos.WinApp.Compartilhado;
 using LocadoraDeVeiculos.Dominio.ModuloFuncionario;
-using LocadoraDeVeiculos.Infra.ModuloFuncionario;
+using LocadoraDeVeiculos.Aplicacao.ModuloFuncionario;
 
 namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
 {
     public class ControladorFuncionario : ControladorBase
     {
-        private readonly RepositorioFuncionarioEmBancoDeDados repositorioFuncionario;
+        private readonly IRepositorioFuncionario repositorioFuncionario;
         private TabelaFuncionarioControl tabelaFuncionarioControl;
+        private readonly ServicoFuncionario servicoFuncionario;
 
-        public ControladorFuncionario(RepositorioFuncionarioEmBancoDeDados repositorioFuncionario)
+        public ControladorFuncionario(IRepositorioFuncionario repositorioFuncionario, ServicoFuncionario servicoFuncionario)
         {
             this.repositorioFuncionario = repositorioFuncionario;
+            this.servicoFuncionario = servicoFuncionario;
         }
 
         public override void Inserir()
         {
             TelaCadastroFuncionario tela = new TelaCadastroFuncionario();
             tela.Funcionario = new Funcionario();
-            tela.GravarRegistro = repositorioFuncionario.Inserir;
+            tela.GravarRegistro = servicoFuncionario.Inserir;
 
             DialogResult resultado = tela.ShowDialog();
             if (resultado == DialogResult.OK)
@@ -45,7 +47,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
 
             tela.Funcionario = funcionarioSelecionado;
 
-            tela.GravarRegistro = repositorioFuncionario.Editar;
+            tela.GravarRegistro = servicoFuncionario.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -94,7 +96,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
             List<Funcionario> funcionarios = repositorioFuncionario.SelecionarTodos();
 
             tabelaFuncionarioControl.AtualizarRegistros(funcionarios);
-            TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando Funcionários.");
+            TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando {funcionarios.Count} Funcionários.");
 
         }
 

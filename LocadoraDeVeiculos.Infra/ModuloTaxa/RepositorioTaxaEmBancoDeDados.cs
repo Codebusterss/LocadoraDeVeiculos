@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Infra.ModuloTaxa
 {
-    public class RepositorioTaxaEmBancoDeDados : RepositorioBase<Taxa, MapeadorTaxa> 
+    public class RepositorioTaxaEmBancoDeDados : RepositorioBase<Taxa, MapeadorTaxa>,
+        IRepositorioTaxa
     {
 
         protected override string sqlInserir =>
@@ -59,6 +60,21 @@ namespace LocadoraDeVeiculos.Infra.ModuloTaxa
             WHERE 
                 [ID] = @ID";
 
+        protected string sqlSelecionarPorDescricao =>
+                @"SELECT 
+                [ID] ID,       
+                [DESCRICAO] DESCRICAO,
+                [VALOR] VALOR,
+                [TIPO] TIPO
+            FROM
+                [TAXA]
+            WHERE 
+                [DESCRICAO] = @DESCRICAO";
+
+        public Taxa SelecionarTaxaPorDescricao(string descricao)
+        {
+            return SelecionarPorParametro(sqlSelecionarPorDescricao, new SqlParameter("DESCRICAO", descricao));
+        }
     }
 }
 

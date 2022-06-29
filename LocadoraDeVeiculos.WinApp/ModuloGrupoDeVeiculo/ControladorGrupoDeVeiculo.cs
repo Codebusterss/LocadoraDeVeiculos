@@ -5,25 +5,27 @@ using System.Text;
 using System.Threading.Tasks;
 using LocadoraDeVeiculos.WinApp.Compartilhado;
 using LocadoraDeVeiculos.Dominio.ModuloGrupoDeVeiculo;
-using LocadoraDeVeiculos.Infra.ModuloGrupoDeVeiculos;
+using LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculo;
 
 namespace LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculo
 {
     public class ControladorGrupoDeVeiculo : ControladorBase
     {
-        private readonly RepositorioGrupoDeVeiculosEmBancoDeDados repositorioGrupoDeVeiculo;
+        private readonly IRepositorioGrupoDeVeiculo repositorioGrupoDeVeiculo;
         private TabelaGrupoDeVeiculoControl tabelaGrupoDeVeiculoControl;
+        private readonly ServicoGrupoDeVeiculo servicoGrupoDeVeiculo;
 
-        public ControladorGrupoDeVeiculo(RepositorioGrupoDeVeiculosEmBancoDeDados repositorioGrupoDeVeiculo)
+        public ControladorGrupoDeVeiculo(IRepositorioGrupoDeVeiculo repositorioGrupoDeVeiculo, ServicoGrupoDeVeiculo servicoGrupoDeVeiculo)
         {
             this.repositorioGrupoDeVeiculo = repositorioGrupoDeVeiculo;
+            this.servicoGrupoDeVeiculo = servicoGrupoDeVeiculo;
         }
 
         public override void Inserir()
         {
             TelaCadastroGrupoDeVeiculo tela = new TelaCadastroGrupoDeVeiculo();
             tela.GrupoDeVeiculo = new GrupoDeVeiculo();
-            tela.GravarRegistro = repositorioGrupoDeVeiculo.Inserir;
+            tela.GravarRegistro = servicoGrupoDeVeiculo.Inserir;
 
             DialogResult resultado = tela.ShowDialog();
             if (resultado == DialogResult.OK)
@@ -45,7 +47,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculo
 
             tela.GrupoDeVeiculo = grupoSelecionado;
 
-            tela.GravarRegistro = repositorioGrupoDeVeiculo.Editar;
+            tela.GravarRegistro = servicoGrupoDeVeiculo.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -94,7 +96,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculo
             List<GrupoDeVeiculo> grupoDeVeiculos = repositorioGrupoDeVeiculo.SelecionarTodos();
 
             tabelaGrupoDeVeiculoControl.AtualizarRegistros(grupoDeVeiculos);
-            TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando Grupos de Veículos.");
+            TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando {grupoDeVeiculos.Count} Grupos de Veículos.");
 
         }
 
