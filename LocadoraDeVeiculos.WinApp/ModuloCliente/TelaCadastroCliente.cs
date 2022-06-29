@@ -109,7 +109,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
             txtBoxCNH.Enabled = false;
             txtBoxCNH.Mask = "";
             txtBoxCNH.Text = "";
-            txtBoxCPFCNPJ.Mask = "00.000.000/0000-00";
+            txtBoxCPFCNPJ.Mask = "00,000,000/0000-00";
         }
 
         #endregion
