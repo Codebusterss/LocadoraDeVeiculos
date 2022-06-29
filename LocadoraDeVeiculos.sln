@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraDeVeiculos.Dominio.
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "LocadoraDeVeiculos.Projeto.BancoDeDados", "LocadoraDeVeiculos.Projeto.BancoDeDados\LocadoraDeVeiculos.Projeto.BancoDeDados.sqlproj", "{F0B0E4A7-BE89-4923-980E-B2529EE8059C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraDeVeiculos.Aplicacao", "LocadoraDeVeiculos.Aplicacao\LocadoraDeVeiculos.Aplicacao.csproj", "{A9191017-C2F2-4BE9-82B2-462D5A5EF9A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraDeVeiculos.Aplicacao", "LocadoraDeVeiculos.Aplicacao\LocadoraDeVeiculos.Aplicacao.csproj", "{A9191017-C2F2-4BE9-82B2-462D5A5EF9A5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aplicacao", "Aplicacao", "{F43C998E-0FE8-4F46-A8E5-69569043893C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -72,6 +74,7 @@ Global
 		{778304E5-633F-41C0-A998-30C9088C923B} = {00E18F1C-40AD-459E-B485-2B96070ECC44}
 		{78C465B5-9441-4FE0-8CEB-BDAE46DE2DA7} = {00E18F1C-40AD-459E-B485-2B96070ECC44}
 		{F0B0E4A7-BE89-4923-980E-B2529EE8059C} = {13D1D6E1-FE77-481B-9989-DFF7524043EF}
+		{A9191017-C2F2-4BE9-82B2-462D5A5EF9A5} = {F43C998E-0FE8-4F46-A8E5-69569043893C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7644D147-9CAB-4EE8-A22B-8206ACF3DB14}
