@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Infra.ModuloTaxa
 {
-    public class RepositorioTaxaEmBancoDeDados : RepositorioBase<Taxa, ValidadorTaxa, MapeadorTaxa> 
+    public class RepositorioTaxaEmBancoDeDados : RepositorioBase<Taxa, MapeadorTaxa> 
     {
 
         protected override string sqlInserir =>
@@ -59,31 +59,6 @@ namespace LocadoraDeVeiculos.Infra.ModuloTaxa
             WHERE 
                 [ID] = @ID";
 
-        public override ValidationResult Validar(Taxa registro)
-        {
-            var validador = new ValidadorTaxa();
-
-            var resultadoValidacao = validador.Validate(registro);
-
-            if (resultadoValidacao.IsValid == false)
-                return resultadoValidacao;
-
-            var registroEncontrado = SelecionarTodos()
-                .Select(x => x.Descricao.ToLower())
-                .Contains(registro.Descricao.ToLower());
-
-            if (registroEncontrado)
-            {
-                if (registro.ID == 0)
-                    resultadoValidacao.Errors.Add(new ValidationFailure("", "Taxa já cadastrado"));
-                else if (registro.ID != 0)
-                {
-                    resultadoValidacao.Errors.Add(new ValidationFailure("", "Taxa já cadastrado"));
-                }
-            }
-
-            return resultadoValidacao;
-        }
     }
 }
 

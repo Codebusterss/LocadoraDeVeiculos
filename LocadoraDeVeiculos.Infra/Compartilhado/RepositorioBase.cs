@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentValidation;
-using FluentValidation.Results;
+﻿using FluentValidation;
 using LocadoraDeVeiculos.Dominio.Compartilhado;
+using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace LocadoraDeVeiculos.Infra.Compartilhado
 {
-    public abstract class RepositorioBase<T, TValidador, TMapeador>
+    public abstract class RepositorioBase<T, TMapeador> : IRepositorioBase<T>
        where T : EntidadeBase<T>
-       where TValidador : AbstractValidator<T>, new()
        where TMapeador : MapeadorBase<T>, new()
     {
         protected string enderecoBanco =
@@ -30,13 +25,8 @@ namespace LocadoraDeVeiculos.Infra.Compartilhado
 
         protected abstract string sqlSelecionarTodos { get; }
 
-        public ValidationResult Inserir(T registro)
+        public virtual void Inserir(T registro)
         {
-            var resultadoValidacao = Validar(registro);
-
-            if (resultadoValidacao.IsValid == false)
-                return resultadoValidacao;
-
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 
             SqlCommand comandoInsercao = new SqlCommand(sqlInserir, conexaoComBanco);
@@ -49,20 +39,11 @@ namespace LocadoraDeVeiculos.Infra.Compartilhado
             var id = comandoInsercao.ExecuteScalar();
             registro.ID = Convert.ToInt32(id);
 
-            conexaoComBanco.Close();
-
-            return resultadoValidacao;
+            conexaoComBanco.Close(); ;
         }
 
-        public ValidationResult Editar(T registro)
+        public virtual void Editar(T registro)
         {
-            var validador = new TValidador();
-
-            var resultadoValidacao = validador.Validate(registro);
-
-            if (resultadoValidacao.IsValid == false)
-                return resultadoValidacao;
-
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 
             SqlCommand comandoEdicao = new SqlCommand(sqlEditar, conexaoComBanco);
@@ -74,11 +55,9 @@ namespace LocadoraDeVeiculos.Infra.Compartilhado
             conexaoComBanco.Open();
             comandoEdicao.ExecuteNonQuery();
             conexaoComBanco.Close();
-
-            return resultadoValidacao;
         }
 
-        public void Excluir(T registro)
+        public virtual void Excluir(T registro)
         {
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 
@@ -91,7 +70,7 @@ namespace LocadoraDeVeiculos.Infra.Compartilhado
             conexaoComBanco.Close();
         }
 
-        public T SelecionarPorId(int id)
+        public virtual T SelecionarPorId(int id)
         {
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 
@@ -112,7 +91,7 @@ namespace LocadoraDeVeiculos.Infra.Compartilhado
             return registro;
         }
 
-        public List<T> SelecionarTodos()
+        public virtual List<T> SelecionarTodos()
         {
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 
@@ -133,16 +112,25 @@ namespace LocadoraDeVeiculos.Infra.Compartilhado
             return registros;
         }
 
-        public virtual ValidationResult Validar(T registro)
+        public virtual T SelecionarPorParametro(string sqlSelecionarPorParametro, SqlParameter parametro)
         {
-            var validator = new TValidador();
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 
-            var resultadoValidacao = validator.Validate(registro);
+            SqlCommand comandoSelecao = new SqlCommand(sqlSelecionarPorParametro, conexaoComBanco);
 
-            if (resultadoValidacao.IsValid == false)
-                return resultadoValidacao;
+            comandoSelecao.Parameters.Add(parametro);
 
-            return resultadoValidacao;
+            conexaoComBanco.Open();
+            SqlDataReader leitorRegistro = comandoSelecao.ExecuteReader();
+
+            var mapeador = new TMapeador();
+            T registro = null;
+            if (leitorRegistro.Read())
+                registro = mapeador.ConverterRegistro(leitorRegistro);
+
+            conexaoComBanco.Close();
+
+            return registro;
         }
 
 

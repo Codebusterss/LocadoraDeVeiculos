@@ -10,7 +10,7 @@ using FluentValidation.Results;
 namespace LocadoraDeVeiculos.Infra.ModuloGrupoDeVeiculos
 {
     public class RepositorioGrupoDeVeiculosEmBancoDeDados :
-        RepositorioBase<GrupoDeVeiculo, ValidadorGrupoDeVeiculo, MapeadorGrupoDeVeiculo>
+        RepositorioBase<GrupoDeVeiculo, MapeadorGrupoDeVeiculo>
     {
         protected override string sqlInserir =>
             @"INSERT INTO [GRUPODEVEICULOS]
@@ -48,31 +48,6 @@ namespace LocadoraDeVeiculos.Infra.ModuloGrupoDeVeiculos
             WHERE 
                 [ID] = @ID";
 
-        public override ValidationResult Validar(GrupoDeVeiculo registro)
-        {
-            var validador = new ValidadorGrupoDeVeiculo();
-
-            var resultadoValidacao = validador.Validate(registro);
-
-            if (resultadoValidacao.IsValid == false)
-                return resultadoValidacao;
-
-            var registroEncontradoNome = SelecionarTodos()
-                .Select(x => x.Nome.ToLower())
-                .Contains(registro.Nome.ToLower());
-
-            if (registroEncontradoNome)
-            {
-                if (registro.ID == 0)
-                    resultadoValidacao.Errors.Add(new ValidationFailure("", "Grupo já cadastrado"));
-                else if (registro.ID != 0)
-                {
-                    resultadoValidacao.Errors.Add(new ValidationFailure("", "Grupo já cadastrado"));
-                }
-            }
-
-            return resultadoValidacao;
-        }
     }
 }
 

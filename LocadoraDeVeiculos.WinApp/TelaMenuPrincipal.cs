@@ -12,6 +12,7 @@ using LocadoraDeVeiculos.WinApp.ModuloFuncionario;
 using LocadoraDeVeiculos.Infra.ModuloFuncionario;
 using LocadoraDeVeiculos.WinApp.ModuloTaxa;
 using LocadoraDeVeiculos.Infra.ModuloTaxa;
+using LocadoraDeVeiculos.Aplicacao.ModuloCliente;
 
 namespace LocadoraDeVeiculos.WinApp
 {
@@ -49,10 +50,12 @@ namespace LocadoraDeVeiculos.WinApp
             var repositorioFuncionario = new RepositorioFuncionarioEmBancoDeDados();
             var repositorioTaxa = new RepositorioTaxaEmBancoDeDados();
 
+            var servicoCliente = new ServicoCliente(repositorioCliente);
+
             controladores = new Dictionary<string, ControladorBase>();
 
             controladores.Add("Grupos de Veículos", new ControladorGrupoDeVeiculo(repositorioGrupoDeVeiculos));
-            controladores.Add("Clientes", new ControladorCliente(repositorioCliente));
+            controladores.Add("Clientes", new ControladorCliente(repositorioCliente, servicoCliente));
             controladores.Add("Funcionários", new ControladorFuncionario(repositorioFuncionario));
             controladores.Add("Taxas", new ControladorTaxa(repositorioTaxa));
         }

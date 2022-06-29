@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 using LocadoraDeVeiculos.Dominio.ModuloCliente;
 using LocadoraDeVeiculos.Infra.Compartilhado;
 using FluentValidation.Results;
+using System.Data.SqlClient;
 
 namespace LocadoraDeVeiculos.Infra.ModuloCliente
 {
     public class RepositorioClienteEmBancoDeDados :
-        RepositorioBase<Cliente, ValidadorCliente, MapeadorCliente>
+        RepositorioBase<Cliente, MapeadorCliente>,
+        IRepositorioCliente
     {
         protected override string sqlInserir =>
             @"INSERT INTO [CLIENTE]
@@ -83,64 +85,90 @@ namespace LocadoraDeVeiculos.Infra.ModuloCliente
             WHERE 
                 [ID] = @ID";
 
-        public override ValidationResult Validar(Cliente registro)
+        protected string sqlSelecionarPorNome =>
+                @"SELECT 
+                   [ID] ID,       
+                   [NOME] NOME,
+                   [CNPJ] CNPJ,
+                   [CPF] CPF,
+                   [CNH] CNH,
+                   [ENDERECO] ENDERECO,
+                   [EMAIL] EMAIL,
+                   [TELEFONE] TELEFONE,
+                   [TIPOCLIENTE] TIPOCLIENTE
+            FROM
+                [CLIENTE]
+            WHERE 
+                [NOME] = @NOME";
+
+        protected string sqlSelecionarPorCNPJ =>
+                @"SELECT 
+                   [ID] ID,       
+                   [NOME] NOME,
+                   [CNPJ] CNPJ,
+                   [CPF] CPF,
+                   [CNH] CNH,
+                   [ENDERECO] ENDERECO,
+                   [EMAIL] EMAIL,
+                   [TELEFONE] TELEFONE,
+                   [TIPOCLIENTE] TIPOCLIENTE
+            FROM
+                [CLIENTE]
+            WHERE 
+                [CNPJ] = @CNPJ";
+
+        protected string sqlSelecionarPorCPF =>
+                @"SELECT 
+                   [ID] ID,       
+                   [NOME] NOME,
+                   [CNPJ] CNPJ,
+                   [CPF] CPF,
+                   [CNH] CNH,
+                   [ENDERECO] ENDERECO,
+                   [EMAIL] EMAIL,
+                   [TELEFONE] TELEFONE,
+                   [TIPOCLIENTE] TIPOCLIENTE
+            FROM
+                [CLIENTE]
+            WHERE 
+                [CPF] = @CPF";
+
+        protected string sqlSelecionarPorCNH =>
+                @"SELECT 
+                   [ID] ID,       
+                   [NOME] NOME,
+                   [CNPJ] CNPJ,
+                   [CPF] CPF,
+                   [CNH] CNH,
+                   [ENDERECO] ENDERECO,
+                   [EMAIL] EMAIL,
+                   [TELEFONE] TELEFONE,
+                   [TIPOCLIENTE] TIPOCLIENTE
+            FROM
+                [CLIENTE]
+            WHERE 
+                [CNH] = @CNH";
+
+
+
+        public Cliente SelecionarClientePorNome(string nome)
         {
-            var validador = new ValidadorCliente();
+            return SelecionarPorParametro(sqlSelecionarPorNome, new SqlParameter("NOME", nome));
+        }
 
-            var resultadoValidacao = validador.Validate(registro);
+        public Cliente SelecionarClientePorCNPJ(string cnpj)
+        {
+            return SelecionarPorParametro(sqlSelecionarPorCNPJ, new SqlParameter("CNPJ", cnpj));
+        }
 
-            if (resultadoValidacao.IsValid == false)
-                return resultadoValidacao;
+        public Cliente SelecionarClientePorCPF(string cpf)
+        {
+            return SelecionarPorParametro(sqlSelecionarPorCPF, new SqlParameter("CPF", cpf));
+        }
 
-            var registroEncontradoNome = SelecionarTodos()
-                .Select(x => x.Nome.ToLower())
-                .Contains(registro.Nome.ToLower());
-
-            if (registroEncontradoNome)
-            {
-                if (registro.ID == 0)
-                    resultadoValidacao.Errors.Add(new ValidationFailure("", "Cliente já cadastrado"));
-                else if (registro.ID != 0)
-                {
-                    resultadoValidacao.Errors.Add(new ValidationFailure("", "Cliente já cadastrado"));
-                }
-            }
-
-            if(registro.CPF == "")
-            {
-                var registroEncontradoCNPJ = SelecionarTodos()
-                .Select(x => x.CNPJ.ToLower())
-                .Contains(registro.CNPJ.ToLower());
-
-                if (registroEncontradoCNPJ)
-                {
-                    if (registro.ID == 0)
-                        resultadoValidacao.Errors.Add(new ValidationFailure("", "CNPJ já cadastrado"));
-                    else if (registro.ID != 0)
-                    {
-                        resultadoValidacao.Errors.Add(new ValidationFailure("", "CNPJ já cadastrado"));
-                    }
-                }
-            }
-            else if(registro.CNPJ == "")
-            {
-                var registroEncontradoCPF = SelecionarTodos()
-                .Select(x => x.CPF.ToLower())
-                .Contains(registro.CPF.ToLower());
-
-                if (registroEncontradoCPF)
-                {
-                    if (registro.ID == 0)
-                        resultadoValidacao.Errors.Add(new ValidationFailure("", "CPF já cadastrado"));
-                    else if (registro.ID != 0)
-                    {
-                        resultadoValidacao.Errors.Add(new ValidationFailure("", "CPF já cadastrado"));
-                    }
-                }
-            }
-            
-
-            return resultadoValidacao;
+        public Cliente SelecionarClientePorCNH(string cnh)
+        {
+            return SelecionarPorParametro(sqlSelecionarPorCNH, new SqlParameter("CNH", cnh));
         }
     }
 }
