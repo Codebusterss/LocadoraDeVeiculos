@@ -183,21 +183,24 @@
             // 
             // comboBoxCondCliente
             // 
+            this.comboBoxCondCliente.Enabled = false;
             this.comboBoxCondCliente.FormattingEnabled = true;
             this.comboBoxCondCliente.Location = new System.Drawing.Point(136, 88);
             this.comboBoxCondCliente.Name = "comboBoxCondCliente";
             this.comboBoxCondCliente.Size = new System.Drawing.Size(245, 33);
             this.comboBoxCondCliente.TabIndex = 17;
+            this.comboBoxCondCliente.SelectedIndexChanged += new System.EventHandler(this.comboBoxCondCliente_SelectedIndexChanged);
             // 
             // checkBoxClienteCondutor
             // 
             this.checkBoxClienteCondutor.AutoSize = true;
-            this.checkBoxClienteCondutor.Location = new System.Drawing.Point(416, 87);
+            this.checkBoxClienteCondutor.Location = new System.Drawing.Point(404, 90);
             this.checkBoxClienteCondutor.Name = "checkBoxClienteCondutor";
-            this.checkBoxClienteCondutor.Size = new System.Drawing.Size(176, 29);
+            this.checkBoxClienteCondutor.Size = new System.Drawing.Size(172, 29);
             this.checkBoxClienteCondutor.TabIndex = 18;
-            this.checkBoxClienteCondutor.Text = "Cliente Condutor:";
+            this.checkBoxClienteCondutor.Text = "Cliente Condutor";
             this.checkBoxClienteCondutor.UseVisualStyleBackColor = true;
+            this.checkBoxClienteCondutor.CheckedChanged += new System.EventHandler(this.checkBoxClienteCondutor_CheckedChanged);
             // 
             // button1
             // 
@@ -208,6 +211,7 @@
             this.button1.TabIndex = 19;
             this.button1.Text = "Cadastrar";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 

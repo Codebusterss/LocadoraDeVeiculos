@@ -50,11 +50,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCondutor
                     resultadoValidacao.Errors.Add(new ValidationFailure("CPF", "CPF duplicado"));
             }
 
-            if (condutor.CNH != "")
-            {
-                if (CNHInvalida(condutor))
-                    resultadoValidacao.Errors.Add(new ValidationFailure("CNH", "CHN invalida"));
-            }
+           
 
             if (condutor.CNH != "")
             {
@@ -67,38 +63,30 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCondutor
         }
         private bool NomeDuplicado(Condutor condutor)
         {
-            var clienteEncontrado = repositorioCondutor.SelecionarCondutorPorNome(condutor.Nome);
+            var condutorEncontrado = repositorioCondutor.SelecionarCondutorPorNome(condutor.Nome);
 
-            return clienteEncontrado != null &&
-                   clienteEncontrado.Nome == condutor.Nome &&
-                   clienteEncontrado.ID != condutor.ID;
+            return condutorEncontrado != null &&
+                   condutorEncontrado.Nome == condutor.Nome &&
+                   condutorEncontrado.ID != condutor.ID;
         }
 
         private bool CPFDuplicado(Condutor condutor)
         {
-            var clienteEncontrado = repositorioCondutor.SelecionarCondutorPorCPF(condutor.CPF);
+            var condutorEncontrado = repositorioCondutor.SelecionarCondutorPorCPF(condutor.CPF);
 
-            return clienteEncontrado != null &&
-                   clienteEncontrado.CPF == condutor.CPF &&
-                   clienteEncontrado.ID != condutor.ID;
+            return condutorEncontrado != null &&
+                   condutorEncontrado.CPF == condutor.CPF &&
+                   condutorEncontrado.ID != condutor.ID;
         }
-        private bool CNHInvalida(Condutor condutor)
-        {
-            var clienteEncontrado = repositorioCondutor.SelecionarClientePorCNPJ(condutor.CNH);
-
-            return clienteEncontrado != null &&
-                   clienteEncontrado.CNH == condutor.CNH &&
-                   clienteEncontrado.ID != condutor.ID;
-
-        }
+       
 
         private bool CNHDuplicado(Condutor condutor)
         {
-            var clienteEncontrado = repositorioCondutor.SelecionarCondutorPorCNH(condutor.CNH);
+            var condutorEncontrado = repositorioCondutor.SelecionarCondutorPorCNH(condutor.CNH);
 
-            return clienteEncontrado != null &&
-                   clienteEncontrado.CNH == condutor.CNH &&
-                   clienteEncontrado.ID != condutor.ID;
+            return condutorEncontrado != null &&
+                   condutorEncontrado.CNH == condutor.CNH &&
+                   condutorEncontrado.ID != condutor.ID;
         }
 
     }

@@ -1,4 +1,5 @@
 ﻿using LocadoraDeVeiculos.Dominio.ModuloCondutor;
+using LocadoraDeVeiculos.WinApp.Compartilhado;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,6 +25,10 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
             {
                 grid.Rows.Add(c.ID, c.Nome, c.Endereco, c.Email, c.Telefone);
             }
+        }
+        internal int ObtemIDCondutorSelecionado()
+        {
+            return grid.SelecionarPorID<int>();
         }
         public int ObtemClienteSelecionado()
         {

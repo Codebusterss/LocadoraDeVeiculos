@@ -19,13 +19,21 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCondutor
         public string Telefone { get; set; }
         public string Endereco { get; set; }
 
+        public bool ClienteCondutor { get; set; }
+
         public Condutor()
         {
-
+           
 
         }
 
-        public Condutor(int n, string nome, Cliente cliente, string cpf, string cnh, DateTime validadeCNH, string email, string telefone, string endereco) : this()
+        public Condutor Clone()
+        {
+            return MemberwiseClone() as Condutor;
+        }
+
+
+        public Condutor(int n, string nome, Cliente cliente, string cpf, string cnh, DateTime validadeCNH, string email, string telefone, string endereco, bool clientecondutor) : this()
         {
             ID = n;
             Nome = nome;
@@ -36,6 +44,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCondutor
             Email = email;
             Telefone = telefone;
             Endereco = endereco;
+            ClienteCondutor = clientecondutor;
         }
 
         public override void Atualizar(Condutor registro)
@@ -47,7 +56,8 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCondutor
             this.Email = registro.Endereco;
             this.Telefone = registro.Telefone;
             this.Endereco = registro.Endereco;
-            //ver com o luan se precisa cliente
+            this.ClienteCondutor = registro.ClienteCondutor;
+            Cliente = registro.Cliente;
         }
 
         public override string? ToString()
@@ -65,7 +75,8 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCondutor
                    Endereco == condutor.Endereco &&
                    Email == condutor.Email &&
                    Telefone == condutor.Telefone &&
-                   ValidadeCNH == condutor.ValidadeCNH;
+                   ValidadeCNH == condutor.ValidadeCNH &&
+                   ClienteCondutor == condutor.ClienteCondutor;
 
         }
     }

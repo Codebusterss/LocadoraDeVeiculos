@@ -16,6 +16,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
         private TabelaCondutorControl tabelaCondutorControl;
         private readonly ServicoCondutor servicoCondutor;
         private readonly IRepositorioCliente repositorioCliente;
+        private TabelaCondutorControl tabelaCondutor;
 
         public ControladorCondutor(IRepositorioCondutor repositorioCondutor, ServicoCondutor servicoCondutor, IRepositorioCliente repositorioCliente)
         {
@@ -26,38 +27,80 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
 
         public override void Inserir()
         {
-            var clientes = repositorioCliente.SelecionarTodos();
+            List<Cliente> clientes = repositorioCliente.SelecionarTodos();
+
             var tela = new TelaCadastroCondutor(clientes);
-            TelaCadastroCondutor tela = new TelaCadastroCondutor();
+
             tela.Condutor = new Condutor();
-            tela.GravarRegistro = servicoCondutor.Inserir;
+
+            tela.GravarRegistro = repositorioCondutor.Inserir;
 
             DialogResult resultado = tela.ShowDialog();
+
             if (resultado == DialogResult.OK)
+            {
                 CarregarCondutores();
+            }
         }
         public override void Editar()
         {
-            Condutor clienteSelecionado = ObtemClienteSelecionado();
+            var id = tabelaCondutor.ObtemIDCondutorSelecionado();
 
-            if (clienteSelecionado == null)
+            Condutor materiaSelecionada = repositorioCondutor.SelecionarPorId(id);
+
+            if (materiaSelecionada == null)
             {
-                MessageBox.Show("Selecione um condutor primeiro.",
-                "Edição de condutores", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione uma materia primeiro",
+                "Edição de Compromissos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            TelaCadastroCondutor tela = new TelaCadastroCondutor();
+            List<Cliente> condutor = repositorioCliente.SelecionarTodos();
 
-            tela.Condutor = clienteSelecionado;
+            var tela = new TelaCadastroCondutor(condutor);
 
-            tela.GravarRegistro = servicoCliente.Editar;
+            tela.Condutor = materiaSelecionada.Clone();
+
+            tela.GravarRegistro = repositorioCondutor.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 
             if (resultado == DialogResult.OK)
-                CarregarClientes();
+            {
+                CarregarCondutores();
+            }
 
+        }
+        public override void Excluir()
+        {
+            var id = tabelaCondutor.ObtemIDCondutorSelecionado();
+
+            Condutor condutorSelecionado = repositorioCondutor.SelecionarPorId(id);
+
+            if (condutorSelecionado == null)
+            {
+                MessageBox.Show("Selecione um condutor primeiro",
+                "Exclusão de Condutor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            DialogResult resultado = MessageBox.Show("Deseja realmente excluir o condutor?",
+               "Exclusão de Condutor", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+            if (resultado == DialogResult.OK)
+            {
+                repositorioCondutor.Excluir(condutorSelecionado);
+                CarregarCondutores();
+            }
+        }
+        public override UserControl ObtemListagem()
+        {
+            if (tabelaCondutor == null)
+                tabelaCondutor = new TabelaCondutorControl();
+
+            CarregarCondutores();
+
+            return tabelaCondutor;
         }
         private Condutor ObtemClienteSelecionado()
         {
@@ -65,6 +108,11 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
 
             return repositorioCondutor.SelecionarPorId(id);
         }
+        public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
+        {
+            return new ConfiguracaoToolBoxCondutor();
+        }
+
 
         private void CarregarCondutores()
         {

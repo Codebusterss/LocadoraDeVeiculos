@@ -1,5 +1,8 @@
 ﻿using FluentValidation.Results;
+using LocadoraDeVeiculos.Dominio.ModuloCliente;
 using LocadoraDeVeiculos.Dominio.ModuloCondutor;
+using LocadoraDeVeiculos.Infra.ModuloCliente;
+using LocadoraDeVeiculos.WinApp.Compartilhado;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,13 +17,18 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
 {
     public partial class TelaCadastroCondutor : Form
     {
-        public TelaCadastroCondutor()
+        private Condutor condutor;
+        private RepositorioClienteEmBancoDeDados repositorioClienteEmBanco;
+        ValidadorRegex validador = new ValidadorRegex();
+        public TelaCadastroCondutor(List<Cliente> clientes)
         {
             InitializeComponent();
+            CarregarCondutor();
+          //
         }
         public Func<Condutor, ValidationResult> GravarRegistro { get; set; }
 
-        public Condutor condutor
+        public Condutor Condutor
         {
             get
             {
@@ -34,13 +42,87 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
                 textBoxCondEndereco.Text = condutor.Endereco;
                 textBoxCondNome.Text = condutor.Nome;
                 textBoxTelefone.Text = condutor.Telefone;
-                textBoxCondCPF = condutor.CPF.ToString();
-                if (cliente.CNH != "")
-                {
-                    txtBoxCNH.Text = condutor.CNH;
-                }
-                ChecarCPFCNPJ();
+                comboBoxCondCliente.SelectedItem = condutor.Cliente;
+                checkBoxClienteCondutor.Checked = condutor.ClienteCondutor;
+                textBoxCondCPF.Text = condutor.CPF;
+               
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e) //gravar
+        {
+            if (validador.ApenasLetra(textBoxCondNome.Text))
+            {
+                condutor.Nome = textBoxCondNome.Text;
+                condutor.Email = textBoxCondEmail.Text;
+                condutor.Telefone = textBoxTelefone.Text;
+                condutor.Endereco = textBoxCondEndereco.Text;
+                condutor.CPF = textBoxCondCPF.Text;
+                condutor.CNH = textBoxCondCNH.Text;
+
+
+                var resultadoValidacao = GravarRegistro(condutor);
+
+                if (resultadoValidacao.IsValid == false)
+                {
+                    string erro = resultadoValidacao.Errors[0].ErrorMessage;
+
+                    TelaMenuPrincipal.Instancia.AtualizarRodape(erro);
+
+                    DialogResult = DialogResult.None;
+                }
+                else
+                {
+                    MessageBox.Show("Insira apenas letras no campo 'Nome'",
+                    "Cadastro de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                    DialogResult = DialogResult.None;
+
+                    return;
+                }
+            }
+        }
+        private void CarregarCondutor()
+        {
+            List<Cliente> clientes = repositorioClienteEmBanco.SelecionarTodos();
+            comboBoxCondCliente.Items.Clear();
+
+            foreach (Cliente cliente in clientes)
+            {
+                comboBoxCondCliente.Items.Add(cliente.Nome);
+            }
+
+          
+        }
+        private void checkBoxClienteCondutor_CheckedChanged(object sender, EventArgs e)
+        {
+            List<Cliente> clientes = repositorioClienteEmBanco.SelecionarTodos();
+           
+
+            if (comboBoxCondCliente.Text == "")
+            {
+                MessageBox.Show("Selecione um cliente primeiro",
+                  "Cadastro de Condutores", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                foreach (Cliente cliente in clientes)
+                {
+                    if(comboBoxCondCliente.Text == cliente.Nome)
+                    {
+                        textBoxCondNome.Text = cliente.Nome;
+                        textBoxCondEmail.Text = cliente.Email;
+                        textBoxTelefone.Text = cliente.Telefone;
+                        textBoxCondEndereco.Text = cliente.Endereco;
+                        textBoxCondCPF.Text = cliente.CPF;
+                    }
+                }
+            }
+        }
+
+        private void comboBoxCondCliente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            checkBoxClienteCondutor.Enabled = true;
         }
     }
 }

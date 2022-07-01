@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Dominio.Testes.ModuloCondutor
 {
-    internal class ValidadorCondutorTest
+    public class ValidadorCondutorTest
     {
     }
 }
