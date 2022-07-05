@@ -15,14 +15,14 @@
 ## Descrição do projeto 💼 
 A Locadora de Veículos é um projeto da Academia do Programador 2022, sendo o primeiro projeto a ser realizado em um time de trabalho, onde o intuito é realizar uma simulação de desenvolvimento de software para uma empresa de locação.
 
-### Funcionalidades Desenvolvidas 📜 
+## Funcionalidades Desenvolvidas 📜 
 <div> ✔️ Proteção com Login <div>
 <div> ✔️ Gerencia os funcionários <div>
 <div> ✔️ Gerencia os clientes <div>
 <div> ❌ Gerencia os veículos <div>
 <div> ❌ Gerencia as locações <div>
       
-### Como rodar a aplicação 🔃 
+## Como rodar a aplicação 🔃 
 • Clone o projeto na IDE de preferência que tenha capacidade de rodar projetos em C# ou através do Git Bash, recomendamos o Visual Studio.
 
 ```
@@ -31,7 +31,7 @@ git clone https://github.com/Codebusterss/locadora-de-veiculos.git
 
 • Build e execute o programa.
 
-### Tecnologias utilizadas no projeto 💻
+## Tecnologias utilizadas no projeto 💻
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Visual_Studio_Icon_2019.svg/2060px-Visual_Studio_Icon_2019.svg.png" title="Visual Studio" width="64" height="64"/>
 <img src=https://img.shields.io/badge/Visual%20Studio-5C2D91.svg?style=for-the-badge&logo=visual-studio&logoColor=white/>
 <br/>
