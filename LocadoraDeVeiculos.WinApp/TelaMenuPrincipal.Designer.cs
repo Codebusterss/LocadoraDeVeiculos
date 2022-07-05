@@ -45,6 +45,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblStatusRodape = new System.Windows.Forms.ToolStripStatusLabel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.planosDeCobrançaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panelRegistros.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -67,7 +68,8 @@
             this.clientesToolStripMenuItem,
             this.gruposDeVeículosToolStripMenuItem,
             this.funcionáriosToolStripMenuItem,
-            this.taxasToolStripMenuItem});
+            this.taxasToolStripMenuItem,
+            this.planosDeCobrançaToolStripMenuItem});
             this.cadastrosToolStripMenu.Name = "cadastrosToolStripMenu";
             this.cadastrosToolStripMenu.Size = new System.Drawing.Size(71, 20);
             this.cadastrosToolStripMenu.Text = "Cadastros";
@@ -189,6 +191,13 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // planosDeCobrançaToolStripMenuItem
+            // 
+            this.planosDeCobrançaToolStripMenuItem.Name = "planosDeCobrançaToolStripMenuItem";
+            this.planosDeCobrançaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.planosDeCobrançaToolStripMenuItem.Text = "Planos de Cobrança";
+            this.planosDeCobrançaToolStripMenuItem.Click += new System.EventHandler(this.planosDeCobrançaToolStripMenuItem_Click);
+            // 
             // TelaMenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -235,5 +244,6 @@
         private ToolStripButton btnInserir;
         private ToolStripButton btnEditar;
         private ToolStripButton btnExcluir;
+        private ToolStripMenuItem planosDeCobrançaToolStripMenuItem;
     }
 }
