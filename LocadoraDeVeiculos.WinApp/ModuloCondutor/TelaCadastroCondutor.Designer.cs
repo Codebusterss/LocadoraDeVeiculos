@@ -258,6 +258,7 @@
             this.Controls.Add(this.label1);
             this.Name = "TelaCadastroCondutor";
             this.Text = "TelaCadastroCondutor";
+            this.Load += new System.EventHandler(this.TelaCadastroCondutor_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

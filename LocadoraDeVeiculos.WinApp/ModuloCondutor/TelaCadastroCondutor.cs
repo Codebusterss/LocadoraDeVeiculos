@@ -18,14 +18,24 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
     public partial class TelaCadastroCondutor : Form
     {
         private Condutor condutor;
-        private RepositorioClienteEmBancoDeDados repositorioClienteEmBanco;
         ValidadorRegex validador = new ValidadorRegex();
+        private RepositorioClienteEmBancoDeDados repositorioClienteEmBanco;
         public TelaCadastroCondutor(List<Cliente> clientes)
         {
             InitializeComponent();
-            CarregarCondutor();
-          //
+            CarregarCondutor(clientes);
+          
         }
+        private void CarregarCondutor(List<Cliente> clientes)
+        {
+            comboBoxCondCliente.Items.Clear();
+
+            foreach (var cliente in clientes)
+            {
+                comboBoxCondCliente.Items.Add(cliente);
+            }
+        }
+
         public Func<Condutor, ValidationResult> GravarRegistro { get; set; }
 
         public Condutor Condutor
@@ -38,13 +48,15 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
             {
                 condutor = value;
                 textBoxCondID.Text = condutor.ID.ToString();
-                textBoxCondEmail.Text = condutor.Email;
-                textBoxCondEndereco.Text = condutor.Endereco;
-                textBoxCondNome.Text = condutor.Nome;
-                textBoxTelefone.Text = condutor.Telefone;
+                textBoxCondEmail.Text = condutor.Email.ToString(); 
+                textBoxCondEndereco.Text = condutor.Endereco.ToString();
+                textBoxCondNome.Text = condutor.Nome.ToString();
+                textBoxTelefone.Text = condutor.Telefone.ToString();
                 comboBoxCondCliente.SelectedItem = condutor.Cliente;
                 checkBoxClienteCondutor.Checked = condutor.ClienteCondutor;
                 textBoxCondCPF.Text = condutor.CPF;
+                textBoxCondCNH.Text = condutor.CNH;
+
                
             }
         }
@@ -82,18 +94,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
                 }
             }
         }
-        private void CarregarCondutor()
-        {
-            List<Cliente> clientes = repositorioClienteEmBanco.SelecionarTodos();
-            comboBoxCondCliente.Items.Clear();
-
-            foreach (Cliente cliente in clientes)
-            {
-                comboBoxCondCliente.Items.Add(cliente.Nome);
-            }
-
-          
-        }
+       
         private void checkBoxClienteCondutor_CheckedChanged(object sender, EventArgs e)
         {
             List<Cliente> clientes = repositorioClienteEmBanco.SelecionarTodos();
@@ -123,6 +124,11 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
         private void comboBoxCondCliente_SelectedIndexChanged(object sender, EventArgs e)
         {
             checkBoxClienteCondutor.Enabled = true;
+        }
+
+        private void TelaCadastroCondutor_Load(object sender, EventArgs e)
+        {
+            TelaMenuPrincipal.Instancia.AtualizarRodape("");
         }
     }
 }

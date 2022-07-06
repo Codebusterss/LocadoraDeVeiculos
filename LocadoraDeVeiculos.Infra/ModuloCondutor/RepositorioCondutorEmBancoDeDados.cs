@@ -10,6 +10,6 @@ namespace LocadoraDeVeiculos.Infra.ModuloCondutor
 {
     public class RepositorioCondutorEmBancoDeDados :RepositorioBase<Condutor, MapeadorCondutor>,IRepositorioCondutor
     {
-        //ajuda
+       
     }
 }

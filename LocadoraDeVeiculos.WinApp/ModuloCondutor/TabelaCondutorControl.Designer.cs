@@ -28,8 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // TabelaCondutorControl
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Name = "TabelaCondutorControl";
+            this.Size = new System.Drawing.Size(714, 555);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

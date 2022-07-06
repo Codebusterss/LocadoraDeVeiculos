@@ -12,9 +12,11 @@ namespace LocadoraDeVeiculos.Infra.ModuloCondutor
 {
     public class MapeadorCondutor : MapeadorBase<Condutor>
     {
+        RepositorioClienteEmBancoDeDados repositorioCliente = new RepositorioClienteEmBancoDeDados();
         public override void ConfigurarParametros(Condutor condutor, SqlCommand comando)
         {
             comando.Parameters.AddWithValue("CONDUTOR_ID", condutor.ID);
+            comando.Parameters.AddWithValue("CLIENTE_COND", condutor.Cliente.ID); //puxa cliente
             comando.Parameters.AddWithValue("CONDUTOR_NOME", condutor.Nome);
             comando.Parameters.AddWithValue("CONDUTOR_CNH", condutor.CNH);
             comando.Parameters.AddWithValue("CONDUTOR_CPF", condutor.CPF);
@@ -22,7 +24,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloCondutor
             comando.Parameters.AddWithValue("CONDUTOR_ENDERECO", condutor.Endereco);
             comando.Parameters.AddWithValue("CONDUTOR_EMAIL", condutor.Email);
             comando.Parameters.AddWithValue("CONDUTOR_TELEFONE", condutor.Telefone);
-            comando.Parameters.AddWithValue("CONDUTOR_CLIENTE CONDUTOR", condutor.ClienteCondutor);
+            comando.Parameters.AddWithValue("CONDUTOR_CLIENTE ", condutor.ClienteCondutor);
 
            
 
@@ -31,6 +33,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloCondutor
         public override Condutor ConverterRegistro(SqlDataReader leitorCondutor)
         {
             var id = Convert.ToInt32(leitorCondutor["CONDUTOR_ID"]);
+            var clienteCond = Convert.ToInt32(leitorCondutor["CLIENTE_COND"]);
             var nome = Convert.ToString(leitorCondutor["CONDUTOR_NOME"]);
             var cnh = Convert.ToString(leitorCondutor["CONDUTOR_CNH"]);
             var cpf = Convert.ToString(leitorCondutor["CONDUTOR_CPF"]);
@@ -43,6 +46,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloCondutor
 
             Condutor condutor = new Condutor();
             condutor.ID = id;
+            condutor.Cliente = repositorioCliente.SelecionarPorId(clienteCond);
             condutor.Nome = nome;
             condutor.CNH = cnh;
             condutor.CPF = cpf;

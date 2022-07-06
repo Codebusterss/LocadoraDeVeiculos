@@ -57,7 +57,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCondutor
             this.Telefone = registro.Telefone;
             this.Endereco = registro.Endereco;
             this.ClienteCondutor = registro.ClienteCondutor;
-            Cliente = registro.Cliente;
+            this.Cliente = registro.Cliente;
         }
 
         public override string? ToString()
@@ -68,6 +68,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCondutor
         public override bool Equals(object? obj)
         {
             return obj is Condutor condutor &&
+                    EqualityComparer<Cliente>.Default.Equals(Cliente, condutor.Cliente) &&
                    ID == condutor.ID &&
                    Nome == condutor.Nome &&
                    CPF == condutor.CPF &&

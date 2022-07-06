@@ -17,6 +17,28 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
         public TabelaCondutorControl()
         {
             InitializeComponent();
+            grid.ConfigurarGrid();
+            grid.ConfigurarGridSomenteLeitura();
+            grid.Columns.AddRange(ObterColunas());
+        }
+        private DataGridViewColumn[] ObterColunas()
+        {
+            var colunas = new DataGridViewColumn[]
+          {
+                new DataGridViewTextBoxColumn { DataPropertyName = "ID", HeaderText = "ID"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "Clientes", HeaderText = "Clientes"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "Endereco", HeaderText = "Endereco"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "Email", HeaderText = "Email"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "Telefone", HeaderText = "Telefone"}
+          };
+
+            return colunas;
         }
         public void AtualizarRegistros(List<Condutor> condutor)
         {
@@ -26,11 +48,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
                 grid.Rows.Add(c.ID, c.Nome, c.Endereco, c.Email, c.Telefone);
             }
         }
-        internal int ObtemIDCondutorSelecionado()
-        {
-            return grid.SelecionarPorID<int>();
-        }
-        public int ObtemClienteSelecionado()
+      
+        public int ObtemCondutorSelecionado()
         {
             return grid.SelecionarPorID<int>();
         }

@@ -14,8 +14,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCondutor
 
         Condutor SelecionarCondutorPorCPF(string cpf);
 
-      
-        Condutor SelecionarCondutorPorCNH(string cnh);
+       Condutor SelecionarCondutorPorCNH(string cnh);
 
     }
 }
