@@ -5,6 +5,7 @@
     [DATADEADMISSAO] DATETIME      NOT NULL,
     [SALARIO]        FLOAT (53)    NOT NULL,
     [ADMIN]          BIT           NULL,
+    [NOME]           VARCHAR (300) NOT NULL,
     CONSTRAINT [PK_FUNCIONARIO] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 
