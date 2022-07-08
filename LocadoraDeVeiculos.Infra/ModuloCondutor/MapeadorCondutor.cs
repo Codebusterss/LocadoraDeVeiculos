@@ -15,33 +15,40 @@ namespace LocadoraDeVeiculos.Infra.ModuloCondutor
         RepositorioClienteEmBancoDeDados repositorioCliente = new RepositorioClienteEmBancoDeDados();
         public override void ConfigurarParametros(Condutor condutor, SqlCommand comando)
         {
-            comando.Parameters.AddWithValue("CONDUTOR_ID", condutor.ID);
-            comando.Parameters.AddWithValue("CLIENTE_COND", condutor.Cliente.ID); //puxa cliente
-            comando.Parameters.AddWithValue("CONDUTOR_NOME", condutor.Nome);
-            comando.Parameters.AddWithValue("CONDUTOR_CNH", condutor.CNH);
-            comando.Parameters.AddWithValue("CONDUTOR_CPF", condutor.CPF);
-            comando.Parameters.AddWithValue("CONDUTOR_CNH", condutor.ValidadeCNH);
-            comando.Parameters.AddWithValue("CONDUTOR_ENDERECO", condutor.Endereco);
-            comando.Parameters.AddWithValue("CONDUTOR_EMAIL", condutor.Email);
-            comando.Parameters.AddWithValue("CONDUTOR_TELEFONE", condutor.Telefone);
-            comando.Parameters.AddWithValue("CONDUTOR_CLIENTE ", condutor.ClienteCondutor);
+            comando.Parameters.AddWithValue("ID", condutor.ID);
+            comando.Parameters.AddWithValue("CLIENTE_ID", condutor.Cliente.ID); //puxa cliente
+            comando.Parameters.AddWithValue("NOME", condutor.Nome);
+            comando.Parameters.AddWithValue("CNH", condutor.CNH);
+            comando.Parameters.AddWithValue("CPF", condutor.CPF);
+            comando.Parameters.AddWithValue("VALIDADECNH", condutor.ValidadeCNH);
+            comando.Parameters.AddWithValue("ENDERECO", condutor.Endereco);
+            comando.Parameters.AddWithValue("EMAIL", condutor.Email);
+            comando.Parameters.AddWithValue("TELEFONE", condutor.Telefone);
+            
 
-           
+            if (condutor.CondutorCliente == true)
+            {
+                comando.Parameters.AddWithValue("CONDUTORCLIENTE", 1);
+            }
+            else
+            {
+                comando.Parameters.AddWithValue("CONDUTORCLIENTE", 0);
+            }
 
         }
 
         public override Condutor ConverterRegistro(SqlDataReader leitorCondutor)
         {
-            var id = Convert.ToInt32(leitorCondutor["CONDUTOR_ID"]);
-            var clienteCond = Convert.ToInt32(leitorCondutor["CLIENTE_COND"]);
-            var nome = Convert.ToString(leitorCondutor["CONDUTOR_NOME"]);
-            var cnh = Convert.ToString(leitorCondutor["CONDUTOR_CNH"]);
-            var cpf = Convert.ToString(leitorCondutor["CONDUTOR_CPF"]);
-            var validadecnh = Convert.ToDateTime(leitorCondutor["CONDUTOR_ValidadeCNH"]);
-            var endereco = Convert.ToString(leitorCondutor["CONDUTOR_ENDERECO"]);
-            var email = Convert.ToString(leitorCondutor["CONDUTOR_EMAIL"]);
-            var telefone = Convert.ToString(leitorCondutor["CONDUTOR_TELEFONE"]);
-            var clientecondutor = Convert.ToBoolean(leitorCondutor["CONDUTOR_CLIENTECONDUTOR"]);
+            var id = Convert.ToInt32(leitorCondutor["ID"]);
+            var clienteCond = Convert.ToInt32(leitorCondutor["CLIENTE_ID"]);
+            var nome = Convert.ToString(leitorCondutor["NOME"]);
+            var cnh = Convert.ToString(leitorCondutor["CNH"]);
+            var cpf = Convert.ToString(leitorCondutor["CPF"]);
+            var validadecnh = Convert.ToDateTime(leitorCondutor["VALIDADECNH"]);
+            var endereco = Convert.ToString(leitorCondutor["ENDERECO"]);
+            var email = Convert.ToString(leitorCondutor["EMAIL"]);
+            var telefone = Convert.ToString(leitorCondutor["TELEFONE"]);
+            var condutorcliente = Convert.ToBoolean(leitorCondutor["CONDUTORCLIENTE"]);
           
 
             Condutor condutor = new Condutor();
@@ -54,7 +61,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloCondutor
             condutor.Endereco = endereco;
             condutor.Email = email;
             condutor.Telefone = telefone;
-            condutor.ClienteCondutor = clientecondutor;
+            condutor.CondutorCliente = condutorcliente;
 
 
             condutor.Cliente = new MapeadorCliente().ConverterRegistro(leitorCondutor);
