@@ -17,7 +17,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloCondutor
             @"INSERT INTO [CONDUTOR]
                 (
                   
-                    [CLIENTE_ID]
+                    [CLIENTE_ID],
                     [NOME],
                     [VALIDADECNH],
                     [CPF],
@@ -30,7 +30,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloCondutor
                 )
             VALUES
                 (
-                    @CLIENTE_ID
+                    @CLIENTE_ID,
                     @NOME,
                     @VALIDADECNH,
                     @CPF,

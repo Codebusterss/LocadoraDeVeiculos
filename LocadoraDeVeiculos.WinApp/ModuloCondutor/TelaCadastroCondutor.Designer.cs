@@ -38,17 +38,17 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.textBoxCondID = new System.Windows.Forms.TextBox();
-            this.textBoxTelefone = new System.Windows.Forms.TextBox();
-            this.textBoxCondCPF = new System.Windows.Forms.TextBox();
             this.textBoxCondNome = new System.Windows.Forms.TextBox();
             this.textBoxCondEndereco = new System.Windows.Forms.TextBox();
             this.textBoxCondEmail = new System.Windows.Forms.TextBox();
-            this.textBoxCondCNH = new System.Windows.Forms.TextBox();
             this.comboBoxCondCliente = new System.Windows.Forms.ComboBox();
             this.checkBoxClienteCondutor = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.dateTimePickerCondValidade = new System.Windows.Forms.DateTimePicker();
+            this.textBoxCondCNH = new System.Windows.Forms.MaskedTextBox();
+            this.textBoxCondCPF = new System.Windows.Forms.MaskedTextBox();
+            this.textBoxTelefone = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -134,24 +134,11 @@
             // 
             // textBoxCondID
             // 
+            this.textBoxCondID.Enabled = false;
             this.textBoxCondID.Location = new System.Drawing.Point(136, 27);
             this.textBoxCondID.Name = "textBoxCondID";
             this.textBoxCondID.Size = new System.Drawing.Size(154, 31);
             this.textBoxCondID.TabIndex = 9;
-            // 
-            // textBoxTelefone
-            // 
-            this.textBoxTelefone.Location = new System.Drawing.Point(515, 144);
-            this.textBoxTelefone.Name = "textBoxTelefone";
-            this.textBoxTelefone.Size = new System.Drawing.Size(211, 31);
-            this.textBoxTelefone.TabIndex = 10;
-            // 
-            // textBoxCondCPF
-            // 
-            this.textBoxCondCPF.Location = new System.Drawing.Point(136, 255);
-            this.textBoxCondCPF.Name = "textBoxCondCPF";
-            this.textBoxCondCPF.Size = new System.Drawing.Size(245, 31);
-            this.textBoxCondCPF.TabIndex = 11;
             // 
             // textBoxCondNome
             // 
@@ -174,16 +161,8 @@
             this.textBoxCondEmail.Size = new System.Drawing.Size(245, 31);
             this.textBoxCondEmail.TabIndex = 15;
             // 
-            // textBoxCondCNH
-            // 
-            this.textBoxCondCNH.Location = new System.Drawing.Point(136, 201);
-            this.textBoxCondCNH.Name = "textBoxCondCNH";
-            this.textBoxCondCNH.Size = new System.Drawing.Size(245, 31);
-            this.textBoxCondCNH.TabIndex = 16;
-            // 
             // comboBoxCondCliente
             // 
-            this.comboBoxCondCliente.Enabled = false;
             this.comboBoxCondCliente.FormattingEnabled = true;
             this.comboBoxCondCliente.Location = new System.Drawing.Point(136, 88);
             this.comboBoxCondCliente.Name = "comboBoxCondCliente";
@@ -194,6 +173,7 @@
             // checkBoxClienteCondutor
             // 
             this.checkBoxClienteCondutor.AutoSize = true;
+            this.checkBoxClienteCondutor.Enabled = false;
             this.checkBoxClienteCondutor.Location = new System.Drawing.Point(404, 90);
             this.checkBoxClienteCondutor.Name = "checkBoxClienteCondutor";
             this.checkBoxClienteCondutor.Size = new System.Drawing.Size(172, 29);
@@ -230,22 +210,46 @@
             this.dateTimePickerCondValidade.Size = new System.Drawing.Size(358, 31);
             this.dateTimePickerCondValidade.TabIndex = 21;
             // 
+            // textBoxCondCNH
+            // 
+            this.textBoxCondCNH.Location = new System.Drawing.Point(136, 203);
+            this.textBoxCondCNH.Mask = "000,000,000-000";
+            this.textBoxCondCNH.Name = "textBoxCondCNH";
+            this.textBoxCondCNH.Size = new System.Drawing.Size(245, 31);
+            this.textBoxCondCNH.TabIndex = 22;
+            // 
+            // textBoxCondCPF
+            // 
+            this.textBoxCondCPF.Location = new System.Drawing.Point(138, 256);
+            this.textBoxCondCPF.Mask = "000,000,000-00";
+            this.textBoxCondCPF.Name = "textBoxCondCPF";
+            this.textBoxCondCPF.Size = new System.Drawing.Size(243, 31);
+            this.textBoxCondCPF.TabIndex = 23;
+            // 
+            // textBoxTelefone
+            // 
+            this.textBoxTelefone.Location = new System.Drawing.Point(515, 150);
+            this.textBoxTelefone.Mask = "(00)00000-0000";
+            this.textBoxTelefone.Name = "textBoxTelefone";
+            this.textBoxTelefone.Size = new System.Drawing.Size(191, 31);
+            this.textBoxTelefone.TabIndex = 24;
+            // 
             // TelaCadastroCondutor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(883, 467);
+            this.Controls.Add(this.textBoxTelefone);
+            this.Controls.Add(this.textBoxCondCPF);
+            this.Controls.Add(this.textBoxCondCNH);
             this.Controls.Add(this.dateTimePickerCondValidade);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.checkBoxClienteCondutor);
             this.Controls.Add(this.comboBoxCondCliente);
-            this.Controls.Add(this.textBoxCondCNH);
             this.Controls.Add(this.textBoxCondEmail);
             this.Controls.Add(this.textBoxCondEndereco);
             this.Controls.Add(this.textBoxCondNome);
-            this.Controls.Add(this.textBoxCondCPF);
-            this.Controls.Add(this.textBoxTelefone);
             this.Controls.Add(this.textBoxCondID);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -276,16 +280,16 @@
         private Label label8;
         private Label label9;
         private TextBox textBoxCondID;
-        private TextBox textBoxTelefone;
-        private TextBox textBoxCondCPF;
         private TextBox textBoxCondNome;
         private TextBox textBoxCondEndereco;
         private TextBox textBoxCondEmail;
-        private TextBox textBoxCondCNH;
         private ComboBox comboBoxCondCliente;
         private CheckBox checkBoxClienteCondutor;
         private Button button1;
         private Button button2;
         private DateTimePicker dateTimePickerCondValidade;
+        private MaskedTextBox textBoxCondCNH;
+        private MaskedTextBox textBoxCondCPF;
+        private MaskedTextBox textBoxTelefone;
     }
 }

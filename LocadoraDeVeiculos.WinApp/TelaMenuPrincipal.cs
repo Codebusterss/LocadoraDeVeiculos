@@ -23,6 +23,7 @@ using LocadoraDeVeiculos.WinApp.ModuloCondutor;
 using LocadoraDeVeiculos.Dominio.ModuloCondutor;
 using LocadoraDeVeiculos.Aplicacao.ModuloCondutor;
 using LocadoraDeVeiculos.Infra.ModuloCondutor;
+using LocadoraDeVeiculos.Dominio.ModuloCliente;
 
 namespace LocadoraDeVeiculos.WinApp
 {
@@ -156,7 +157,21 @@ namespace LocadoraDeVeiculos.WinApp
 
         private void condutoresToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+            var repositorioCliente = new RepositorioClienteEmBancoDeDados();
+
+
+            List<Cliente> clientes = repositorioCliente.SelecionarTodos();
+            if(clientes.Count == 0)
+            {
+                MessageBox.Show("Cadastre um cliente antes de cadastrar um condutor!.",
+                   "Sem clientes cadastrados.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+            }
+
+                       
         }
 
 

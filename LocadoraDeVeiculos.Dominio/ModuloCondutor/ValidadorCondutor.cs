@@ -32,12 +32,14 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCondutor
                 .Matches(new Regex(@"^\(?\d{2}\)?[\s-]?[\s9]?\d{4}-?\d{4}$"))
                 .NotEmpty();
             RuleFor(x => x.CPF)
-                 .MaximumLength(11)
                 .Matches(new Regex(@"^\d{3}\.\d{3}\.\d{3}-\d{2}$"))
                .NotEmpty();
             RuleFor(x => x.ValidadeCNH)
                .NotNull().NotEmpty().GreaterThan(DateTime.MinValue).LessThanOrEqualTo(hoje);
-           
+            RuleFor(x => x.CNH)
+                .Matches(new Regex(@"^\d{3}\.\d{3}\.\d{3}-\d{3}$"))
+                .NotEmpty();
+
         }
     }
 }

@@ -19,7 +19,7 @@
             }
             base.Dispose(disposing);
         }
-        private System.Windows.Forms.DataGridView grid;
+
         #region Component Designer generated code
 
         /// <summary> 
@@ -28,18 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.grid = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             this.SuspendLayout();
             // 
-            // TabelaCondutorControl
+            // grid
+            // 
+            this.grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grid.Location = new System.Drawing.Point(0, 0);
+            this.grid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.grid.Name = "grid";
+            this.grid.RowHeadersWidth = 62;
+            this.grid.RowTemplate.Height = 25;
+            this.grid.Size = new System.Drawing.Size(948, 532);
+            this.grid.TabIndex = 0;
+            // 
+            // TabelaMateriaControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "TabelaCondutorControl";
-            this.Size = new System.Drawing.Size(714, 555);
+            this.Controls.Add(this.grid);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Name = "TabelaMateriaControl";
+            this.Size = new System.Drawing.Size(948, 532);
+            ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.DataGridView grid;
     }
 }

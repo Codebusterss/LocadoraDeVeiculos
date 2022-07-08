@@ -64,9 +64,6 @@ namespace LocadoraDeVeiculos.Infra.ModuloCondutor
             condutor.CondutorCliente = condutorcliente;
 
 
-            condutor.Cliente = new MapeadorCliente().ConverterRegistro(leitorCondutor);
-
-
             return condutor;
         }
     }
