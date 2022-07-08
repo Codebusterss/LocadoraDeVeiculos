@@ -53,7 +53,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
                 textBoxCondNome.Text = condutor.Nome.ToString();
                 textBoxTelefone.Text = condutor.Telefone.ToString();
                 comboBoxCondCliente.SelectedItem = condutor.Cliente;
-                checkBoxClienteCondutor.Checked = condutor.ClienteCondutor;
+                checkBoxClienteCondutor.Checked = condutor.CondutorCliente;
                 textBoxCondCPF.Text = condutor.CPF;
                 textBoxCondCNH.Text = condutor.CNH;
 

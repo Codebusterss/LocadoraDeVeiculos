@@ -30,7 +30,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
             var condutores = repositorioCliente.SelecionarTodos();
 
             TelaCadastroCondutor tela = new TelaCadastroCondutor(condutores);
-            tela.Condutor = new Condutor(); //condutor1 ver
+            tela.Condutor = new Condutor(); 
             tela.GravarRegistro = servicoCondutor.Inserir;
 
             DialogResult resultado = tela.ShowDialog();
@@ -52,7 +52,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
 
             TelaCadastroCondutor tela = new TelaCadastroCondutor(condutores);
 
-            tela.Condutor = condutorSelecionado; //Ver condutor
+            tela.Condutor = condutorSelecionado; 
 
             tela.GravarRegistro = servicoCondutor.Editar;
 
