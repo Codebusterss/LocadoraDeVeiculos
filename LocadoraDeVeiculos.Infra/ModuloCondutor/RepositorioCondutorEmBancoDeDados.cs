@@ -131,6 +131,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloCondutor
                 @"SELECT 
                    [ID] ID,
                    [CLIENTE_ID] CLIENTE_ID,
+                   [NOME] NOME,
                    [VALIDADECNH] VALIDADECNH,
                    [CPF] CPF,
                    [CNH] CNH,

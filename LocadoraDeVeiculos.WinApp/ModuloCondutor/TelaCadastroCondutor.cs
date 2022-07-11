@@ -33,7 +33,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
 
             foreach (var cliente in clientes)
             {
-                comboBoxCondCliente.Items.Add(cliente.Nome);
+                comboBoxCondCliente.Items.Add(cliente);
             }
         }
 
@@ -64,12 +64,20 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
 
         private void button1_Click(object sender, EventArgs e) //gravar
         {
-           
 
+            condutor.Cliente = comboBoxCondCliente.SelectedItem as Cliente;
+
+            if (comboBoxCondCliente.SelectedIndex == -1)
+            {
+                TelaMenuPrincipal.Instancia.AtualizarRodape("Selecione um cliente primeiro");
+                DialogResult = DialogResult.None;
+
+                return;
+            }
 
             if (validador.ApenasLetra(textBoxCondNome.Text))
             {
-                condutor.Cliente = clienteSelecionado;
+               
                 condutor.Nome = textBoxCondNome.Text;
                 condutor.Email = textBoxCondEmail.Text;
                 condutor.Telefone = textBoxTelefone.Text;
