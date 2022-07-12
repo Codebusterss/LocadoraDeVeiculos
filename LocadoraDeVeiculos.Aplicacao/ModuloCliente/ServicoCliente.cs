@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FluentValidation.Results;
+using Serilog;
 using LocadoraDeVeiculos.Dominio.ModuloCliente;
 
 namespace LocadoraDeVeiculos.Aplicacao.ModuloCliente
@@ -21,8 +22,20 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCliente
         {
             var resultadoValidacao = Validar(cliente);
 
+            Log.Logger.Debug("Tentando inserir cliente... {@c}", cliente);
+
             if (resultadoValidacao.IsValid)
+            {
                 repositorioCliente.Inserir(cliente);
+                Log.Logger.Debug("Cliente {ClienteNome} inserido com sucesso.", cliente.Nome);
+            }
+            else
+            {
+                foreach (var erro in resultadoValidacao.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar inserir Cliente {ClienteNome} - {Motivo}.", cliente.Nome, erro.ErrorMessage);
+                }
+            }
 
             return resultadoValidacao;
         }
@@ -31,8 +44,20 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCliente
         {
             var resultadoValidacao = Validar(cliente);
 
+            Log.Logger.Debug("Tentando editar cliente... {@c}", cliente);
+
             if (resultadoValidacao.IsValid)
+            {
                 repositorioCliente.Editar(cliente);
+                Log.Logger.Debug("Cliente {ClienteNome} editado com sucesso.", cliente.Nome);
+            }
+            else
+            {
+                foreach (var erro in resultadoValidacao.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar editar Cliente {ClienteNome} - {Motivo}.", cliente.Nome, erro.ErrorMessage);
+                }
+            }
 
             return resultadoValidacao;
         }
@@ -40,6 +65,8 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCliente
         private ValidationResult Validar(Cliente cliente)
         {
             var validador = new ValidadorCliente();
+
+            Log.Logger.Debug("Validando Cliente... {@c}", cliente);
 
             var resultadoValidacao = validador.Validate(cliente);
 

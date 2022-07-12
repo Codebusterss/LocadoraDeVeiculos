@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FluentValidation.Results;
+using Serilog;
 using LocadoraDeVeiculos.Dominio.ModuloPlanoDeCobranca;
 
 namespace LocadoraDeVeiculos.Aplicacao.ModuloPlanoDeCobranca
@@ -21,8 +22,20 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloPlanoDeCobranca
         {
             var resultadoValidacao = Validar(plano);
 
+            Log.Logger.Debug("Tentando inserir Plano de cobrança... {@p}", plano);
+
             if (resultadoValidacao.IsValid)
+            {
                 repositorioPlanoDeCobranca.Inserir(plano);
+                Log.Logger.Debug("Plano de cobrança {PlanoNome} inserido com sucesso.", plano.GrupoDeVeiculos.Nome);
+            }
+            else
+            {
+                foreach (var erro in resultadoValidacao.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar inserir Plano de cobrança {PlanoNome} - {Motivo}.", plano.GrupoDeVeiculos.Nome, erro.ErrorMessage);
+                }
+            }
 
             return resultadoValidacao;
         }
@@ -31,8 +44,20 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloPlanoDeCobranca
         {
             var resultadoValidacao = Validar(plano);
 
+            Log.Logger.Debug("Tentando editar Plano de cobrança... {@p}", plano);
+
             if (resultadoValidacao.IsValid)
+            {
                 repositorioPlanoDeCobranca.Editar(plano);
+                Log.Logger.Debug("Plano de cobrança {PlanoNome} editado com sucesso.", plano.GrupoDeVeiculos.Nome);
+            }
+            else
+            {
+                foreach (var erro in resultadoValidacao.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar editar Plano de cobrança {PlanoNome} - {Motivo}.", plano.GrupoDeVeiculos.Nome, erro.ErrorMessage);
+                }
+            }
 
             return resultadoValidacao;
         }
@@ -40,6 +65,8 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloPlanoDeCobranca
         private ValidationResult Validar(PlanoDeCobranca plano)
         {
             var validador = new ValidadorPlanoDeCobranca();
+
+            Log.Logger.Debug("Validando Plano de Cobranca... {@p}", plano);
 
             var resultadoValidacao = validador.Validate(plano);
 

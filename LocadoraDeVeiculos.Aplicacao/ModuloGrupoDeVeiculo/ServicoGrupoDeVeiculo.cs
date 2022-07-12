@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Serilog; 
 using LocadoraDeVeiculos.Dominio.ModuloGrupoDeVeiculo;
 using FluentValidation.Results;
 
@@ -21,8 +22,20 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculo
         {
             var resultadoValidacao = Validar(grupoDeVeiculo);
 
+            Log.Logger.Debug("Tentando inserir Grupo de veículo... {@g}", grupoDeVeiculo);
+
             if (resultadoValidacao.IsValid)
+            {
                 repositorioGrupoDeVeiculo.Inserir(grupoDeVeiculo);
+                Log.Logger.Debug("Grupo de veículo {GrupoNome} inserido com sucesso.", grupoDeVeiculo.Nome);
+            }
+            else
+            {
+                foreach (var erro in resultadoValidacao.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar inserir Grupo de veículo {GrupoNome} - {Motivo}.", grupoDeVeiculo.Nome, erro.ErrorMessage);
+                }
+            }
 
             return resultadoValidacao;
         }
@@ -31,8 +44,20 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculo
         {
             var resultadoValidacao = Validar(grupoDeVeiculo);
 
+            Log.Logger.Debug("Tentando editar Grupo de veículo... {@g}", grupoDeVeiculo);
+
             if (resultadoValidacao.IsValid)
+            {
                 repositorioGrupoDeVeiculo.Editar(grupoDeVeiculo);
+                Log.Logger.Debug("Grupo de veículo {GrupoNome} editado com sucesso.", grupoDeVeiculo.Nome);
+            }
+            else
+            {
+                foreach (var erro in resultadoValidacao.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar editar Grupo de veículo {GrupoNome} - {Motivo}.", grupoDeVeiculo.Nome, erro.ErrorMessage);
+                }
+            }
 
             return resultadoValidacao;
         }
@@ -40,6 +65,8 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculo
         private ValidationResult Validar(GrupoDeVeiculo grupoDeVeiculo)
         {
             var validador = new ValidadorGrupoDeVeiculo();
+
+            Log.Logger.Debug("Validando Grupo de veiculos... {@g}", grupoDeVeiculo);
 
             var resultadoValidacao = validador.Validate(grupoDeVeiculo);
 
