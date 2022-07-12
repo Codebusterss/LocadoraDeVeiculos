@@ -1,4 +1,5 @@
-﻿using LocadoraDeVeiculos.Dominio.ModuloCliente;
+﻿using FluentAssertions;
+using LocadoraDeVeiculos.Dominio.ModuloCliente;
 using LocadoraDeVeiculos.Dominio.ModuloCondutor;
 using LocadoraDeVeiculos.Infra.Compartilhado;
 using LocadoraDeVeiculos.Infra.ModuloCliente;
@@ -59,18 +60,17 @@ namespace LocadoraDeVeiculos.Infra.Testes.ModuloCondutor
         public void Deve_inserir_novo_condutor()
         {
             //arrange
-            repositorioClienteEmBanco.Inserir(cliente);
-            repositorioCondutorEmBanco.Inserir(condutor);
+            var condutor = gerarCondutor();
 
             //action
-            var condutorEncontrado = repositorioCondutorEmBanco.SelecionarPorId(condutor.ID);
+            repositorioCondutorEmBanco.Inserir(condutor);
 
             //assert
+            var clienteEncontrado = repositorioCondutorEmBanco.SelecionarPorId(condutor.ID);
 
-            Assert.IsNotNull(condutorEncontrado);
-            Assert.AreEqual(condutor, condutorEncontrado);
+            clienteEncontrado.Should().NotBeNull();
+            clienteEncontrado.Should().Be(condutor);
         }
-
 
         [TestMethod]
         public void Deve_editar_condutores()
@@ -118,6 +118,28 @@ namespace LocadoraDeVeiculos.Infra.Testes.ModuloCondutor
             Assert.IsNotNull(condutorEncontrado);
             Assert.AreEqual(condutor, condutorEncontrado);
         }
-        
+        [TestMethod]
+        public void Deve_editar_informacoes_do_condutor()
+        {
+            //arrange
+            var condutor = gerarCondutor();
+            repositorioCondutorEmBanco.Inserir(condutor);
+            condutor.Nome = "Lucas Bleyer";
+            condutor.Email = "lucas@gmail.com";
+            condutor.Endereco = "Lages";
+            condutor.CPF = "111.999.333-44";
+            condutor.CNH = "12345678901";
+            condutor.Telefone = "(51) 12345-1234";
+
+            //action
+            repositorioCondutorEmBanco.Editar(condutor);
+
+            //assert
+            var condutorEncontrado = repositorioCondutorEmBanco.SelecionarPorId(condutor.ID);
+
+            condutorEncontrado.Should().NotBeNull();
+            condutorEncontrado.Should().Be(condutor);
+        }
+
     }
 }
