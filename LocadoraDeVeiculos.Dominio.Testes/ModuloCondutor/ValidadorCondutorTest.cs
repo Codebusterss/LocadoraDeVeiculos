@@ -10,65 +10,75 @@ using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Dominio.Testes.ModuloCondutor
 {
+    [TestClass]
     public class ValidadorCondutorTest
     {
-
-        private readonly Condutor condutor;
         private readonly ValidadorCondutor validador;
 
+        private Condutor? condutor;
+      
         public ValidadorCondutorTest()
         {
-            condutor = new()
+            validador = new();
+        }
+        private Condutor GerarCondutor()
+        {
+            return new Condutor
             {
-                Cliente = new()
-                {
-                    Nome = "Limosine",
-                },
-
-                Endereco = "Rua Santo Espirito",
-                Email = "Livia@gmail.com", //luan perguntar
-               
-
+                Nome = "Joao",
+                CPF = "222.341.161-01",
+                Telefone = "(23)97575-7575",
+                Email = "joao@gmail.com",
+                Endereco = "Lages",
+                ValidadeCNH = DateTime.Now.Date,
+                CNH = "7543780987",
+                
             };
-
-            validador = new ValidadorCondutor();
         }
+
+
 
         [TestMethod]
-        public void Cliente_Nao_Pode_Ser_Nulo()
+        public void Telefone_deve_ser_obrigatorio()
         {
-            // arrange
-            condutor.Cliente = null;
+            //arrange
+            condutor = GerarCondutor();
 
-            // action
-            var resultado = validador.TestValidate(condutor);
+            condutor.Telefone = "";
 
-            // assert
-            resultado.ShouldHaveValidationErrorFor(f => f.Cliente);
+            //action
+            TestValidationResult<Condutor> resultadoValidacao = validador.TestValidate(condutor);
+
+            //assert
+            resultadoValidacao.ShouldHaveValidationErrorFor(c => c.Telefone);
         }
-        [TestMethod]
-        public void CPF_nao_deve_ser_nulo()
-        {
-            // arrange
-            condutor.CPF = null;
 
-            // action
-            var resultadoValidacao = validador.TestValidate(condutor);
-
-            // assert
-            resultadoValidacao.ShouldHaveValidationErrorFor(c => c.CPF);
-        }
         [TestMethod]
         public void Email_nao_deve_ser_nulo()
         {
             // arrange
+            condutor = GerarCondutor();
             condutor.Email = null;
 
             // action
-            var resultadoValidacao = validador.TestValidate(condutor);
+            TestValidationResult<Condutor> resultadoValidacao = validador.TestValidate(condutor);
 
             // assert
             resultadoValidacao.ShouldHaveValidationErrorFor(c => c.Email);
+        }
+        [TestMethod]
+        public void Nome_deve_ser_valido()
+        {
+            //arrange
+            condutor = GerarCondutor();
+
+            condutor.Nome = "@1d7u8d0a";
+
+            //action
+            TestValidationResult<Condutor> resultadoValidacao = validador.TestValidate(condutor);
+
+            //assert
+            resultadoValidacao.ShouldHaveValidationErrorFor(c => c.Nome);
         }
 
 
@@ -76,10 +86,13 @@ namespace LocadoraDeVeiculos.Dominio.Testes.ModuloCondutor
         public void Endereco_nao_deve_ser_nulo()
         {
             // arrange
-            condutor.Endereco = null;
+            condutor = GerarCondutor();
+            condutor.Endereco = "";
 
             // action
-            var resultadoValidacao = validador.TestValidate(condutor);
+            TestValidationResult<Condutor> resultadoValidacao = validador.TestValidate(condutor);
+
+            // assert
 
             // assert
             resultadoValidacao.ShouldHaveValidationErrorFor(c => c.Endereco);
@@ -88,10 +101,11 @@ namespace LocadoraDeVeiculos.Dominio.Testes.ModuloCondutor
         public void Telefone_nao_deve_ser_nulo()
         {
             // arrange
-            condutor.Telefone = null;
+            condutor = GerarCondutor();
+            condutor.Telefone = "";
 
             // action
-            var resultadoValidacao = validador.TestValidate(condutor);
+            TestValidationResult<Condutor> resultadoValidacao = validador.TestValidate(condutor);
 
             // assert
             resultadoValidacao.ShouldHaveValidationErrorFor(c => c.Telefone);
@@ -100,40 +114,44 @@ namespace LocadoraDeVeiculos.Dominio.Testes.ModuloCondutor
         public void Nome_Deve_Ter_No_Minimo_3_letras()
         {
             // arrange
+            condutor = GerarCondutor();
             condutor.Nome = "lu";
 
             // action
-            var resultadoValidacao = validador.TestValidate(condutor);
+            TestValidationResult<Condutor> resultadoValidacao = validador.TestValidate(condutor);
+
 
             // assert
             resultadoValidacao.ShouldHaveValidationErrorFor(c => c.Nome);
         }
         [TestMethod]
-        public void CNH_deve_seguir_o_padrao()
+        public void Cnh_deve_ser_valida()
         {
-            // arrange  - 1 digito a mais
-            condutor.CNH = "1234769891034";
+            //arrange
+            condutor = GerarCondutor();
 
-            // action
-            var resultadoValidacao = validador.TestValidate(condutor);
+            condutor.CNH = "1678";
 
-            // assert
+            //action
+            TestValidationResult<Condutor> resultadoValidacao = validador.TestValidate(condutor);
+
+            //assert
             resultadoValidacao.ShouldHaveValidationErrorFor(c => c.CNH);
         }
-
         [TestMethod]
-        public void CNH_deve_seguir_o_padrao2()
+        public void Cpf_deve_ser_valido()
         {
-            // arrange  - 1 digito a menos
-            condutor.CNH = "12345638982";
+            //arrange
+            condutor = GerarCondutor();
 
-            // action
-            var resultadoValidacao = validador.TestValidate(condutor);
+            condutor.CPF = "6584";
 
-            // assert
-            resultadoValidacao.ShouldHaveValidationErrorFor(c => c.CNH);
+            //action
+            TestValidationResult<Condutor> resultadoValidacao = validador.TestValidate(condutor);
+
+            //assert
+            resultadoValidacao.ShouldHaveValidationErrorFor(c => c.CPF);
         }
-
 
 
     }

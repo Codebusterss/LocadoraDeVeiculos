@@ -20,6 +20,8 @@ namespace LocadoraDeVeiculos.Infra.Testes.ModuloCondutor
         private RepositorioCondutorEmBancoDeDados repositorioCondutorEmBanco;
         private Cliente cliente;
         private RepositorioClienteEmBancoDeDados repositorioClienteEmBanco;
+        private DateTime data = new DateTime(2022, 01, 01, 12, 00, 00);
+
 
         public RepositorioCondutorEmBancoDeDadosTest()
         {
@@ -38,9 +40,10 @@ namespace LocadoraDeVeiculos.Infra.Testes.ModuloCondutor
             condutor.Nome = "giovana";
             condutor.CNH = "345-93784";
             condutor.CPF = "089.645.867-34";
-            condutor.ValidadeCNH = new DateTime(2022, 01, 09, 09, 15, 00);
+            condutor.ValidadeCNH = data;
             condutor.Endereco = "Rua joao costa";
             condutor.Email = "gigi@gmai.com";
+            condutor.Telefone = "(43)98683-1923";
 
             return condutor;
         }
@@ -49,7 +52,8 @@ namespace LocadoraDeVeiculos.Infra.Testes.ModuloCondutor
             Cliente cliente = new Cliente();
             cliente.Nome = "Pietro";
             cliente.Email = "Pietro@gmail.com";
-            cliente.Telefone = "4002-8922";
+            cliente.CNPJ = "";
+            cliente.Telefone = "(43)97683-1923";
             cliente.Endereco = "Lages";
             cliente.CNH = "4563-96785";
             cliente.CPF = "345.768.598-09";
@@ -59,80 +63,11 @@ namespace LocadoraDeVeiculos.Infra.Testes.ModuloCondutor
         [TestMethod]
         public void Deve_inserir_novo_condutor()
         {
-            //arrange
-            var condutor = gerarCondutor();
 
             //action
-            repositorioCondutorEmBanco.Inserir(condutor);
-
-            //assert
-            var clienteEncontrado = repositorioCondutorEmBanco.SelecionarPorId(condutor.ID);
-
-            clienteEncontrado.Should().NotBeNull();
-            clienteEncontrado.Should().Be(condutor);
-        }
-
-        [TestMethod]
-        public void Deve_editar_condutores()
-        {
-            //arrange
-            repositorioCondutorEmBanco.Inserir(condutor);
             repositorioClienteEmBanco.Inserir(cliente);
-            //action
-            condutor.Nome = "rafa";
-            condutor.Email = "lalalala@gmail.com";
-            repositorioCondutorEmBanco.Editar(condutor);
-
-            //assert
-            var condutorEncontrado = repositorioCondutorEmBanco.SelecionarPorId(condutor.ID);
-            Assert.IsNotNull(condutorEncontrado);
-            Assert.AreEqual(condutor, condutorEncontrado);
-
-        }
-
-        [TestMethod]
-        public void Deve_excluir_condutor()
-        {
-            //arrange
             repositorioCondutorEmBanco.Inserir(condutor);
-            repositorioClienteEmBanco.Inserir(cliente);
-
-            //action
-            repositorioCondutorEmBanco.Excluir(condutor);
-
-            //assert
-            var condutorEncontrado = repositorioCondutorEmBanco.SelecionarPorId(condutor.ID);
-            Assert.IsNotNull(condutorEncontrado);
-        }
-        [TestMethod]
-        public void Deve_selecionar_apenas_um_condutor() 
-        {
-            //arrange
-            repositorioCondutorEmBanco.Inserir(condutor);
-            repositorioClienteEmBanco.Inserir(cliente);
-
-            //action
-            var condutorEncontrado = repositorioCondutorEmBanco.SelecionarPorId(condutor.ID);
-
-            //assert
-            Assert.IsNotNull(condutorEncontrado);
-            Assert.AreEqual(condutor, condutorEncontrado);
-        }
-        [TestMethod]
-        public void Deve_editar_informacoes_do_condutor()
-        {
-            //arrange
-            var condutor = gerarCondutor();
-            repositorioCondutorEmBanco.Inserir(condutor);
-            condutor.Nome = "Lucas Bleyer";
-            condutor.Email = "lucas@gmail.com";
-            condutor.Endereco = "Lages";
-            condutor.CPF = "111.999.333-44";
-            condutor.CNH = "12345678901";
-            condutor.Telefone = "(51) 12345-1234";
-
-            //action
-            repositorioCondutorEmBanco.Editar(condutor);
+            
 
             //assert
             var condutorEncontrado = repositorioCondutorEmBanco.SelecionarPorId(condutor.ID);
@@ -140,6 +75,66 @@ namespace LocadoraDeVeiculos.Infra.Testes.ModuloCondutor
             condutorEncontrado.Should().NotBeNull();
             condutorEncontrado.Should().Be(condutor);
         }
+
+
+        [TestMethod]
+        public void Deve_editar_condutores()
+        {
+            //arrange
+            repositorioClienteEmBanco.Inserir(cliente);
+            repositorioCondutorEmBanco.Inserir(condutor);
+
+            //action 
+            condutor.Cliente = cliente;
+            condutor.Nome = "julia";
+            condutor.Email = "julia@gmail.com";
+            condutor.Endereco = "Lages";
+            condutor.CPF = "567.959.123-49";
+            condutor.ValidadeCNH = data;
+            condutor.CNH = "97655643291";
+            condutor.Telefone = "(51) 12345-1234";
+
+            repositorioCondutorEmBanco.Editar(condutor);
+            
+
+            //assert
+            var condutorEncontrado = repositorioCondutorEmBanco.SelecionarPorId(condutor.ID);
+
+            condutorEncontrado.Should().NotBeNull();
+            condutorEncontrado.Should().Be(condutor);
+
+        }
+
+        [TestMethod]
+        public void Deve_excluir_condutor()
+        {
+            //arrange
+            repositorioClienteEmBanco.Inserir(cliente);
+            repositorioCondutorEmBanco.Inserir(condutor);
+           
+            //action
+            repositorioCondutorEmBanco.Excluir(condutor);
+
+            //assert
+            var condutorEncontrado = repositorioCondutorEmBanco.SelecionarPorId(condutor.ID);
+            Assert.IsNull(condutorEncontrado);
+        }
+        [TestMethod]
+        public void Deve_selecionar_apenas_um_condutor() 
+        {
+            //arrange
+            repositorioClienteEmBanco.Inserir(cliente);
+            repositorioCondutorEmBanco.Inserir(condutor);
+           
+
+            //action
+            var condutorEncontrado = repositorioCondutorEmBanco.SelecionarPorId(condutor.ID);
+
+            //assert
+            Assert.IsNotNull(condutorEncontrado);
+            Assert.AreEqual(condutor, condutorEncontrado);
+        }
+   
 
     }
 }
