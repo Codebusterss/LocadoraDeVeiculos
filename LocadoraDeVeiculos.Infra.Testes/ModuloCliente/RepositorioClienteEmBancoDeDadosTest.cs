@@ -6,20 +6,19 @@ using System.Threading.Tasks;
 using LocadoraDeVeiculos.Dominio.ModuloCliente;
 using LocadoraDeVeiculos.Infra.ModuloCliente;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using LocadoraDeVeiculos.Infra.Testes.Compartilhado;
 using LocadoraDeVeiculos.Infra.Compartilhado;
 using FluentAssertions;
 
 namespace LocadoraDeVeiculos.Infra.Testes.ModuloCliente
 {
     [TestClass]
-    public class RepositorioClienteEmBancoDeDadosTest
+    public class RepositorioClienteEmBancoDeDadosTest : BaseIntegrationTest
     {
         private RepositorioClienteEmBancoDeDados repositorio;
 
-        public RepositorioClienteEmBancoDeDadosTest()
+        public RepositorioClienteEmBancoDeDadosTest():base()
         {
-            Db.ExecutarSql("DELETE FROM CLIENTE; DBCC CHECKIDENT (CLIENTE, RESEED, 0)");
-
             repositorio = new RepositorioClienteEmBancoDeDados();
         }
 

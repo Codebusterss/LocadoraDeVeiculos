@@ -16,9 +16,8 @@ namespace LocadoraDeVeiculos.Dominio.ModuloGrupoDeVeiculo
 
         }
 
-        public GrupoDeVeiculo(int n, string nome) : this()
+        public GrupoDeVeiculo(string nome) : this()
         {
-            ID = n;
             Nome = nome;
         }
 

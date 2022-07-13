@@ -4,6 +4,8 @@ using LocadoraDeVeiculos.Dominio.ModuloPlanoDeCobranca;
 using LocadoraDeVeiculos.Infra.ModuloGrupoDeVeiculos;
 using LocadoraDeVeiculos.Infra.ModuloPlanoDeCobranca;
 using LocadoraDeVeiculos.Infra.Compartilhado;
+using LocadoraDeVeiculos.Infra.Testes.Compartilhado;
+
 
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -12,18 +14,15 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace LocadoraDeVeiculos.Infra.BancoDeDados.Tests.ModuloPlanoDeCobranca
 {
     [TestClass]
-    public class RepositorioPlanoDeCobrancaEmBancoDeDadosTest
+    public class RepositorioPlanoDeCobrancaEmBancoDeDadosTest : BaseIntegrationTest
     {
         private RepositorioGrupoDeVeiculosEmBancoDeDados repositorioGrupo;
         private RepositorioPlanoDeCobrancaEmBancoDeDados repositorioPlano;
         private PlanoDeCobranca plano;
         private GrupoDeVeiculo grupo;
 
-        public RepositorioPlanoDeCobrancaEmBancoDeDadosTest()
+        public RepositorioPlanoDeCobrancaEmBancoDeDadosTest():base()
         {
-            Db.ExecutarSql("DELETE FROM PLANODECOBRANCA; DBCC CHECKIDENT (PLANODECOBRANCA, RESEED, 0)");
-            Db.ExecutarSql("DELETE FROM GRUPODEVEICULOS; DBCC CHECKIDENT (GRUPODEVEICULOS, RESEED, 0)");
-
             plano = GerarPlano();
             grupo = GerarGrupo();
             plano.GrupoDeVeiculos = grupo;

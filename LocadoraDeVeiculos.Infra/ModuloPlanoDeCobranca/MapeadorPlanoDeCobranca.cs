@@ -31,8 +31,8 @@ namespace LocadoraDeVeiculos.Infra.ModuloPlanoDeCobranca
 
         public override PlanoDeCobranca ConverterRegistro(SqlDataReader leitorPlanoDeCobranca)
         {
-            var id = Convert.ToInt32(leitorPlanoDeCobranca["ID"]);
-            var grupoDeVeiculosID = Convert.ToInt32(leitorPlanoDeCobranca["GRUPODEVEICULOS_ID"]);
+            var id = Guid.Parse(leitorPlanoDeCobranca["ID"].ToString());
+            var grupoDeVeiculosID = Guid.Parse(leitorPlanoDeCobranca["GRUPODEVEICULOS_ID"].ToString());
             var diarioValorDia = Convert.ToDouble(leitorPlanoDeCobranca["DIARIOVALORDIA"]);
             var diarioValorKM = Convert.ToDouble(leitorPlanoDeCobranca["DIARIOVALORKM"]);
             var livreValorDia = Convert.ToDouble(leitorPlanoDeCobranca["LIVREVALORDIA"]);

@@ -4,15 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
+using System.IO;
 
 namespace LocadoraDeVeiculos.Infra.Compartilhado
 {
     public static class Db
     {
-        private static string enderecoBanco =
-            @"Data Source=(LOCALDB)\MSSQLLOCALDB;
-              Initial Catalog=LocadoraDeVeiculosDB;
-              Integrated Security=True";
+
+        private static readonly string enderecoBanco;
+
+        static Db()
+        {
+            var configuracao = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("ConfiguracaoAplicacao.json")
+                .Build();
+
+            enderecoBanco = configuracao.GetConnectionString("SqlServer");
+        }
 
         public static void ExecutarSql(string sql)
         {

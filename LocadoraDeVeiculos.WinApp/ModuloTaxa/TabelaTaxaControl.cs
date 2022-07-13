@@ -47,9 +47,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxa
                 grid.Rows.Add(t.ID, t.Valor, t.Tipo, t.Descricao);
             }
         }
-        public int ObtemTaxaSelecionada()
+        public Guid ObtemTaxaSelecionada()
         {
-            return grid.SelecionarPorID<int>();
+            return grid.SelecionarPorID<Guid>();
         }
             
     }

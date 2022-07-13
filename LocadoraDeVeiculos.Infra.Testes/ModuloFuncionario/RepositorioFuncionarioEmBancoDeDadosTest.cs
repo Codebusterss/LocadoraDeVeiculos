@@ -6,21 +6,21 @@ using System.Threading.Tasks;
 using LocadoraDeVeiculos.Dominio.ModuloFuncionario;
 using LocadoraDeVeiculos.Infra.ModuloFuncionario;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using LocadoraDeVeiculos.Infra.Testes.Compartilhado;
+
 using LocadoraDeVeiculos.Infra.Compartilhado;
 using FluentAssertions;
 
 namespace LocadoraDeVeiculos.Infra.Testes.ModuloFuncionario
 {
     [TestClass]
-    public class RepositorioFuncionarioEmBancoDeDadosTest
+    public class RepositorioFuncionarioEmBancoDeDadosTest : BaseIntegrationTest
     {
         private RepositorioFuncionarioEmBancoDeDados repositorio;
         private DateTime data = new DateTime(2022, 01, 01, 12, 00, 00);
 
-        public RepositorioFuncionarioEmBancoDeDadosTest()
+        public RepositorioFuncionarioEmBancoDeDadosTest():base()
         {
-            Db.ExecutarSql("DELETE FROM FUNCIONARIO; DBCC CHECKIDENT (FUNCIONARIO, RESEED, 0)");
-
             repositorio = new RepositorioFuncionarioEmBancoDeDados();
         }
 

@@ -9,6 +9,6 @@ namespace LocadoraDeVeiculos.Dominio.ModuloPlanoDeCobranca
 {
     public interface IRepositorioPlanoDeCobranca : IRepositorioBase<PlanoDeCobranca>
     {
-        PlanoDeCobranca SelecionarPlanoPorGrupo(int idGrupo);
+        PlanoDeCobranca SelecionarPlanoPorGrupo(Guid idGrupo);
     }
 }
