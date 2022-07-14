@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LocadoraDeVeiculos.Dominio.ModuloTaxa;
+using Serilog;
 using FluentValidation.Results;
 
 namespace LocadoraDeVeiculos.Aplicacao.ModuloTaxa
@@ -21,8 +22,21 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloTaxa
         {
             var resultadoValidacao = Validar(taxa);
 
+
+            Log.Logger.Debug("Tentando inserir Taxa... {@t}", taxa);
+
             if (resultadoValidacao.IsValid)
+            {
                 repositorioTaxa.Inserir(taxa);
+                Log.Logger.Debug("Taxa {TaxaDesc} inserido com sucesso.", taxa.Descricao);
+            }
+            else
+            {
+                foreach (var erro in resultadoValidacao.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar inserir Taxa {TaxaDesc} - {Motivo}.", taxa.Descricao, erro.ErrorMessage);
+                }
+            }
 
             return resultadoValidacao;
         }
@@ -31,8 +45,20 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloTaxa
         {
             var resultadoValidacao = Validar(taxa);
 
+            Log.Logger.Debug("Tentando editar Taxa... {@t}", taxa);
+
             if (resultadoValidacao.IsValid)
+            {
                 repositorioTaxa.Editar(taxa);
+                Log.Logger.Debug("Taxa {TaxaDesc} editada com sucesso.", taxa.Descricao);
+            }
+            else
+            {
+                foreach (var erro in resultadoValidacao.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar editar Taxa {TaxaDesc} - {Motivo}.", taxa.Descricao, erro.ErrorMessage);
+                }
+            }
 
             return resultadoValidacao;
         }
@@ -40,6 +66,8 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloTaxa
         private ValidationResult Validar(Taxa taxa)
         {
             var validador = new ValidadorTaxa();
+
+            Log.Logger.Debug("Validando Taxa... {@t}", taxa);
 
             var resultadoValidacao = validador.Validate(taxa);
 

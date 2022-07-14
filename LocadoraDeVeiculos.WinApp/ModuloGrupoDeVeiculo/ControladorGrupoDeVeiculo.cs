@@ -13,15 +13,13 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculo
 {
     public class ControladorGrupoDeVeiculo : ControladorBase
     {
-        private readonly IRepositorioGrupoDeVeiculo repositorioGrupoDeVeiculo;
         private TabelaGrupoDeVeiculoControl tabelaGrupoDeVeiculoControl;
         private readonly ServicoGrupoDeVeiculo servicoGrupoDeVeiculo;
 
         private readonly RepositorioPlanoDeCobrancaEmBancoDeDados repositorioPlanoDeCobranca = new RepositorioPlanoDeCobrancaEmBancoDeDados();
 
-        public ControladorGrupoDeVeiculo(IRepositorioGrupoDeVeiculo repositorioGrupoDeVeiculo, ServicoGrupoDeVeiculo servicoGrupoDeVeiculo)
+        public ControladorGrupoDeVeiculo(ServicoGrupoDeVeiculo servicoGrupoDeVeiculo)
         {
-            this.repositorioGrupoDeVeiculo = repositorioGrupoDeVeiculo;
             this.servicoGrupoDeVeiculo = servicoGrupoDeVeiculo;
         }
 
@@ -38,58 +36,69 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculo
 
         public override void Editar()
         {
-            GrupoDeVeiculo grupoSelecionado = ObtemGrupoSelecionado();
+            var id = tabelaGrupoDeVeiculoControl.ObtemGrupoDeVeiculoSelecionado();
 
-            if (grupoSelecionado == null)
+            if (id == Guid.Empty)
             {
-                MessageBox.Show("Selecione um grupo de veículos primeiro.",
-                "Edição de Grupos de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione um Grupo de Veículo primeiro.",
+                    "Edição de Grupo de Veículo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            TelaCadastroGrupoDeVeiculo tela = new TelaCadastroGrupoDeVeiculo();
+            var resultado = servicoGrupoDeVeiculo.SelecionarPorId(id);
 
-            tela.GrupoDeVeiculo = grupoSelecionado;
+            if (resultado.IsFailed)
+            {
+                MessageBox.Show(resultado.Errors[0].Message,
+                    "Edição de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var grupoSelecionado = resultado.Value;
+
+            var tela = new TelaCadastroGrupoDeVeiculo();
+
+            tela.GrupoDeVeiculo = grupoSelecionado.Clone();
 
             tela.GravarRegistro = servicoGrupoDeVeiculo.Editar;
 
-            DialogResult resultado = tela.ShowDialog();
-
-            if (resultado == DialogResult.OK)
+            if (tela.ShowDialog() == DialogResult.OK)
                 CarregarGrupos();
 
         }
 
         public override void Excluir()
         {
-            GrupoDeVeiculo grupoSelecionado = ObtemGrupoSelecionado();
+            var id = tabelaGrupoDeVeiculoControl.ObtemGrupoDeVeiculoSelecionado();
 
-            if (grupoSelecionado == null)
+            if (id == Guid.Empty)
             {
-                MessageBox.Show("Selecione um grupo de veículos primeiro.",
-                "Exclusão de Grupos de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione um Grupo de Veículo primeiro.",
+                    "Exclusão de Grupo de Veículo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            var planos = repositorioPlanoDeCobranca.SelecionarTodos();
+            var resultadoSelecao = servicoGrupoDeVeiculo.SelecionarPorId(id);
 
-            foreach (var plano in planos)
+            if (resultadoSelecao.IsFailed)
             {
-                if (plano.GrupoDeVeiculos.Nome == grupoSelecionado.Nome)
-                {
-                    MessageBox.Show("Este Grupo de Veículos possuí um plano de cobrança e não pode ser excluído.",
-                    "Exclusão de Grupos de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
+                MessageBox.Show(resultadoSelecao.Errors[0].Message,
+                    "Exclusão de Grupo de Veículo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
-            DialogResult resultado = MessageBox.Show("Deseja realmente excluir o grupo de veículos?",
-                "Exclusão de Grupo de Veículos", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            var grupoSelecionado = resultadoSelecao.Value;
 
-            if (resultado == DialogResult.OK)
+            if (MessageBox.Show("Deseja realmente excluir o Grupo de Veículo?", "Exclusão de Grupo de Veículo",
+                 MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                repositorioGrupoDeVeiculo.Excluir(grupoSelecionado);
-                CarregarGrupos();
+                var resultadoExclusao = servicoGrupoDeVeiculo.Excluir(grupoSelecionado);
+
+                if (resultadoExclusao.IsSuccess)
+                    CarregarGrupos();
+                else
+                    MessageBox.Show(resultadoExclusao.Errors[0].Message,
+                        "Exclusão de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -109,18 +118,19 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculo
 
         private void CarregarGrupos()
         {
-            List<GrupoDeVeiculo> grupoDeVeiculos = repositorioGrupoDeVeiculo.SelecionarTodos();
+            var resultado = servicoGrupoDeVeiculo.SelecionarTodos();
 
-            tabelaGrupoDeVeiculoControl.AtualizarRegistros(grupoDeVeiculos);
-            TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando {grupoDeVeiculos.Count} Grupos de Veículos.");
+            if (resultado.IsSuccess)
+            {
+                List<GrupoDeVeiculo> grupoDeVeiculos = resultado.Value;
+                tabelaGrupoDeVeiculoControl.AtualizarRegistros(grupoDeVeiculos);
+                TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando {grupoDeVeiculos.Count} Grupos de Veículo.");
+            }
+            else if (resultado.IsFailed)
+            {
 
-        }
-
-        private GrupoDeVeiculo ObtemGrupoSelecionado()
-        {
-            var id = tabelaGrupoDeVeiculoControl.ObtemGrupoDeVeiculoSelecionado();
-
-            return repositorioGrupoDeVeiculo.SelecionarPorId(id);
+                MessageBox.Show(resultado.Errors[0].Message, "Tela de Grupos de Veículo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
     }

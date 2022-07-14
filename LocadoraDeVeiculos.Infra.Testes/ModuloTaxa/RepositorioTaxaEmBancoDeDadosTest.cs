@@ -8,22 +8,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
+using LocadoraDeVeiculos.Infra.Testes.Compartilhado;
+
 
 namespace LocadoraDeVeiculos.Infra.Testes.ModuloTaxa
 {
     [TestClass]
-    public class RepositorioTaxaEmBancoDeDadosTest
+    public class RepositorioTaxaEmBancoDeDadosTest : BaseIntegrationTest
     {
         private Taxa taxa;
         private RepositorioTaxaEmBancoDeDados repositorio;
 
-        public RepositorioTaxaEmBancoDeDadosTest()
-        {
-            Db.ExecutarSql("DELETE FROM TAXA; DBCC CHECKIDENT (TAXA, RESEED, 0)");
-            
+        public RepositorioTaxaEmBancoDeDadosTest():base()
+        {            
             taxa = NovaTaxa();
             repositorio = new RepositorioTaxaEmBancoDeDados();
-           
         }
         public Taxa NovaTaxa()
         {
@@ -33,6 +32,7 @@ namespace LocadoraDeVeiculos.Infra.Testes.ModuloTaxa
             taxas.Tipo = "Fixo";
             return taxas;
         }
+
         [TestMethod]
         public void Deve_inserir_nova_taxa()
         {

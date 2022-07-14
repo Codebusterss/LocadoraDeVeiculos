@@ -17,16 +17,18 @@ namespace LocadoraDeVeiculos.Infra.ModuloTaxa
         protected override string sqlInserir =>
             @"INSERT INTO [TAXA]
                 (
+                    [ID],
                     [DESCRICAO],       
                     [VALOR], 
                     [TIPO] 
                 )
             VALUES
-                (
+                (   
+                    @ID,
                     @DESCRICAO,
                     @VALOR,
                     @TIPO
-                ); SELECT SCOPE_IDENTITY();";
+                );";
 
         protected override string sqlEditar =>
            @" UPDATE [TAXA]

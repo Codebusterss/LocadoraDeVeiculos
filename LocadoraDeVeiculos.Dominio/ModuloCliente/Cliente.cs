@@ -23,9 +23,8 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCliente
 
         }
 
-        public Cliente(int n, string nome, string cnpj, string cpf, string cnh, string endereco, string email, string telefone, bool pessoaFisica) : this()
+        public Cliente(string nome, string cnpj, string cpf, string cnh, string endereco, string email, string telefone, bool pessoaFisica) : this()
         {
-            ID = n;
             Nome = nome;
             CNPJ = cnpj;
             CPF = cpf;

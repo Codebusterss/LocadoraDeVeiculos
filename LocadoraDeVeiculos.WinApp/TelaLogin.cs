@@ -34,6 +34,12 @@ namespace LocadoraDeVeiculos.WinApp
 
             int j = funcionariosRegistrados.Count() - 1;
 
+            if(funcionariosRegistrados.Count() == 0)
+            {
+                MessageBox.Show("Não existem funcionários cadastros, fale com o administrador do sistema.",
+                    "Funcionários não cadastrados.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
             for (int i = 0; i < funcionariosRegistrados.Count; i++)
             {
                 Funcionario funcionario = funcionariosRegistrados[i];

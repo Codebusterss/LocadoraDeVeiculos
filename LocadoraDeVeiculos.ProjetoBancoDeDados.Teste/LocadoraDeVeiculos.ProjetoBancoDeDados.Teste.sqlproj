@@ -3,16 +3,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>LocadoraDeVeiculos.Projeto.BancoDeDados</Name>
+    <Name>LocadoraDeVeiculos.ProjetoBancoDeDados.Teste</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{f0b0e4a7-be89-4923-980e-b2529ee8059c}</ProjectGuid>
+    <ProjectGuid>{ba3f84ad-8803-4f72-939a-198da3a0d5c8}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>LocadoraDeVeiculos.Projeto.BancoDeDados</RootNamespace>
-    <AssemblyName>LocadoraDeVeiculos.Projeto.BancoDeDados</AssemblyName>
+    <RootNamespace>LocadoraDeVeiculos.ProjetoBancoDeDados.Teste</RootNamespace>
+    <AssemblyName>LocadoraDeVeiculos.ProjetoBancoDeDados.Teste</AssemblyName>
     <ModelCollation>1033,CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>

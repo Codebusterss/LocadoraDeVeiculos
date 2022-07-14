@@ -16,9 +16,8 @@ namespace LocadoraDeVeiculos.Dominio.ModuloGrupoDeVeiculo
 
         }
 
-        public GrupoDeVeiculo(int n, string nome) : this()
+        public GrupoDeVeiculo(string nome) : this()
         {
-            ID = n;
             Nome = nome;
         }
 
@@ -37,6 +36,11 @@ namespace LocadoraDeVeiculos.Dominio.ModuloGrupoDeVeiculo
             return obj is GrupoDeVeiculo disciplina &&
                    ID == disciplina.ID &&
                    Nome == disciplina.Nome;
+        }
+
+        public GrupoDeVeiculo Clone()
+        {
+            return MemberwiseClone() as GrupoDeVeiculo;
         }
     }
 }

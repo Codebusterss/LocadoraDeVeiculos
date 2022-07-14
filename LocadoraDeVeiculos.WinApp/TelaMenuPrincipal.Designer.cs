@@ -81,6 +81,8 @@
             // clientesToolStripMenuItem
             // 
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
+            this.clientesToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.clientesToolStripMenuItem.Size = new System.Drawing.Size(271, 34);
             this.clientesToolStripMenuItem.Text = "Clientes";
             this.clientesToolStripMenuItem.Click += new System.EventHandler(this.clientesToolStripMenuItem_Click);
@@ -88,6 +90,8 @@
             // gruposDeVeículosToolStripMenuItem
             // 
             this.gruposDeVeículosToolStripMenuItem.Name = "gruposDeVeículosToolStripMenuItem";
+            this.gruposDeVeículosToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
+            this.gruposDeVeículosToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.gruposDeVeículosToolStripMenuItem.Size = new System.Drawing.Size(271, 34);
             this.gruposDeVeículosToolStripMenuItem.Text = "Grupos de Veículos";
             this.gruposDeVeículosToolStripMenuItem.Click += new System.EventHandler(this.gruposDeVeículosToolStripMenuItem_Click);
@@ -95,6 +99,8 @@
             // funcionáriosToolStripMenuItem
             // 
             this.funcionáriosToolStripMenuItem.Name = "funcionáriosToolStripMenuItem";
+            this.funcionáriosToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
+            this.funcionáriosToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.funcionáriosToolStripMenuItem.Size = new System.Drawing.Size(271, 34);
             this.funcionáriosToolStripMenuItem.Text = "Funcionários";
             this.funcionáriosToolStripMenuItem.Click += new System.EventHandler(this.funcionáriosToolStripMenuItem_Click);
@@ -102,9 +108,19 @@
             // taxasToolStripMenuItem
             // 
             this.taxasToolStripMenuItem.Name = "taxasToolStripMenuItem";
+            this.taxasToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
+            this.taxasToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.taxasToolStripMenuItem.Size = new System.Drawing.Size(271, 34);
             this.taxasToolStripMenuItem.Text = "Taxas";
             this.taxasToolStripMenuItem.Click += new System.EventHandler(this.taxasToolStripMenuItem_Click);
+            // 
+            // planosDeCobrançaToolStripMenuItem
+            // 
+            this.planosDeCobrançaToolStripMenuItem.Name = "planosDeCobrançaToolStripMenuItem";
+            this.planosDeCobrançaToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
+            this.planosDeCobrançaToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.planosDeCobrançaToolStripMenuItem.Text = "Planos de Cobrança";
+            this.planosDeCobrançaToolStripMenuItem.Click += new System.EventHandler(this.planosDeCobrançaToolStripMenuItem_Click);
             // 
             // planosDeCobrançaToolStripMenuItem
             // 

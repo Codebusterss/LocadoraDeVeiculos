@@ -52,9 +52,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca
             }
         }
 
-        public int ObtemPlanoSelecionado()
+        public Guid ObtemPlanoSelecionado()
         {
-            return grid.SelecionarPorID<int>();
+            return grid.SelecionarPorID<Guid>();
         }
 
     }
