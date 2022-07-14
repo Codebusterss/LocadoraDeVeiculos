@@ -37,6 +37,7 @@
             this.funcionáriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.taxasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.planosDeCobrançaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.condutoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelRegistros = new System.Windows.Forms.Panel();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -46,7 +47,6 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblStatusRodape = new System.Windows.Forms.ToolStripStatusLabel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.condutoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panelRegistros.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -82,8 +82,7 @@
             // 
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
             this.clientesToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(271, 34);
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(302, 34);
             this.clientesToolStripMenuItem.Text = "Clientes";
             this.clientesToolStripMenuItem.Click += new System.EventHandler(this.clientesToolStripMenuItem_Click);
             // 
@@ -91,8 +90,7 @@
             // 
             this.gruposDeVeículosToolStripMenuItem.Name = "gruposDeVeículosToolStripMenuItem";
             this.gruposDeVeículosToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.gruposDeVeículosToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
-            this.gruposDeVeículosToolStripMenuItem.Size = new System.Drawing.Size(271, 34);
+            this.gruposDeVeículosToolStripMenuItem.Size = new System.Drawing.Size(302, 34);
             this.gruposDeVeículosToolStripMenuItem.Text = "Grupos de Veículos";
             this.gruposDeVeículosToolStripMenuItem.Click += new System.EventHandler(this.gruposDeVeículosToolStripMenuItem_Click);
             // 
@@ -100,8 +98,7 @@
             // 
             this.funcionáriosToolStripMenuItem.Name = "funcionáriosToolStripMenuItem";
             this.funcionáriosToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
-            this.funcionáriosToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
-            this.funcionáriosToolStripMenuItem.Size = new System.Drawing.Size(271, 34);
+            this.funcionáriosToolStripMenuItem.Size = new System.Drawing.Size(302, 34);
             this.funcionáriosToolStripMenuItem.Text = "Funcionários";
             this.funcionáriosToolStripMenuItem.Click += new System.EventHandler(this.funcionáriosToolStripMenuItem_Click);
             // 
@@ -109,8 +106,7 @@
             // 
             this.taxasToolStripMenuItem.Name = "taxasToolStripMenuItem";
             this.taxasToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
-            this.taxasToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
-            this.taxasToolStripMenuItem.Size = new System.Drawing.Size(271, 34);
+            this.taxasToolStripMenuItem.Size = new System.Drawing.Size(302, 34);
             this.taxasToolStripMenuItem.Text = "Taxas";
             this.taxasToolStripMenuItem.Click += new System.EventHandler(this.taxasToolStripMenuItem_Click);
             // 
@@ -118,16 +114,17 @@
             // 
             this.planosDeCobrançaToolStripMenuItem.Name = "planosDeCobrançaToolStripMenuItem";
             this.planosDeCobrançaToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.planosDeCobrançaToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.planosDeCobrançaToolStripMenuItem.Size = new System.Drawing.Size(302, 34);
             this.planosDeCobrançaToolStripMenuItem.Text = "Planos de Cobrança";
             this.planosDeCobrançaToolStripMenuItem.Click += new System.EventHandler(this.planosDeCobrançaToolStripMenuItem_Click);
             // 
-            // planosDeCobrançaToolStripMenuItem
+            // condutoresToolStripMenuItem
             // 
-            this.planosDeCobrançaToolStripMenuItem.Name = "planosDeCobrançaToolStripMenuItem";
-            this.planosDeCobrançaToolStripMenuItem.Size = new System.Drawing.Size(271, 34);
-            this.planosDeCobrançaToolStripMenuItem.Text = "Planos de Cobrança";
-            this.planosDeCobrançaToolStripMenuItem.Click += new System.EventHandler(this.planosDeCobrançaToolStripMenuItem_Click);
+            this.condutoresToolStripMenuItem.Name = "condutoresToolStripMenuItem";
+            this.condutoresToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F6;
+            this.condutoresToolStripMenuItem.Size = new System.Drawing.Size(302, 34);
+            this.condutoresToolStripMenuItem.Text = "Condutores";
+            this.condutoresToolStripMenuItem.Click += new System.EventHandler(this.condutoresToolStripMenuItem_Click);
             // 
             // panelRegistros
             // 
@@ -224,13 +221,6 @@
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // condutoresToolStripMenuItem
-            // 
-            this.condutoresToolStripMenuItem.Name = "condutoresToolStripMenuItem";
-            this.condutoresToolStripMenuItem.Size = new System.Drawing.Size(271, 34);
-            this.condutoresToolStripMenuItem.Text = "Condutores";
-            this.condutoresToolStripMenuItem.Click += new System.EventHandler(this.condutoresToolStripMenuItem_Click);
             // 
             // TelaMenuPrincipal
             // 
