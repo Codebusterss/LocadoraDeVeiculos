@@ -27,11 +27,11 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
           {
                 new DataGridViewTextBoxColumn { DataPropertyName = "ID", HeaderText = "ID"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Clientes", HeaderText = "Clientes"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Cliente", HeaderText = "Cliente"},
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Endereco", HeaderText = "Endereco"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "CNH", HeaderText = "CNH"},
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Email", HeaderText = "Email"},
 
@@ -45,13 +45,13 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
             grid.Rows.Clear();
             foreach (Condutor c in condutor)
             {
-                grid.Rows.Add(c.ID, c.Nome, c.Endereco, c.Email, c.Telefone);
+                grid.Rows.Add(c.ID, c.Cliente.Nome, c.Nome, c.CNH, c.Email, c.Telefone);
             }
         }
       
-        public int ObtemCondutorSelecionado()
+        public Guid ObtemCondutorSelecionado()
         {
-            return grid.SelecionarPorID<int>();
+            return grid.SelecionarPorID<Guid>();
         }
     }
 }

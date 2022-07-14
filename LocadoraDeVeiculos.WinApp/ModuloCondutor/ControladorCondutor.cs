@@ -39,49 +39,70 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
         }
         public override void Editar()
         {
-            var condutores = repositorioCliente.SelecionarTodos();
+            var clientes = repositorioCliente.SelecionarTodos();
+            var id = tabelaCondutor.ObtemCondutorSelecionado();
 
-             Condutor condutorSelecionado = ObtemCondutorSelecionado();
-
-            if (condutorSelecionado == null)
+            if (id == Guid.Empty)
             {
-                MessageBox.Show("Selecione um condutor primeiro.",
-                "Edição de condutores", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione um condutor primeiro",
+                    "Edição de Condutor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            TelaCadastroCondutor tela = new TelaCadastroCondutor(condutores);
+            var resultado = servicoCondutor.SelecionarPorId(id);
 
-            tela.Condutor = condutorSelecionado; 
+            if (resultado.IsFailed)
+            {
+                MessageBox.Show(resultado.Errors[0].Message,
+                    "Edição de Condutor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var condutorSelecionado = resultado.Value;
+
+            var tela = new TelaCadastroCondutor(clientes);
+
+            tela.Condutor = condutorSelecionado.Clone();
 
             tela.GravarRegistro = servicoCondutor.Editar;
 
-            DialogResult resultado = tela.ShowDialog();
-
-            if (resultado == DialogResult.OK)
+            if (tela.ShowDialog() == DialogResult.OK)
                 CarregarCondutores();
 
         }
         public override void Excluir()
         {
 
+            var id = tabelaCondutor.ObtemCondutorSelecionado();
 
-            Condutor condutorSelecionado = ObtemCondutorSelecionado();
-
-            if (condutorSelecionado == null)
+            if (id == Guid.Empty)
             {
-                MessageBox.Show("Selecione um condutor primeiro",
-                "Exclusão de Condutor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione um condutor primeiro.",
+                    "Exclusão de Condutor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            DialogResult resultado = MessageBox.Show("Deseja realmente excluir o condutor?",
-               "Exclusão de Condutor", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            var resultadoSelecao = servicoCondutor.SelecionarPorId(id);
 
-            if (resultado == DialogResult.OK)
+            if (resultadoSelecao.IsFailed)
             {
-                repositorioCondutor.Excluir(condutorSelecionado);
-                CarregarCondutores();
+                MessageBox.Show(resultadoSelecao.Errors[0].Message,
+                    "Exclusão de Condutor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var condutorSelecionado = resultadoSelecao.Value;
+
+            if (MessageBox.Show("Deseja realmente excluir o condutor?", "Exclusão de Condutor",
+                 MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                var resultadoExclusao = servicoCondutor.Excluir(condutorSelecionado);
+
+                if (resultadoExclusao.IsSuccess)
+                    CarregarCondutores();
+                else
+                    MessageBox.Show(resultadoExclusao.Errors[0].Message,
+                        "Exclusão de Condutor", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public override UserControl ObtemListagem()
@@ -93,13 +114,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
 
             return tabelaCondutor;
         }
-        private Condutor ObtemCondutorSelecionado()
-        {
-            var ID = tabelaCondutor.ObtemCondutorSelecionado();
-
-            return repositorioCondutor.SelecionarPorId(ID);
-        }
-
+       
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
             return new ConfiguracaoToolBoxCondutor();

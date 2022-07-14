@@ -5,6 +5,7 @@ using LocadoraDeVeiculos.Infra.Compartilhado;
 using LocadoraDeVeiculos.Infra.ModuloCliente;
 using LocadoraDeVeiculos.Infra.ModuloCondutor;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using LocadoraDeVeiculos.Infra.Testes.Compartilhado;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ using System.Threading.Tasks;
 namespace LocadoraDeVeiculos.Infra.Testes.ModuloCondutor
 {
     [TestClass]
-    public class RepositorioCondutorEmBancoDeDadosTest
+    public class RepositorioCondutorEmBancoDeDadosTest : BaseIntegrationTest
     {
         private Condutor condutor;
         private RepositorioCondutorEmBancoDeDados repositorioCondutorEmBanco;
@@ -25,9 +26,7 @@ namespace LocadoraDeVeiculos.Infra.Testes.ModuloCondutor
 
         public RepositorioCondutorEmBancoDeDadosTest()
         {
-            Db.ExecutarSql("DELETE FROM CONDUTOR; DBCC CHECKIDENT (CONDUTOR, RESEED, 0)");
-            Db.ExecutarSql("DELETE FROM CLIENTE; DBCC CHECKIDENT (CLIENTE, RESEED, 0)");
-
+          
             condutor = gerarCondutor();
             cliente = gerarCliente();
             condutor.Cliente = cliente;

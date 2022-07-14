@@ -33,9 +33,9 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCondutor
         }
 
 
-        public Condutor(int n, string nome, Cliente cliente, string cpf, string cnh, DateTime validadeCNH, string email, string telefone, string endereco, bool condutorcliente) : this()
+        public Condutor( string nome, Cliente cliente, string cpf, string cnh, DateTime validadeCNH, string email, string telefone, string endereco, bool condutorcliente) : this()
         {
-            ID = n;
+          
             Nome = nome;
             Cliente = cliente;
             CPF = cpf;
