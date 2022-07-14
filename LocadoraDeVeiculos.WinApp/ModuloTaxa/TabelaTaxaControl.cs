@@ -51,6 +51,10 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxa
         {
             return grid.SelecionarPorID<int>();
         }
-            
+
+        private void grid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

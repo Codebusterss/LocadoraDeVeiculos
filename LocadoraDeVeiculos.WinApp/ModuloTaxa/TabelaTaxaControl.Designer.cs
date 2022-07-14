@@ -37,21 +37,20 @@
             this.grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grid.Location = new System.Drawing.Point(0, 0);
-            this.grid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.grid.Name = "grid";
             this.grid.RowHeadersWidth = 62;
             this.grid.RowTemplate.Height = 25;
-            this.grid.Size = new System.Drawing.Size(948, 532);
+            this.grid.Size = new System.Drawing.Size(664, 319);
             this.grid.TabIndex = 0;
+            this.grid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_CellContentClick);
             // 
-            // TabelaMateriaControl
+            // TabelaTaxaControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.grid);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "TabelaMateriaControl";
-            this.Size = new System.Drawing.Size(948, 532);
+            this.Name = "TabelaTaxaControl";
+            this.Size = new System.Drawing.Size(664, 319);
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             this.ResumeLayout(false);
 
