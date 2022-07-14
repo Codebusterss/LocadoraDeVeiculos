@@ -4,7 +4,6 @@
     [CPF]         VARCHAR (300)    NOT NULL,
     [CNPJ]        VARCHAR (300)    NOT NULL,
     [ENDERECO]    VARCHAR (300)    NOT NULL,
-    [CNH]         VARCHAR (300)    NOT NULL,
     [TELEFONE]    VARCHAR (300)    NOT NULL,
     [TIPOCLIENTE] INT              NOT NULL,
     [EMAIL]       VARCHAR (300)    NOT NULL,

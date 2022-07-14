@@ -54,7 +54,6 @@ namespace LocadoraDeVeiculos.Infra.Testes.ModuloCondutor
             cliente.CNPJ = "";
             cliente.Telefone = "(43)97683-1923";
             cliente.Endereco = "Lages";
-            cliente.CNH = "4563-96785";
             cliente.CPF = "345.768.598-09";
 
             return cliente;
