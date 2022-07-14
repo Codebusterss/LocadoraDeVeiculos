@@ -19,7 +19,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloFuncionario
             @"INSERT INTO [FUNCIONARIO]
                 (
                     [ID],
-                    [NOME],  
+                    [NOME],
                     [LOGIN],
                     [SENHA],
                     [SALARIO],
