@@ -117,7 +117,7 @@ namespace LocadoraDeVeiculos.Infra.Testes.ModuloCliente
             cliente3.CPF = "123.456.789-12";
 
             var repositorio = new RepositorioClienteEmBancoDeDados();
-            repositorio.Inserir(cliente1);
+            repositorio.Inserir(cliente1); 
             repositorio.Inserir(cliente2);
             repositorio.Inserir(cliente3);
 

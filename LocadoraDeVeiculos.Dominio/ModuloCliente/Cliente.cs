@@ -49,7 +49,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCliente
 
         public override string? ToString()
         {
-            return base.ToString();
+            return Nome;
         }
 
         public override bool Equals(object? obj)
