@@ -72,9 +72,19 @@ namespace LocadoraDeVeiculos.Infra.Compartilhado
 
             comandoExclusao.Parameters.AddWithValue("ID", registro.ID);
 
-            conexaoComBanco.Open();
-            comandoExclusao.ExecuteNonQuery();
-            conexaoComBanco.Close();
+            try
+            {
+                conexaoComBanco.Open();
+                comandoExclusao.ExecuteNonQuery();
+                conexaoComBanco.Close();
+            }
+            catch (Exception ex)
+            {
+                if(ex != null && ex.Message.Contains("The DELETE statement conflicted with the REFERENCE constraint"))
+                {
+                    throw new NaoPodeExcluirRegistroException(ex);
+                }
+            }          
         }
 
         public virtual T SelecionarPorId(Guid id)
@@ -139,7 +149,5 @@ namespace LocadoraDeVeiculos.Infra.Compartilhado
 
             return registro;
         }
-
-
     }
 }

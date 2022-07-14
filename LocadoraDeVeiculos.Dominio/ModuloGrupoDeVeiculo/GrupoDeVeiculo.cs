@@ -37,5 +37,10 @@ namespace LocadoraDeVeiculos.Dominio.ModuloGrupoDeVeiculo
                    ID == disciplina.ID &&
                    Nome == disciplina.Nome;
         }
+
+        public GrupoDeVeiculo Clone()
+        {
+            return MemberwiseClone() as GrupoDeVeiculo;
+        }
     }
 }
