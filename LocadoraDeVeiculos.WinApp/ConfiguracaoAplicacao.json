@@ -1,6 +1,6 @@
 {
   "ConfiguracaoLogs": {
-    "DiretorioSaida": "C:\\logs"
+    "DiretorioSaida": "C:\\Windows\\Temp"
   },
 
   "ConnectionStrings": {
