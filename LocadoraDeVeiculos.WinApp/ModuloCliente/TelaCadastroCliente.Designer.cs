@@ -41,10 +41,8 @@
             this.txtBoxEndereco = new System.Windows.Forms.TextBox();
             this.btnAdicionar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
             this.txtBoxTelefone = new System.Windows.Forms.MaskedTextBox();
             this.txtBoxCPFCNPJ = new System.Windows.Forms.MaskedTextBox();
-            this.txtBoxCNH = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -70,7 +68,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(106, 311);
+            this.label3.Location = new System.Drawing.Point(107, 253);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(58, 25);
@@ -123,7 +121,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(83, 371);
+            this.label4.Location = new System.Drawing.Point(83, 322);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(81, 25);
@@ -133,7 +131,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(75, 439);
+            this.label5.Location = new System.Drawing.Point(75, 389);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(89, 25);
@@ -142,7 +140,7 @@
             // 
             // txtBoxEmail
             // 
-            this.txtBoxEmail.Location = new System.Drawing.Point(173, 305);
+            this.txtBoxEmail.Location = new System.Drawing.Point(173, 250);
             this.txtBoxEmail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtBoxEmail.Name = "txtBoxEmail";
             this.txtBoxEmail.PlaceholderText = "email@provedor.com";
@@ -151,7 +149,7 @@
             // 
             // txtBoxEndereco
             // 
-            this.txtBoxEndereco.Location = new System.Drawing.Point(173, 433);
+            this.txtBoxEndereco.Location = new System.Drawing.Point(173, 383);
             this.txtBoxEndereco.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtBoxEndereco.Name = "txtBoxEndereco";
             this.txtBoxEndereco.Size = new System.Drawing.Size(293, 31);
@@ -160,7 +158,7 @@
             // btnAdicionar
             // 
             this.btnAdicionar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnAdicionar.Location = new System.Drawing.Point(334, 505);
+            this.btnAdicionar.Location = new System.Drawing.Point(332, 446);
             this.btnAdicionar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAdicionar.Name = "btnAdicionar";
             this.btnAdicionar.Size = new System.Drawing.Size(107, 38);
@@ -172,7 +170,7 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(449, 505);
+            this.btnCancelar.Location = new System.Drawing.Point(441, 446);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(107, 38);
@@ -180,19 +178,9 @@
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(111, 246);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(53, 25);
-            this.label6.TabIndex = 15;
-            this.label6.Text = "CNH:";
-            // 
             // txtBoxTelefone
             // 
-            this.txtBoxTelefone.Location = new System.Drawing.Point(173, 368);
+            this.txtBoxTelefone.Location = new System.Drawing.Point(173, 322);
             this.txtBoxTelefone.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtBoxTelefone.Mask = "(00)00000-0000";
             this.txtBoxTelefone.Name = "txtBoxTelefone";
@@ -207,23 +195,13 @@
             this.txtBoxCPFCNPJ.Size = new System.Drawing.Size(235, 31);
             this.txtBoxCPFCNPJ.TabIndex = 16;
             // 
-            // txtBoxCNH
-            // 
-            this.txtBoxCNH.Location = new System.Drawing.Point(173, 243);
-            this.txtBoxCNH.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtBoxCNH.Name = "txtBoxCNH";
-            this.txtBoxCNH.Size = new System.Drawing.Size(235, 31);
-            this.txtBoxCNH.TabIndex = 17;
-            // 
             // TelaCadastroCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(561, 549);
-            this.Controls.Add(this.txtBoxCNH);
+            this.ClientSize = new System.Drawing.Size(569, 497);
             this.Controls.Add(this.txtBoxCPFCNPJ);
             this.Controls.Add(this.txtBoxTelefone);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAdicionar);
             this.Controls.Add(this.txtBoxEndereco);
@@ -265,9 +243,7 @@
         private TextBox txtBoxEndereco;
         private Button btnAdicionar;
         private Button btnCancelar;
-        private Label label6;
         private MaskedTextBox txtBoxTelefone;
         private MaskedTextBox txtBoxCPFCNPJ;
-        private MaskedTextBox txtBoxCNH;
     }
 }

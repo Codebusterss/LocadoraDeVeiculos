@@ -34,9 +34,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCliente
                 RuleFor(x => x.CPF)
                 .Matches(new Regex(@"^\d{3}\.\d{3}\.\d{3}-\d{2}$"))
                 .NotEmpty();
-                RuleFor(x => x.CNH)
-                .Matches(new Regex(@"^\d{3}\.\d{3}\.\d{3}-\d{3}$"))
-                .NotEmpty();
+              
             });
 
             When(x => x.PessoaFisica == false, () =>

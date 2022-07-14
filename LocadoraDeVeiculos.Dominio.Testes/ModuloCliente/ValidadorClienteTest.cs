@@ -20,7 +20,7 @@ namespace LocadoraDeVeiculos.Dominio.Testes.ModuloCliente
             cliente = new()
             {
                 Nome = "Luan",
-                CNH = "123.123.123-123",
+                
                 CPF = "123.123.123-12",
                 Email = "luan@gmail.com",
                 Endereco = "Rua Amorim",
@@ -202,51 +202,15 @@ namespace LocadoraDeVeiculos.Dominio.Testes.ModuloCliente
             resultadoValidacao.ShouldHaveValidationErrorFor(c => c.CPF);
         }
 
-        [TestMethod]
-        public void CNH_nao_deve_ser_nulo()
-        {
-            // arrange
-            cliente.CNH = null;
 
-            // action
-            var resultadoValidacao = validador.TestValidate(cliente);
-
-            // assert
-            resultadoValidacao.ShouldHaveValidationErrorFor(c => c.CNH);
-        }
-
-        [TestMethod]
-        public void CNH_deve_seguir_o_padrao()
-        {
-        // arrange  - 1 digito a mais
-        cliente.CNH = "1234567891234";
-
-            // action
-            var resultadoValidacao = validador.TestValidate(cliente);
-
-            // assert
-            resultadoValidacao.ShouldHaveValidationErrorFor(c => c.CNH);
-        }
-
-        [TestMethod]
-        public void CNH_deve_seguir_o_padrao2()
-        {
-            // arrange  - 1 digito a menos
-            cliente.CNH = "12345678912";
-
-            // action
-            var resultadoValidacao = validador.TestValidate(cliente);
-
-            // assert
-            resultadoValidacao.ShouldHaveValidationErrorFor(c => c.CNH);
-        }
+       
 
         [TestMethod]
         public void CNPJ_nao_deve_ser_nulo()
         {
             // arrange
             cliente.CNPJ = null;
-            cliente.CNH = "";
+            
             cliente.CPF = "";
             cliente.PessoaFisica = false;
 
@@ -262,7 +226,7 @@ namespace LocadoraDeVeiculos.Dominio.Testes.ModuloCliente
         {
             // arrange - 1 digito a mais
             cliente.CNPJ = "12345678912345";
-            cliente.CNH = "";
+            
             cliente.CPF = "";
             cliente.PessoaFisica = false;
 
@@ -278,7 +242,7 @@ namespace LocadoraDeVeiculos.Dominio.Testes.ModuloCliente
         {
             // arrange - 1 digito a menos
             cliente.CNPJ = "123456789123";
-            cliente.CNH = "";
+           
             cliente.CPF = "";
             cliente.PessoaFisica = false;
 

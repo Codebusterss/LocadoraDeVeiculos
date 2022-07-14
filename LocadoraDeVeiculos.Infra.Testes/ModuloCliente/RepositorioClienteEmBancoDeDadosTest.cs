@@ -26,7 +26,6 @@ namespace LocadoraDeVeiculos.Infra.Testes.ModuloCliente
         {
             Cliente cliente = new Cliente();
             cliente.Nome = "Luan";
-            cliente.CNH = "123.123.123-123";
             cliente.CPF = "123.123.123-12";
             cliente.CNPJ = "";
             cliente.Email = "luan@gmail.com";

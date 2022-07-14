@@ -35,46 +35,70 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
 
         public override void Editar()
         {
-            Cliente clienteSelecionado = ObtemClienteSelecionado();
 
-            if (clienteSelecionado == null)
+            var id = tabelaClienteControl.ObtemClienteSelecionado();
+
+            if (id == Guid.Empty)
             {
-                MessageBox.Show("Selecione um cliente primeiro.",
-                "Edição de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione um Cliente primeiro.",
+                    "Edição de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            TelaCadastroCliente tela = new TelaCadastroCliente();
+            var resultado = servicoCliente.SelecionarPorId(id);
 
-            tela.Cliente = clienteSelecionado;
+            if (resultado.IsFailed)
+            {
+                MessageBox.Show(resultado.Errors[0].Message,
+                    "Edição de cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var grupoSelecionado = resultado.Value;
+
+            var tela = new TelaCadastroCliente();
+
+            tela.Cliente = grupoSelecionado.Clone();
 
             tela.GravarRegistro = servicoCliente.Editar;
 
-            DialogResult resultado = tela.ShowDialog();
-
-            if (resultado == DialogResult.OK)
+            if (tela.ShowDialog() == DialogResult.OK)
                 CarregarClientes();
 
         }
 
         public override void Excluir()
         {
-            Cliente clienteSelecionado = ObtemClienteSelecionado();
+            var id = tabelaClienteControl.ObtemClienteSelecionado();
 
-            if (clienteSelecionado == null)
+            if (id == Guid.Empty)
             {
-                MessageBox.Show("Selecione um cliente primeiro.",
-                "Exclusão de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione um Cliente primeiro.",
+                    "Exclusão de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            DialogResult resultado = MessageBox.Show("Deseja realmente excluir o cliente?",
-                "Exclusão de Clientes", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            var resultadoSelecao = servicoCliente.SelecionarPorId(id);
 
-            if (resultado == DialogResult.OK)
+            if (resultadoSelecao.IsFailed)
             {
-                repositorioCliente.Excluir(clienteSelecionado);
-                CarregarClientes();
+                MessageBox.Show(resultadoSelecao.Errors[0].Message,
+                    "Exclusão de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var grupoSelecionado = resultadoSelecao.Value;
+
+            if (MessageBox.Show("Deseja realmente excluir o Cliente?", "Exclusão de Cliente",
+                 MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                var resultadoExclusao = servicoCliente.Excluir(grupoSelecionado);
+
+                if (resultadoExclusao.IsSuccess)
+                    CarregarClientes();
+                else
+                    MessageBox.Show(resultadoExclusao.Errors[0].Message,
+                        "Exclusão de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
