@@ -53,8 +53,11 @@ public class Funcionario : EntidadeBase<Funcionario>
                Salario == funcionario.Salario;
 
     }
+    public Funcionario Clone()
+    {
+        return MemberwiseClone() as Funcionario;
+    }
 
-   
 }
 
 

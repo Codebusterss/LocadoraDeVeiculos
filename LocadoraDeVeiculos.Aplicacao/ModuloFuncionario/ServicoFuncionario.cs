@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using FluentValidation.Results;
 using Serilog;
 using LocadoraDeVeiculos.Dominio.ModuloFuncionario;
+using FluentResults;
 
 namespace LocadoraDeVeiculos.Aplicacao.ModuloFuncionario
 {
@@ -18,51 +19,129 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloFuncionario
             this.repositorioFuncionario = repositorioFuncionario;
         }
 
-        public ValidationResult Inserir(Funcionario funcionario)
+        public Result<Funcionario> Inserir(Funcionario funcionario)
         {
-            ValidationResult resultadoValidacao = Validar(funcionario);
-
             Log.Logger.Debug("Tentando inserir funcionário... {@f}", funcionario);
 
-            if (resultadoValidacao.IsValid)
+            Result resultadoValidacao = Validar(funcionario);
+
+            if (resultadoValidacao.IsFailed)
+            {
+                foreach (var erro in resultadoValidacao.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar inserir o Funcionário {FuncionarioId} - {Motivo}",
+                       funcionario.ID, erro.Message);
+                }
+
+                return Result.Fail(resultadoValidacao.Errors);
+            }
+
+            try
             {
                 repositorioFuncionario.Inserir(funcionario);
-                Log.Logger.Debug("Funcionário {FuncionarioNome} inserido com sucesso.", funcionario.Nome);
-            }
-            else
-            {
-                foreach (var erro in resultadoValidacao.Errors)
-                {
-                    Log.Logger.Warning("Falha ao tentar inserir Funcionário {FuncionarioNome} - {Motivo}.", funcionario.Nome, erro.ErrorMessage);
-                }
-            }
 
-            return resultadoValidacao;
+                Log.Logger.Information("Funcionário {FuncionarioId} inserido com sucesso", funcionario.ID);
+
+                return Result.Ok(funcionario);
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar inserir o funcionário";
+
+                Log.Logger.Error(ex, msgErro + "{FuncionarioId}", funcionario.ID);
+
+                return Result.Fail(msgErro);
+            }
         }
 
-        public ValidationResult Editar(Funcionario funcionario)
+        public Result<Funcionario> Editar(Funcionario funcionario)
         {
-            ValidationResult resultadoValidacao = Validar(funcionario);
-
             Log.Logger.Debug("Tentando editar funcionário... {@f}", funcionario);
 
-            if (resultadoValidacao.IsValid)
-            {
-                repositorioFuncionario.Editar(funcionario);
-                Log.Logger.Debug("Funcionário {FuncionarioNome} editado com sucesso.", funcionario.Nome);
-            }
-            else
+            Result resultadoValidacao = Validar(funcionario);
+
+            if (resultadoValidacao.IsFailed)
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar editar Funcionário {FuncionarioNome} - {Motivo}.", funcionario.Nome, erro.ErrorMessage);
+                    Log.Logger.Warning("Falha ao tentar editar o Funcionário {FuncionarioId} - {Motivo}",
+                       funcionario.ID, erro.Message);
                 }
+
+                return Result.Fail(resultadoValidacao.Errors);
             }
 
-            return resultadoValidacao;
+            try
+            {
+                repositorioFuncionario.Editar(funcionario);
+
+                Log.Logger.Information("Funcionário {FuncionarioId} editado com sucesso", funcionario.ID);
+
+                return Result.Ok(funcionario);
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar editar o funcionário";
+
+                Log.Logger.Error(ex, msgErro + "{FuncionarioId}", funcionario.ID);
+
+                return Result.Fail(msgErro);
+            }
         }
 
-        private ValidationResult Validar(Funcionario funcionario)
+        public Result Excluir(Funcionario funcionario)
+        {
+            Log.Logger.Debug("Tentando excluir funcionário... {@f}", funcionario);
+
+            try
+            {
+                repositorioFuncionario.Excluir(funcionario);
+
+                Log.Logger.Information("Funcionário {FuncionarioId} excluído com sucesso", funcionario.ID);
+
+                return Result.Ok();
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar excluir o funcionário";
+
+                Log.Logger.Error(ex, msgErro + "{FuncionarioId}", funcionario.ID);
+
+                return Result.Fail(msgErro);
+            }
+        }
+
+        public Result < List<Funcionario> > SelecionarTodos()
+        {
+            try
+            {
+                return Result.Ok(repositorioFuncionario.SelecionarTodos());
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar selecionar todos os funcionários.";
+                Log.Logger.Error(ex, msgErro);
+
+                return Result.Fail(msgErro);
+            }
+        }
+
+        public Result<Funcionario> SelecionarPorId(Guid id)
+        {
+            try
+            {
+                return Result.Ok(repositorioFuncionario.SelecionarPorId(id));
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar selecionar o funcionário.";
+                Log.Logger.Error(ex, msgErro + "{FuncionarioId}", id);
+
+                return Result.Fail(msgErro);
+            }
+        }
+
+        private Result Validar(Funcionario funcionario)
         {
             var validador = new ValidadorFuncionario();
 
@@ -70,13 +149,24 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloFuncionario
 
             var resultadoValidacao = validador.Validate(funcionario);
 
+            List<Error> erros = new List<Error>();
+            foreach (ValidationFailure item in resultadoValidacao.Errors)
+            {
+                erros.Add(new Error(item.ErrorMessage));
+            }
+
             if (NomeDuplicado(funcionario))
-                resultadoValidacao.Errors.Add(new ValidationFailure("Nome", "Nome duplicado"));
+                erros.Add(new Error("Nome duplicado"));
 
             if (LoginDuplicado(funcionario))
-                resultadoValidacao.Errors.Add(new ValidationFailure("Login", "Login duplicado"));
+                erros.Add(new Error("Login duplicado"));
 
-            return resultadoValidacao;
+            if (erros.Any())
+            {
+                return Result.Fail(erros);
+            }
+
+            return Result.Ok();
         }
 
         private bool NomeDuplicado(Funcionario funcionario)
