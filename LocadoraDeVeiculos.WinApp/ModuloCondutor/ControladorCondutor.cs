@@ -13,15 +13,13 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
 {
     public class ControladorCondutor : ControladorBase
     {
-        private readonly IRepositorioCondutor repositorioCondutor;
         private readonly ServicoCondutor servicoCondutor;
         private readonly RepositorioClienteEmBancoDeDados repositorioCliente;
         private TabelaCondutorControl tabelaCondutor;
 
-        public ControladorCondutor(IRepositorioCondutor repositorioCondutor, ServicoCondutor servicoCondutor, RepositorioClienteEmBancoDeDados repositorioCliente)
+        public ControladorCondutor(ServicoCondutor servicoCondutor, RepositorioClienteEmBancoDeDados repositorioCliente)
         {
-            this.repositorioCondutor = repositorioCondutor;
-            this.servicoCondutor = servicoCondutor;
+           this.servicoCondutor = servicoCondutor;
            this.repositorioCliente = repositorioCliente;
         }
 
@@ -123,9 +121,19 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
 
         private void CarregarCondutores()
         {
-            List<Condutor> condutores = repositorioCondutor.SelecionarTodos();
-            tabelaCondutor.AtualizarRegistros(condutores);
-            TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando {condutores.Count} Condutores.");
+            var resultado = servicoCondutor.SelecionarTodos();
+
+            if (resultado.IsSuccess)
+            {
+                List<Condutor> condutores = resultado.Value;
+                tabelaCondutor.AtualizarRegistros(condutores);
+                TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando {condutores.Count} Condutores.");
+            }
+            else if (resultado.IsFailed)
+            {
+
+                MessageBox.Show(resultado.Errors[0].Message, "Tela de Condutores", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
 

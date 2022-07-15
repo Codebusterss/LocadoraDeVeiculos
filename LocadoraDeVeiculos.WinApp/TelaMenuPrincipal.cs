@@ -73,11 +73,11 @@ namespace LocadoraDeVeiculos.WinApp
             controladores = new Dictionary<string, ControladorBase>();
 
             controladores.Add("Grupos de Veículos", new ControladorGrupoDeVeiculo(servicoGrupoDeVeiculos));
-            controladores.Add("Clientes", new ControladorCliente(repositorioCliente, servicoCliente));
+            controladores.Add("Clientes", new ControladorCliente(servicoCliente));
             controladores.Add("Funcionários", new ControladorFuncionario(servicoFuncionario));
-            controladores.Add("Taxas", new ControladorTaxa(repositorioTaxa, servicoTaxa));
-            controladores.Add("Planos de Cobrança", new ControladorPlanoDeCobranca(repositorioPlano, servicoPlano, repositorioGrupoDeVeiculos));
-            controladores.Add("Condutores", new ControladorCondutor(repositorioCondutor, servicoCondutor, repositorioCliente));
+            controladores.Add("Taxas", new ControladorTaxa(servicoTaxa));
+            controladores.Add("Planos de Cobrança", new ControladorPlanoDeCobranca(servicoPlano, repositorioGrupoDeVeiculos));
+            controladores.Add("Condutores", new ControladorCondutor(servicoCondutor, repositorioCliente));
         }
 
 

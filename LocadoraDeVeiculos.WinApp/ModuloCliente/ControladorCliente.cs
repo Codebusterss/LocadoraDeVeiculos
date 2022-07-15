@@ -12,13 +12,11 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
 {
     public class ControladorCliente : ControladorBase
     {
-        private readonly IRepositorioCliente repositorioCliente;
         private TabelaClienteControl tabelaClienteControl;
         private readonly ServicoCliente servicoCliente;
 
-        public ControladorCliente(IRepositorioCliente repositorioCliente, ServicoCliente servicoCliente)
+        public ControladorCliente(ServicoCliente servicoCliente)
         {
-            this.repositorioCliente = repositorioCliente;
             this.servicoCliente = servicoCliente;
         }
 
@@ -118,18 +116,20 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
 
         private void CarregarClientes()
         {
-            List<Cliente> clientes = repositorioCliente.SelecionarTodos();
-            tabelaClienteControl.AtualizarRegistros(clientes);
-            TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando {clientes.Count} Clientes.");
+            var resultado = servicoCliente.SelecionarTodos();
+
+            if (resultado.IsSuccess)
+            {
+                List<Cliente> clientes = resultado.Value;
+                tabelaClienteControl.AtualizarRegistros(clientes);
+                TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando {clientes.Count} Clientes.");
+            }
+            else if (resultado.IsFailed)
+            {
+
+                MessageBox.Show(resultado.Errors[0].Message, "Tela de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
-
-        private Cliente ObtemClienteSelecionado()
-        {
-            var id = tabelaClienteControl.ObtemClienteSelecionado();
-
-            return repositorioCliente.SelecionarPorId(id);
-        }
-
     }
 }

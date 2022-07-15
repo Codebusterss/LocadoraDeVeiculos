@@ -35,6 +35,12 @@ namespace LocadoraDeVeiculos.Dominio.ModuloTaxa
             return Tipo;
             
         }
+
+        public Taxa Clone()
+        {
+            return MemberwiseClone() as Taxa;
+        }
+
         public override bool Equals(object obj)
         {
             return obj is Taxa taxa &&
