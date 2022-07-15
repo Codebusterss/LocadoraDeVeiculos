@@ -171,6 +171,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCondutor
 
             return Result.Ok();
         }
+
         private bool NomeDuplicado(Condutor condutor)
         {
             var condutorEncontrado = repositorioCondutor.SelecionarCondutorPorNome(condutor.Nome);

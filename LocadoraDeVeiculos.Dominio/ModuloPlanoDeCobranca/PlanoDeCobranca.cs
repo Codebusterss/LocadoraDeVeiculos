@@ -50,6 +50,10 @@ namespace LocadoraDeVeiculos.Dominio.ModuloPlanoDeCobranca
             return base.ToString();
         }
 
+        public PlanoDeCobranca Clone()
+        {
+            return MemberwiseClone() as PlanoDeCobranca;
+        }
         public override bool Equals(object? obj)
         {
             return obj is PlanoDeCobranca cobranca &&
