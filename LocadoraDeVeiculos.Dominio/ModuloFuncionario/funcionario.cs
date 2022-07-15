@@ -11,9 +11,8 @@ public class Funcionario : EntidadeBase<Funcionario>
     {
 
     }
-    public Funcionario(int n, string nome, string login, string senha, float salario, bool admin, DateTime dataAdmissao)
+    public Funcionario(string nome, string login, string senha, float salario, bool admin, DateTime dataAdmissao)
     {
-        ID = n;
         Nome = nome;
         Login = login;
         Senha = senha;
@@ -54,8 +53,11 @@ public class Funcionario : EntidadeBase<Funcionario>
                Salario == funcionario.Salario;
 
     }
+    public Funcionario Clone()
+    {
+        return MemberwiseClone() as Funcionario;
+    }
 
-   
 }
 
 

@@ -12,7 +12,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCliente
         public string Nome { get; set; }
         public string CNPJ { get; set; }
         public string CPF { get; set; }
-        public string CNH { get; set; }
+        
         public string Endereco { get; set; }
         public string Email { get; set; }
         public string Telefone { get; set; }
@@ -23,13 +23,11 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCliente
 
         }
 
-        public Cliente(int n, string nome, string cnpj, string cpf, string cnh, string endereco, string email, string telefone, bool pessoaFisica) : this()
+        public Cliente(string nome, string cnpj, string cpf, string endereco, string email, string telefone, bool pessoaFisica) : this()
         {
-            ID = n;
             Nome = nome;
             CNPJ = cnpj;
             CPF = cpf;
-            CNH = cnh;
             Endereco = endereco;
             Email = email;
             Telefone = telefone;
@@ -41,16 +39,19 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCliente
             this.Nome = registro.Nome;
             this.CNPJ = registro.CNPJ;
             this.CPF = registro.CPF;
-            this.CNH = registro.CNH;
             this.Endereco = registro.Endereco;
             this.Email = registro.Endereco;
             this.Telefone = registro.Telefone;
             this.PessoaFisica = registro.PessoaFisica;
         }
+        public Cliente Clone()
+        {
+            return MemberwiseClone() as Cliente;
+        }
 
         public override string? ToString()
         {
-            return base.ToString();
+            return Nome;
         }
 
         public override bool Equals(object? obj)
@@ -60,7 +61,6 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCliente
                    Nome == cliente.Nome &&
                    CNPJ == cliente.CNPJ &&
                    CPF == cliente.CPF &&
-                   CNH == cliente.CNH &&
                    Endereco == cliente.Endereco &&
                    Email == cliente.Email &&
                    Telefone == cliente.Telefone &&

@@ -17,10 +17,11 @@ namespace LocadoraDeVeiculos.Infra.ModuloCliente
         protected override string sqlInserir =>
             @"INSERT INTO [CLIENTE]
                 (
+                    [ID],
                     [NOME],
                     [CNPJ],
                     [CPF],
-                    [CNH],
+                   
                     [ENDERECO],
                     [EMAIL],
                     [TELEFONE],
@@ -28,15 +29,16 @@ namespace LocadoraDeVeiculos.Infra.ModuloCliente
                 )
             VALUES
                 (
+                    @ID,
                     @NOME,
                     @CNPJ,
                     @CPF,
-                    @CNH,
+                 
                     @ENDERECO,
                     @EMAIL,
                     @TELEFONE,
                     @TIPOCLIENTE
-                ); SELECT SCOPE_IDENTITY();";
+                );";
 
         protected override string sqlEditar =>
             @" UPDATE [CLIENTE]
@@ -44,7 +46,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloCliente
                         [NOME] = @NOME,
                         [CNPJ] = @CNPJ,
                         [CPF] = @CPF,
-                        [CNH] = @CNH,
+                       
                         [ENDERECO] = @ENDERECO,
                         [EMAIL] = @EMAIL,
                         [TELEFONE] = @TELEFONE,
@@ -61,7 +63,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloCliente
                 [NOME],
                 [CNPJ],
                 [CPF],
-                [CNH],
+                
                 [ENDERECO],
                 [EMAIL],
                 [TELEFONE],
@@ -75,7 +77,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloCliente
                 [NOME],
                 [CNPJ],
                 [CPF],
-                [CNH],
+                
                 [ENDERECO],
                 [EMAIL],
                 [TELEFONE],
@@ -91,7 +93,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloCliente
                    [NOME] NOME,
                    [CNPJ] CNPJ,
                    [CPF] CPF,
-                   [CNH] CNH,
+                 
                    [ENDERECO] ENDERECO,
                    [EMAIL] EMAIL,
                    [TELEFONE] TELEFONE,
@@ -107,7 +109,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloCliente
                    [NOME] NOME,
                    [CNPJ] CNPJ,
                    [CPF] CPF,
-                   [CNH] CNH,
+                   
                    [ENDERECO] ENDERECO,
                    [EMAIL] EMAIL,
                    [TELEFONE] TELEFONE,
@@ -123,7 +125,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloCliente
                    [NOME] NOME,
                    [CNPJ] CNPJ,
                    [CPF] CPF,
-                   [CNH] CNH,
+                 
                    [ENDERECO] ENDERECO,
                    [EMAIL] EMAIL,
                    [TELEFONE] TELEFONE,
@@ -133,23 +135,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloCliente
             WHERE 
                 [CPF] = @CPF";
 
-        protected string sqlSelecionarPorCNH =>
-                @"SELECT 
-                   [ID] ID,       
-                   [NOME] NOME,
-                   [CNPJ] CNPJ,
-                   [CPF] CPF,
-                   [CNH] CNH,
-                   [ENDERECO] ENDERECO,
-                   [EMAIL] EMAIL,
-                   [TELEFONE] TELEFONE,
-                   [TIPOCLIENTE] TIPOCLIENTE
-            FROM
-                [CLIENTE]
-            WHERE 
-                [CNH] = @CNH";
-
-
+      
 
         public Cliente SelecionarClientePorNome(string nome)
         {
@@ -166,9 +152,6 @@ namespace LocadoraDeVeiculos.Infra.ModuloCliente
             return SelecionarPorParametro(sqlSelecionarPorCPF, new SqlParameter("CPF", cpf));
         }
 
-        public Cliente SelecionarClientePorCNH(string cnh)
-        {
-            return SelecionarPorParametro(sqlSelecionarPorCNH, new SqlParameter("CNH", cnh));
-        }
+       
     }
 }

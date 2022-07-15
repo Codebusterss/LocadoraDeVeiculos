@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FluentResults;
 using FluentValidation.Results;
 using LocadoraDeVeiculos.Dominio.ModuloCliente;
 using LocadoraDeVeiculos.WinApp.Compartilhado;
@@ -22,8 +23,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
         {
             InitializeComponent();
         }
-        public Func<Cliente, ValidationResult> GravarRegistro { get; set; }
-
+        public Func<Cliente, Result<Cliente>> GravarRegistro { get; set; }
         public Cliente Cliente
         {
             get
@@ -38,10 +38,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
                 txtBoxEndereco.Text = cliente.Endereco;
                 txtBoxNome.Text = cliente.Nome;
                 txtBoxTelefone.Text = cliente.Telefone;
-                if(cliente.CNH != "")
-                {
-                    txtBoxCNH.Text = cliente.CNH;
-                }
+                
                 ChecarCPFCNPJ();
             }
         }
@@ -60,25 +57,33 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
                 {
                     cliente.PessoaFisica = true;
                     cliente.CPF = txtBoxCPFCNPJ.Text;
-                    cliente.CNH = txtBoxCNH.Text;
                     cliente.CNPJ = "";
                 }
                 else
                 {
                     cliente.PessoaFisica = false;
                     cliente.CPF = "";
-                    cliente.CNH = "";
                     cliente.CNPJ = txtBoxCPFCNPJ.Text;
                 }
 
                 var resultadoValidacao = GravarRegistro(cliente);
-                if (resultadoValidacao.IsValid == false)
+
+
+                if (resultadoValidacao.IsFailed)
                 {
-                    string erro = resultadoValidacao.Errors[0].ErrorMessage;
+                    string erro = resultadoValidacao.Errors[0].Message;
 
-                    TelaMenuPrincipal.Instancia.AtualizarRodape(erro);
+                    if (erro.StartsWith("Falha no sistema"))
+                    {
+                        MessageBox.Show(erro,
+                          "Cadastro de Condutor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        TelaMenuPrincipal.Instancia.AtualizarRodape(erro);
 
-                    DialogResult = DialogResult.None;
+                        DialogResult = DialogResult.None;
+                    }
                 }
             }
             else
@@ -99,16 +104,13 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
 
         private void rdBtnCPF_CheckedChanged(object sender, EventArgs e)
         {
-            txtBoxCNH.Enabled = true;
-            txtBoxCNH.Mask = "000,000,000-000";
+           
             txtBoxCPFCNPJ.Mask = "000,000,000-00";
         }
 
         private void rdBtnCNPJ_CheckedChanged(object sender, EventArgs e)
         {
-            txtBoxCNH.Enabled = false;
-            txtBoxCNH.Mask = "";
-            txtBoxCNH.Text = "";
+         
             txtBoxCPFCNPJ.Mask = "00,000,000/0000-00";
         }
 

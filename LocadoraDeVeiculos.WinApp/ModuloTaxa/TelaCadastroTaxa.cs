@@ -1,4 +1,5 @@
-﻿using FluentValidation.Results;
+﻿using FluentResults;
+using FluentValidation.Results;
 using LocadoraDeVeiculos.Dominio.ModuloTaxa;
 using LocadoraDeVeiculos.WinApp.Compartilhado;
 using System;
@@ -23,7 +24,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxa
         {
             InitializeComponent();
         }
-        public Func<Taxa, ValidationResult> GravarRegistro { get; set; }
+        public Func<Taxa, Result<Taxa>> GravarRegistro { get; set; }
 
         private void btnCadastrarTaxa_Click(object sender, EventArgs e)
         {
@@ -34,13 +35,21 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxa
                 taxa.Descricao = txtTaxaDescricao.Text;
 
                 var resultadoValidacao = GravarRegistro(Taxa);
-                if (resultadoValidacao.IsValid == false)
+                if (resultadoValidacao.IsFailed)
                 {
-                    string erro = resultadoValidacao.Errors[0].ErrorMessage;
+                    string erro = resultadoValidacao.Errors[0].Message;
 
-                    TelaMenuPrincipal.Instancia.AtualizarRodape(erro); 
+                    if (erro.StartsWith("Falha no sistema"))
+                    {
+                        MessageBox.Show(erro,
+                          "Cadastro de Taxa", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        TelaMenuPrincipal.Instancia.AtualizarRodape(erro);
 
-                    DialogResult = DialogResult.None;
+                        DialogResult = DialogResult.None;
+                    }
                 }
             }
         }

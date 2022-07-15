@@ -12,10 +12,18 @@ using LocadoraDeVeiculos.WinApp.ModuloFuncionario;
 using LocadoraDeVeiculos.Infra.ModuloFuncionario;
 using LocadoraDeVeiculos.WinApp.ModuloTaxa;
 using LocadoraDeVeiculos.Infra.ModuloTaxa;
+using LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca;
+using LocadoraDeVeiculos.Infra.ModuloPlanoDeCobranca;
 using LocadoraDeVeiculos.Aplicacao.ModuloCliente;
 using LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculo;
 using LocadoraDeVeiculos.Aplicacao.ModuloFuncionario;
 using LocadoraDeVeiculos.Aplicacao.ModuloTaxa;
+using LocadoraDeVeiculos.Aplicacao.ModuloPlanoDeCobranca;
+using LocadoraDeVeiculos.WinApp.ModuloCondutor;
+using LocadoraDeVeiculos.Dominio.ModuloCondutor;
+using LocadoraDeVeiculos.Aplicacao.ModuloCondutor;
+using LocadoraDeVeiculos.Infra.ModuloCondutor;
+using LocadoraDeVeiculos.Dominio.ModuloCliente;
 
 namespace LocadoraDeVeiculos.WinApp
 {
@@ -52,20 +60,26 @@ namespace LocadoraDeVeiculos.WinApp
             var repositorioCliente = new RepositorioClienteEmBancoDeDados();
             var repositorioFuncionario = new RepositorioFuncionarioEmBancoDeDados();
             var repositorioTaxa = new RepositorioTaxaEmBancoDeDados();
+            var repositorioPlano = new RepositorioPlanoDeCobrancaEmBancoDeDados();
+            var repositorioCondutor = new RepositorioCondutorEmBancoDeDados();
 
             var servicoCliente = new ServicoCliente(repositorioCliente);
             var servicoGrupoDeVeiculos = new ServicoGrupoDeVeiculo(repositorioGrupoDeVeiculos);
             var servicoFuncionario = new ServicoFuncionario(repositorioFuncionario);
             var servicoTaxa = new ServicoTaxa(repositorioTaxa);
+            var servicoPlano = new ServicoPlanoDeCobranca(repositorioPlano);
+            var servicoCondutor = new ServicoCondutor(repositorioCondutor);
 
             controladores = new Dictionary<string, ControladorBase>();
 
-            controladores.Add("Grupos de Veículos", new ControladorGrupoDeVeiculo(repositorioGrupoDeVeiculos, servicoGrupoDeVeiculos));
-            controladores.Add("Clientes", new ControladorCliente(repositorioCliente, servicoCliente));
-            controladores.Add("Funcionários", new ControladorFuncionario(repositorioFuncionario, servicoFuncionario));
-            controladores.Add("Taxas", new ControladorTaxa(repositorioTaxa, servicoTaxa));
+            controladores.Add("Grupos de Veículos", new ControladorGrupoDeVeiculo(servicoGrupoDeVeiculos));
+            controladores.Add("Clientes", new ControladorCliente(servicoCliente));
+            controladores.Add("Funcionários", new ControladorFuncionario(servicoFuncionario));
+            controladores.Add("Taxas", new ControladorTaxa(servicoTaxa));
+            controladores.Add("Planos de Cobrança", new ControladorPlanoDeCobranca(servicoPlano, repositorioGrupoDeVeiculos));
+            controladores.Add("Condutores", new ControladorCondutor(servicoCondutor, repositorioCliente));
         }
-        
+
 
         #region botoes.
 
@@ -141,6 +155,31 @@ namespace LocadoraDeVeiculos.WinApp
             ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
         }
 
+        private void condutoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var repositorioCliente = new RepositorioClienteEmBancoDeDados();
+
+
+            List<Cliente> clientes = repositorioCliente.SelecionarTodos();
+            if(clientes.Count == 0)
+            {
+                MessageBox.Show("Cadastre um cliente antes de cadastrar um condutor!.",
+                   "Sem clientes cadastrados.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+            }
+
+                       
+        }
+
+
+        private void planosDeCobrançaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+        }
+
         private void ConfigurarTelaPrincipal(ToolStripMenuItem opcaoSelecionada)
         {
             var tipo = opcaoSelecionada.Text;
@@ -209,5 +248,7 @@ namespace LocadoraDeVeiculos.WinApp
         }
 
         #endregion
+
+        
     }
 }

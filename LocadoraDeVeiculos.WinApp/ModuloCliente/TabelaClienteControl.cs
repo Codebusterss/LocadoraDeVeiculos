@@ -53,9 +53,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
             }
         }
 
-        public int ObtemClienteSelecionado()
+        public Guid ObtemClienteSelecionado()
         {
-            return grid.SelecionarPorID<int>();
+            return grid.SelecionarPorID<Guid>();
         }
 
     }

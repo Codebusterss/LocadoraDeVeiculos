@@ -6,20 +6,19 @@ using System.Threading.Tasks;
 using LocadoraDeVeiculos.Dominio.ModuloCliente;
 using LocadoraDeVeiculos.Infra.ModuloCliente;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using LocadoraDeVeiculos.Infra.Testes.Compartilhado;
 using LocadoraDeVeiculos.Infra.Compartilhado;
 using FluentAssertions;
 
 namespace LocadoraDeVeiculos.Infra.Testes.ModuloCliente
 {
     [TestClass]
-    public class RepositorioClienteEmBancoDeDadosTest
+    public class RepositorioClienteEmBancoDeDadosTest : BaseIntegrationTest
     {
         private RepositorioClienteEmBancoDeDados repositorio;
 
-        public RepositorioClienteEmBancoDeDadosTest()
+        public RepositorioClienteEmBancoDeDadosTest():base()
         {
-            Db.ExecutarSql("DELETE FROM CLIENTE; DBCC CHECKIDENT (CLIENTE, RESEED, 0)");
-
             repositorio = new RepositorioClienteEmBancoDeDados();
         }
 
@@ -27,7 +26,6 @@ namespace LocadoraDeVeiculos.Infra.Testes.ModuloCliente
         {
             Cliente cliente = new Cliente();
             cliente.Nome = "Luan";
-            cliente.CNH = "123.123.123-123";
             cliente.CPF = "123.123.123-12";
             cliente.CNPJ = "";
             cliente.Email = "luan@gmail.com";
@@ -118,7 +116,7 @@ namespace LocadoraDeVeiculos.Infra.Testes.ModuloCliente
             cliente3.CPF = "123.456.789-12";
 
             var repositorio = new RepositorioClienteEmBancoDeDados();
-            repositorio.Inserir(cliente1);
+            repositorio.Inserir(cliente1); 
             repositorio.Inserir(cliente2);
             repositorio.Inserir(cliente3);
 

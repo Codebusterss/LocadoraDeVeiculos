@@ -17,7 +17,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloCliente
             comando.Parameters.AddWithValue("NOME", cliente.Nome);
             comando.Parameters.AddWithValue("CNPJ", cliente.CNPJ);
             comando.Parameters.AddWithValue("CPF", cliente.CPF);
-            comando.Parameters.AddWithValue("CNH", cliente.CNH);
+           
             comando.Parameters.AddWithValue("ENDERECO", cliente.Endereco);
             comando.Parameters.AddWithValue("EMAIL", cliente.Email);
             comando.Parameters.AddWithValue("TELEFONE", cliente.Telefone);
@@ -35,11 +35,11 @@ namespace LocadoraDeVeiculos.Infra.ModuloCliente
 
         public override Cliente ConverterRegistro(SqlDataReader leitorCliente)
         {
-            var id = Convert.ToInt32(leitorCliente["ID"]);
+            var id = Guid.Parse(leitorCliente["ID"].ToString());
             var nome = Convert.ToString(leitorCliente["NOME"]);
             var cnpj = Convert.ToString(leitorCliente["CNPJ"]);
             var cpf = Convert.ToString(leitorCliente["CPF"]);
-            var cnh = Convert.ToString(leitorCliente["CNH"]);
+           
             var endereco = Convert.ToString(leitorCliente["ENDERECO"]);
             var email = Convert.ToString(leitorCliente["EMAIL"]);
             var telefone = Convert.ToString(leitorCliente["TELEFONE"]);
@@ -50,7 +50,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloCliente
             cliente.Nome = nome;
             cliente.CNPJ = cnpj;
             cliente.CPF = cpf;
-            cliente.CNH = cnh;
+            
             cliente.Endereco = endereco;
             cliente.Email = email;
             cliente.Telefone = telefone;

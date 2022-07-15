@@ -1,6 +1,8 @@
 ﻿using FluentValidation;
 using LocadoraDeVeiculos.Dominio.Compartilhado;
 using System;
+using Microsoft.Extensions.Configuration;
+using System.IO;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
@@ -10,10 +12,17 @@ namespace LocadoraDeVeiculos.Infra.Compartilhado
        where T : EntidadeBase<T>
        where TMapeador : MapeadorBase<T>, new()
     {
-        protected string enderecoBanco =
-            @"Data Source=(LOCALDB)\MSSQLLOCALDB;
-              Initial Catalog=LocadoraDeVeiculosDB;
-              Integrated Security=True";
+        private readonly string enderecoBanco;
+
+        public RepositorioBase()
+        {
+            var configuracao = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("ConfiguracaoAplicacao.json")
+                .Build();
+
+            enderecoBanco = configuracao.GetConnectionString("SqlServer");
+        }    
 
         protected abstract string sqlInserir { get; }
 
@@ -36,9 +45,7 @@ namespace LocadoraDeVeiculos.Infra.Compartilhado
             mapeador.ConfigurarParametros(registro, comandoInsercao);
 
             conexaoComBanco.Open();
-            var id = comandoInsercao.ExecuteScalar();
-            registro.ID = Convert.ToInt32(id);
-
+            var id = comandoInsercao.ExecuteNonQuery();
             conexaoComBanco.Close(); ;
         }
 
@@ -65,12 +72,22 @@ namespace LocadoraDeVeiculos.Infra.Compartilhado
 
             comandoExclusao.Parameters.AddWithValue("ID", registro.ID);
 
-            conexaoComBanco.Open();
-            comandoExclusao.ExecuteNonQuery();
-            conexaoComBanco.Close();
+            try
+            {
+                conexaoComBanco.Open();
+                comandoExclusao.ExecuteNonQuery();
+                conexaoComBanco.Close();
+            }
+            catch (Exception ex)
+            {
+                if(ex != null && ex.Message.Contains("The DELETE statement conflicted with the REFERENCE constraint"))
+                {
+                    throw new NaoPodeExcluirRegistroException(ex);
+                }
+            }          
         }
 
-        public virtual T SelecionarPorId(int id)
+        public virtual T SelecionarPorId(Guid id)
         {
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
 
@@ -132,7 +149,5 @@ namespace LocadoraDeVeiculos.Infra.Compartilhado
 
             return registro;
         }
-
-
     }
 }

@@ -18,9 +18,8 @@ namespace LocadoraDeVeiculos.Dominio.ModuloTaxa
         {
 
         }
-        public Taxa(int id, double valor, string tipo, string descricao) : this()
+        public Taxa(double valor, string tipo, string descricao) : this()
         {
-            ID = id;
             Valor = valor;
             Tipo = tipo;
             Descricao = descricao;
@@ -36,6 +35,12 @@ namespace LocadoraDeVeiculos.Dominio.ModuloTaxa
             return Tipo;
             
         }
+
+        public Taxa Clone()
+        {
+            return MemberwiseClone() as Taxa;
+        }
+
         public override bool Equals(object obj)
         {
             return obj is Taxa taxa &&
