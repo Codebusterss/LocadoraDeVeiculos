@@ -31,34 +31,35 @@ namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Grupo de Veículos", HeaderText = "Grupo de Veículos"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Plano Diário", HeaderText = "Plano Diário"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Marca", HeaderText = "Marca"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Plano Controlado", HeaderText = "Plano Controlado"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Modelo", HeaderText = "Modelo"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Plano Livre", HeaderText = "Plano Livre"}
+                new DataGridViewTextBoxColumn { DataPropertyName = "Placa", HeaderText = "Placa"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "Km Percorridos", HeaderText = "Km Percorridos"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "Tipo de Combustível", HeaderText = "Tipo de Combustível"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "Capacidade do Tanque", HeaderText = "Capacidade do Tanque"},
             };
 
             return colunas;
         }
 
 
-        public void AtualizarRegistros(List<Veiculo> planos)
+        public void AtualizarRegistros(List<Veiculo> veiculos)
         {
             grid.Rows.Clear();
-            foreach (Veiculo veiculo in veiculo)
+            foreach (Veiculo veiculo in veiculos)
             {
-                grid.Rows.Add(veiculo.ID, veiculo.veiculo.Nome, veiculo.DiarioValorDia, veiculo.ControladoValorDia, veiculo.LivreValorDia);
+                grid.Rows.Add(veiculo.ID, veiculo.GrupoDeVeiculo.Nome, veiculo.Marca, veiculo.Modelo, veiculo.Placa, veiculo.KmPercorrido, veiculo.TipoCombustivel, veiculo.CapacidadeDoTanque);
             }
         }
 
-        public Guid ObtemPlanoSelecionado()
+        public Guid ObtemVeiculoSelecionado()
         {
             return grid.SelecionarPorID<Guid>();
-        }
-
-        private void grid_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

@@ -17,39 +17,46 @@ namespace LocadoraDeVeiculos.Infra.ModuloVeiculo
         protected override string sqlInserir =>
             @"INSERT INTO [VEICULO]
                 (
-                    [MODELO],       
+                    [ID],
+                    [MODELO],
                     [MARCA],
-                    [PLACA], 
-                    [COR],
-                    [CAPACIDADEDOTANQUE],
-                    [KMPERCORRIDO],
                     [ANO],
-                    [TIPOCOMBUSTIVEL],
+                    [COR],
+                    [PLACA],
+                    [KMPERCORRIDO],
+                    [TIPODECOMBUSTIVEL],
+                    [CAPACIDADEDOTANQUE],
+                    [GRUPO_ID]
                 )
-            VALUES
+                VALUES
                 (
+                    @ID,
                     @MODELO,
                     @MARCA,
-                    @PLACA,
-                    @COR,
-                    @CAPACIDADEDOTANQUE,
-                    @KMPERCORRIDO,
                     @ANO,
-                    @TIPOCOMBUSITVEL,
-                ); SELECT SCOPE_IDENTITY();";
+                    @COR,
+                    @PLACA,
+                    @KMPERCORRIDO,
+                    @TIPODECOMBUSTIVEL,
+                    @CAPACIDADEDOTANQUE,
+                    @GRUPO_ID
+                )";
 
         protected override string sqlEditar =>
            @" UPDATE [VEICULO]
                     SET 
-                        [MODELO] = @MODELO, 
-                        [MARCA] = @MARCA, 
-                        [PLACA] = @PLACA,
-                        [COR] = @COR,
-                        [CAPACIDADETANQUE] = @CAPACIDADETANQUE,
-                        [KMPERCORRIDO] = @KMPERCORRIDO,
-                        [ANO] = @ANO,
-                        [TIPOCOMBUSTIVEL] = @TIPOCOMBUSTIVEL
-                    WHERE [ID] = @ID";
+                    [MODELO] = @MODELO,
+                    [MARCA] = @MARCA,
+                    [ANO] = @ANO,
+                    [COR] = @COR,
+                    [PLACA] = @PLACA,
+                    [KMPERCORRIDO] = @KMPERCORRIDO,
+                    [TIPODECOMBUSTIVEL] = @TIPODECOMBUSTIVEL,
+                    [CAPACIDADEDOTANQUE] = @CAPACIDADEDOTANQUE,
+                    [GRUPO_ID] = @GRUPO_ID
+
+                WHERE 
+                    [ID] = @ID";
 
         protected override string sqlExcluir =>
             @"DELETE FROM [VEICULO] 
@@ -57,55 +64,56 @@ namespace LocadoraDeVeiculos.Infra.ModuloVeiculo
 
         protected override string sqlSelecionarTodos =>
             @"SELECT 
-                [MODELO],       
-                [MARCA],
-                [PLACA], 
-                [COR],
-                [CAPACIDADEDOTANQUE],
-                [KMPERCORRIDO],
-                [ANO],
-                [TIPOCOMBUSTIVEL],
+                [ID],
+                    [MODELO],
+                    [MARCA],
+                    [ANO],
+                    [COR],
+                    [PLACA],
+                    [KMPERCORRIDO],
+                    [TIPODECOMBUSTIVEL],
+                    [CAPACIDADEDOTANQUE],
+                    [GRUPO_ID]
             FROM
                 [VEICULO]";
 
         protected override string sqlSelecionarPorId =>
             @"SELECT 
-              [MODELO],       
+              [ID],
+              [MODELO],
               [MARCA],
-              [PLACA], 
-              [COR],
-              [CAPACIDADEDOTANQUE],
-              [KMPERCORRIDO],
               [ANO],
-              [TIPOCOMBUSTIVEL]
+              [COR],
+              [PLACA],
+              [KMPERCORRIDO],
+              [TIPODECOMBUSTIVEL],
+              [CAPACIDADEDOTANQUE],
+              [GRUPO_ID]
             FROM
                 [VEICULO]
             WHERE 
                 [ID] = @ID";
 
-        protected string sqlSelecionarPorDescricao =>
-                @"SELECT 
-                [MODELO] MODELO,       
-                [MARCA] MARCA,
-                [PLACA] PLACA,
-                [COR] COR,
-                [CAPACIDADEDOTANQUE] CAPACIDADEDOTANQUE,
-                [KMPERCORRIDO] KMPERCORRIDO,
-                [ANO] ANO,
-                [TIPOCOMBUSTIVEL] TIPOCOMBUSTIVEL
+        protected string sqlSelecionarPorPlaca =>
+            @"SELECT 
+              [ID],
+              [MODELO],
+              [MARCA],
+              [ANO],
+              [COR],
+              [PLACA],
+              [KMPERCORRIDO],
+              [TIPODECOMBUSTIVEL],
+              [CAPACIDADEDOTANQUE],
+              [GRUPO_ID]
             FROM
                 [VEICULO]
             WHERE 
-                [MODELOO] = @MODELO";
+                [PLACA] = @PLACA";
 
-        public Veiculo SelecionarFuncionarioPorLogin(string login)
+        public Veiculo SelecionarVeiculoPorPlaca(string placa)
         {
-            throw new NotImplementedException();
-        }
-
-        public Veiculo SelecionarFuncionarioPorNome(string nome)
-        {
-            throw new NotImplementedException();
+            return SelecionarPorParametro(sqlSelecionarPorPlaca, new SqlParameter("PLACA", placa));
         }
     }
 }

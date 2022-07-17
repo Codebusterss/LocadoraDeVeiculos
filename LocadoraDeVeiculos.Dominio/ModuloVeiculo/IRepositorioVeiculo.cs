@@ -10,8 +10,6 @@ namespace LocadoraDeVeiculos.Dominio.ModuloVeiculo
 {
     public interface IRepositorioVeiculo : IRepositorioBase<Veiculo>
     {
-        Veiculo SelecionarFuncionarioPorNome(string nome);
-
-        Veiculo SelecionarFuncionarioPorLogin(string login);
+        Veiculo SelecionarVeiculoPorPlaca(string placa);
     }
 }

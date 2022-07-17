@@ -38,18 +38,18 @@
             this.grid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grid.Location = new System.Drawing.Point(0, 0);
             this.grid.Name = "grid";
+            this.grid.RowHeadersWidth = 62;
             this.grid.RowTemplate.Height = 25;
-            this.grid.Size = new System.Drawing.Size(150, 150);
+            this.grid.Size = new System.Drawing.Size(664, 319);
             this.grid.TabIndex = 0;
-            this.grid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_CellContentClick);
             // 
-            // TabelaVeiculoControl
+            // TabelaTaxaControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.grid);
-            this.Name = "TabelaVeiculoControl";
-            this.Load += new System.EventHandler(this.TabelaVeiculoControl_Load);
+            this.Name = "TabelaTaxaControl";
+            this.Size = new System.Drawing.Size(664, 319);
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             this.ResumeLayout(false);
 
@@ -57,6 +57,7 @@
 
         #endregion
 
-        private DataGridView grid;
+        private System.Windows.Forms.DataGridView grid;
     }
 }
+

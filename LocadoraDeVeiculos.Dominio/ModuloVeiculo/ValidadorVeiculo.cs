@@ -16,18 +16,18 @@ namespace LocadoraDeVeiculos.Dominio.ModuloVeiculo
                 .MinimumLength(3)
                 .MaximumLength(60)
                 .Matches(new Regex(@"^([^0-9]*)$"))
-                .NotEmpty()
-                .NotNull();
-            RuleFor(x => x.Modelo)
-                .NotEmpty()
-                .NotNull();
+                .NotEmpty(); 
             RuleFor(x => x.Marca)
-                .NotEmpty()
-                .NotNull();
+                .MinimumLength(3)
+                .MaximumLength(60)
+                .Matches(new Regex(@"^([^0-9]*)$"))
+                .NotEmpty();
             RuleFor(x => x.Placa)
                 .NotEmpty()
                 .NotNull();
             RuleFor(x => x.Cor)
+                .MinimumLength(3)
+                .MaximumLength(60)
                 .NotEmpty()
                 .NotNull();
             RuleFor(x => x.CapacidadeDoTanque)
@@ -42,8 +42,9 @@ namespace LocadoraDeVeiculos.Dominio.ModuloVeiculo
             RuleFor(x => x.TipoCombustivel)
                 .NotEmpty()
                 .NotNull();
-           
-
+            RuleFor(x => x.GrupoDeVeiculo)
+                .NotEmpty()
+                .NotNull();
         }
     }
 }
