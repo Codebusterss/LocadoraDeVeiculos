@@ -57,9 +57,5 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca
             return grid.SelecionarPorID<Guid>();
         }
 
-        private void grid_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
     }
 }

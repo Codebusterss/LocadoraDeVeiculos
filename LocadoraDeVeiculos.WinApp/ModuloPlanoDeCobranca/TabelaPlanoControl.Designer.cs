@@ -41,7 +41,6 @@
             this.grid.RowTemplate.Height = 25;
             this.grid.Size = new System.Drawing.Size(401, 290);
             this.grid.TabIndex = 0;
-            this.grid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_CellContentClick);
             // 
             // TabelaPlanoControl
             // 
