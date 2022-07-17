@@ -10,17 +10,16 @@ using System.Windows.Forms;
 using LocadoraDeVeiculos.WinApp.Compartilhado;
 using LocadoraDeVeiculos.Dominio.ModuloVeiculo;
 
+namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
+{
     public partial class TabelaVeiculoControl : UserControl
     {
-    private object grid;
-
-    public TabelaVeiculoControl()
+        public TabelaVeiculoControl()
         {
             InitializeComponent();
             grid.ConfigurarGrid();
             grid.ConfigurarGridSomenteLeitura();
             grid.Columns.AddRange(ObterColunas());
-
         }
 
         private DataGridViewColumn[] ObterColunas()
@@ -30,61 +29,34 @@ using LocadoraDeVeiculos.Dominio.ModuloVeiculo;
             {
                 new DataGridViewTextBoxColumn { DataPropertyName = "ID", HeaderText = "ID"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Modelo", HeaderText = "Modelo"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Grupo de Veículos", HeaderText = "Grupo de Veículos"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Marca", HeaderText = "Marca"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Plano Diário", HeaderText = "Plano Diário"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Placa", HeaderText = "Placa"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Plano Controlado", HeaderText = "Plano Controlado"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Cor", HeaderText = "Cor"},
-
-                new DataGridViewTextBoxColumn { DataPropertyName = "Capacidade Do Tanque", HeaderText = "Capacidade Do Tanque"},
-
-                new DataGridViewTextBoxColumn { DataPropertyName = "Km Percorrido", HeaderText = "Km Percorrido"},
-
-                new DataGridViewTextBoxColumn { DataPropertyName = "Ano", HeaderText = "Ano"},
-
-                new DataGridViewTextBoxColumn { DataPropertyName = "Tipo Combustivel", HeaderText = "Tipo Combustivel"},
-
-                
+                new DataGridViewTextBoxColumn { DataPropertyName = "Plano Livre", HeaderText = "Plano Livre"}
             };
 
             return colunas;
         }
 
 
-        public void AtualizarRegistros(List<Veiculo> veiculo)
+        public void AtualizarRegistros(List<Veiculo> planos)
         {
             grid.Rows.Clear();
             foreach (Veiculo veiculo in veiculo)
             {
-            object value = grid.Rows.Add(veiculo.ID, veiculo.Modelo, veiculo.Marca, veiculo.Placa, veiculo.Cor, veiculo.CapacidadeDoTanque, veiculo.KmPercorrido, veiculo.Ano, veiculo.TipoCombustivel);
+                grid.Rows.Add(veiculo.ID, veiculo.veiculo.Nome, veiculo.DiarioValorDia, veiculo.ControladoValorDia, veiculo.LivreValorDia);
             }
         }
 
-        public int ObtemGrupoDeVeiculoSelecionado()
+        public Guid ObtemPlanoSelecionado()
         {
-            return grid.SelecionarPorID<int>();
+            return grid.SelecionarPorID<Guid>();
         }
 
         private void grid_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void InitializeComponent()
-        {
-            this.SuspendLayout();
-            // 
-            // TabelaVeiculoControl
-            // 
-            this.Name = "TabelaVeiculoControl";
-            this.Load += new System.EventHandler(this.TabelaVeiculoControl_Load);
-            this.ResumeLayout(false);
-
-        }
-
-        private void TabelaVeiculoControl_Load(object sender, EventArgs e)
         {
 
         }

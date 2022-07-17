@@ -1,6 +1,6 @@
-﻿namespace LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca
+﻿namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
 {
-    partial class TabelaPlanoControl
+    partial class TabelaVeiculoControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -39,17 +39,17 @@
             this.grid.Location = new System.Drawing.Point(0, 0);
             this.grid.Name = "grid";
             this.grid.RowTemplate.Height = 25;
-            this.grid.Size = new System.Drawing.Size(401, 290);
+            this.grid.Size = new System.Drawing.Size(150, 150);
             this.grid.TabIndex = 0;
             this.grid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_CellContentClick);
             // 
-            // TabelaPlanoControl
+            // TabelaVeiculoControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.grid);
-            this.Name = "TabelaPlanoControl";
-            this.Size = new System.Drawing.Size(401, 290);
+            this.Name = "TabelaVeiculoControl";
+            this.Load += new System.EventHandler(this.TabelaVeiculoControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             this.ResumeLayout(false);
 
@@ -57,6 +57,6 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView grid;
+        private DataGridView grid;
     }
 }
