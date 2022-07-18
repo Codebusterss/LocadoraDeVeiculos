@@ -40,15 +40,15 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCondutor
             {
                 repositorioCondutor.Inserir(condutor);
 
-                Log.Logger.Information("condutor {condutorID} inserido com sucesso", condutor.ID);
+                Log.Logger.Information("Condutor {CondutorID} inserido com sucesso.", condutor.ID);
 
                 return Result.Ok(condutor);
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar inserir o condutor";
+                string msgErro = "Falha no sistema ao tentar inserir o condutor.";
 
-                Log.Logger.Error(ex, msgErro + "{condutorID}", condutor.ID);
+                Log.Logger.Error(ex, msgErro + "{CondutorID}", condutor.ID);
 
                 return Result.Fail(msgErro);
             }
@@ -74,13 +74,13 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCondutor
             {
                 repositorioCondutor.Editar(condutor);
 
-                Log.Logger.Information("Condutor {CondutorID} editado com sucesso", condutor.ID);
+                Log.Logger.Information("Condutor {CondutorID} editado com sucesso.", condutor.ID);
 
                 return Result.Ok(condutor);
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar editar o condutor";
+                string msgErro = "Falha no sistema ao tentar editar o condutor.";
 
                 Log.Logger.Error(ex, msgErro + "{CondutorID}", condutor.ID);
 
@@ -96,13 +96,13 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCondutor
             {
                 repositorioCondutor.Excluir(condutor);
 
-                Log.Logger.Information("Condutor {CondutorID} excluído com sucesso", condutor.ID);
+                Log.Logger.Information("Condutor {CondutorID} excluído com sucesso.", condutor.ID);
 
                 return Result.Ok();
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar excluir o condutor";
+                string msgErro = "Falha no sistema ao tentar excluir o condutor.";
 
                 Log.Logger.Error(ex, msgErro + "{CondutorID}", condutor.ID);
 
@@ -145,7 +145,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCondutor
         {
             var validador = new ValidadorCondutor();
 
-            Log.Logger.Debug("Validando Condutor... {@c}", condutor);
+            Log.Logger.Debug("Validando condutor... {@c}", condutor);
 
             var resultadoValidacao = validador.Validate(condutor);
 
@@ -156,13 +156,13 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCondutor
             }
 
             if (NomeDuplicado(condutor))
-                erros.Add(new Error("Nome duplicado"));
+                erros.Add(new Error("Nome duplicado."));
 
             if (CPFDuplicado(condutor))
-                erros.Add(new Error("CPF duplicado"));
+                erros.Add(new Error("CPF duplicado."));
 
             if (CNHDuplicado(condutor))
-                erros.Add(new Error("CNH duplicado"));
+                erros.Add(new Error("CNH duplicado."));
 
             if (erros.Any())
             {

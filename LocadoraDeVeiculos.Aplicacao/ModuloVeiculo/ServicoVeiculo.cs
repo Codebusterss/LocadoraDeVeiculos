@@ -21,7 +21,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloVeiculo
 
         public Result<Veiculo> Inserir(Veiculo veiculo)
         {
-            Log.Logger.Debug("Tentando inserir Veículo... {@v}", veiculo);
+            Log.Logger.Debug("Tentando inserir veículo... {@v}", veiculo);
 
             Result resultadoValidacao = Validar(veiculo);
 
@@ -29,7 +29,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloVeiculo
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar inserir o Veículo {VeiculoID} - {Motivo}",
+                    Log.Logger.Warning("Falha ao tentar inserir o veículo {VeiculoID} - {Motivo}",
                        veiculo.ID, erro.Message);
                 }
 
@@ -40,13 +40,13 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloVeiculo
             {
                 repositorioVeiculo.Inserir(veiculo);
 
-                Log.Logger.Information("Veículo {VeiculoID} inserido com sucesso", veiculo.ID);
+                Log.Logger.Information("Veículo {VeiculoID} inserido com sucesso.", veiculo.ID);
 
                 return Result.Ok(veiculo);
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar inserir o Veículo";
+                string msgErro = "Falha no sistema ao tentar inserir o veículo.";
 
                 Log.Logger.Error(ex, msgErro + "{VeiculoID}", veiculo.ID);
 
@@ -55,7 +55,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloVeiculo
         }
         public Result<Veiculo> Editar(Veiculo veiculo)
         {
-            Log.Logger.Debug("Tentando editar Veículo... {@v}", veiculo);
+            Log.Logger.Debug("Tentando editar veículo... {@v}", veiculo);
 
             Result resultadoValidacao = Validar(veiculo);
 
@@ -63,7 +63,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloVeiculo
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar editar o Veículo {VeiculoID} - {Motivo}",
+                    Log.Logger.Warning("Falha ao tentar editar o veículo {VeiculoID} - {Motivo}",
                        veiculo.ID, erro.Message);
                 }
 
@@ -74,13 +74,13 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloVeiculo
             {
                 repositorioVeiculo.Editar(veiculo);
 
-                Log.Logger.Information("Veículo {VeiculoID} editado com sucesso", veiculo.ID);
+                Log.Logger.Information("Veículo {VeiculoID} editado com sucesso.", veiculo.ID);
 
                 return Result.Ok(veiculo);
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar editar o Veículo";
+                string msgErro = "Falha no sistema ao tentar editar o veículo.";
 
                 Log.Logger.Error(ex, msgErro + "{VeiculoID}", veiculo.ID);
 
@@ -90,19 +90,19 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloVeiculo
 
         public Result Excluir(Veiculo veiculo)
         {
-            Log.Logger.Debug("Tentando excluir Veículo... {@v}", veiculo);
+            Log.Logger.Debug("Tentando excluir veículo... {@v}", veiculo);
 
             try
             {
                 repositorioVeiculo.Excluir(veiculo);
 
-                Log.Logger.Information("Veículo {VeiculoID} excluído com sucesso", veiculo.ID);
+                Log.Logger.Information("Veículo {VeiculoID} excluído com sucesso.", veiculo.ID);
 
                 return Result.Ok();
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar excluir o Veículo";
+                string msgErro = "Falha no sistema ao tentar excluir o veículo.";
 
                 Log.Logger.Error(ex, msgErro + "{VeiculoID}", veiculo.ID);
 
@@ -118,7 +118,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloVeiculo
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar selecionar todos os Veículos.";
+                string msgErro = "Falha no sistema ao tentar selecionar todos os veículos.";
                 Log.Logger.Error(ex, msgErro);
 
                 return Result.Fail(msgErro);
@@ -133,7 +133,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloVeiculo
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar selecionar o Veículos.";
+                string msgErro = "Falha no sistema ao tentar selecionar o veículo.";
                 Log.Logger.Error(ex, msgErro + "{VeiculoID}", id);
 
                 return Result.Fail(msgErro);
@@ -145,7 +145,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloVeiculo
         {
             var validador = new ValidadorVeiculo();
 
-            Log.Logger.Debug("Validando Veículos... {@v}", veiculo);
+            Log.Logger.Debug("Validando veículo... {@v}", veiculo);
 
             var resultadoValidacao = validador.Validate(veiculo);
 
@@ -156,7 +156,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloVeiculo
             }
 
             if (PlacaDuplicada(veiculo))
-                erros.Add(new Error("Placa duplicado"));
+                erros.Add(new Error("Placa duplicada."));
 
             if (erros.Any())
             {

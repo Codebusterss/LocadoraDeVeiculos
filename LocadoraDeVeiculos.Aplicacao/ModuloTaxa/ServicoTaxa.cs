@@ -40,13 +40,13 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloTaxa
             {
                 repositorioTaxa.Inserir(taxa);
 
-                Log.Logger.Information("taxa {TaxaID} inserido com sucesso", taxa.ID);
+                Log.Logger.Information("Taxa {TaxaID} inserido com sucesso.", taxa.ID);
 
                 return Result.Ok(taxa);
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar inserir a taxa";
+                string msgErro = "Falha no sistema ao tentar inserir a taxa.";
 
                 Log.Logger.Error(ex, msgErro + "{TaxaID}", taxa.ID);
 
@@ -74,13 +74,13 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloTaxa
             {
                 repositorioTaxa.Editar(taxa);
 
-                Log.Logger.Information("Taxa {TaxaID} editado com sucesso", taxa.ID);
+                Log.Logger.Information("Taxa {TaxaID} editado com sucesso.", taxa.ID);
 
                 return Result.Ok(taxa);
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar editar a taxa";
+                string msgErro = "Falha no sistema ao tentar editar a taxa.";
 
                 Log.Logger.Error(ex, msgErro + "{TaxaID}", taxa.ID);
 
@@ -96,13 +96,13 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloTaxa
             {
                 repositorioTaxa.Excluir(taxa);
 
-                Log.Logger.Information("Taxa {TaxaID} excluído com sucesso", taxa.ID);
+                Log.Logger.Information("Taxa {TaxaID} excluído com sucesso.", taxa.ID);
 
                 return Result.Ok();
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar excluir a taxa";
+                string msgErro = "Falha no sistema ao tentar excluir a taxa.";
 
                 Log.Logger.Error(ex, msgErro + "{TaxaID}", taxa.ID);
 
@@ -134,7 +134,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloTaxa
             catch (Exception ex)
             {
                 string msgErro = "Falha no sistema ao tentar selecionar a taxa.";
-                Log.Logger.Error(ex, msgErro + "{CondutorID}", id);
+                Log.Logger.Error(ex, msgErro + "{TaxaID}", id);
 
                 return Result.Fail(msgErro);
             }
@@ -145,7 +145,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloTaxa
         {
             var validador = new ValidadorTaxa();
 
-            Log.Logger.Debug("Validando Taxa... {@t}", taxa);
+            Log.Logger.Debug("Validando taxa... {@t}", taxa);
 
             var resultadoValidacao = validador.Validate(taxa);
 
@@ -156,7 +156,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloTaxa
             }
 
             if (DescricacaoDuplicada(taxa))
-                erros.Add(new Error("Descricao duplicada"));
+                erros.Add(new Error("Descrição duplicada."));
 
             if (erros.Any())
             {

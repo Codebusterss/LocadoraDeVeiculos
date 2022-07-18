@@ -22,7 +22,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCliente
 
         public Result<Cliente> Inserir(Cliente cliente)
         {
-            Log.Logger.Debug("Tentando inserir Cliente... {@c}", cliente);
+            Log.Logger.Debug("Tentando inserir cliente... {@c}", cliente);
 
             Result resultadoValidacao = Validar(cliente);
 
@@ -30,7 +30,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCliente
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar inserir o Cliente {ClienteID} - {Motivo}",
+                    Log.Logger.Warning("Falha ao tentar inserir o cliente {ClienteID} - {Motivo}",
                        cliente.ID, erro.Message);
                 }
 
@@ -41,13 +41,13 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCliente
             {
                 repositorioCliente.Inserir(cliente);
 
-                Log.Logger.Information("Cliente {ClienteID} inserido com sucesso", cliente.ID);
+                Log.Logger.Information("Cliente {ClienteID} inserido com sucesso.", cliente.ID);
 
                 return Result.Ok(cliente);
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar inserir o Cliente";
+                string msgErro = "Falha no sistema ao tentar inserir o cliente.";
 
                 Log.Logger.Error(ex, msgErro + "{ClienteID}", cliente.ID);
 
@@ -57,7 +57,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCliente
 
         public Result<Cliente> Editar(Cliente cliente)
         {
-            Log.Logger.Debug("Tentando editar Cliente... {@c}", cliente);
+            Log.Logger.Debug("Tentando editar cliente... {@c}", cliente);
 
             Result resultadoValidacao = Validar(cliente);
 
@@ -65,7 +65,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCliente
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar editar o Cliente {ClienteID} - {Motivo}",
+                    Log.Logger.Warning("Falha ao tentar editar o cliente {ClienteID} - {Motivo}",
                        cliente.ID, erro.Message);
                 }
 
@@ -76,13 +76,13 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCliente
             {
                 repositorioCliente.Editar(cliente);
 
-                Log.Logger.Information("Cliente {ClienteID} editado com sucesso", cliente.ID);
+                Log.Logger.Information("Cliente {ClienteID} editado com sucesso.", cliente.ID);
 
                 return Result.Ok(cliente);
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar editar o Cliente";
+                string msgErro = "Falha no sistema ao tentar editar o cliente.";
 
                 Log.Logger.Error(ex, msgErro + "{ClienteID}", cliente.ID);
 
@@ -92,19 +92,19 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCliente
 
         public Result Excluir(Cliente cliente)
         {
-            Log.Logger.Debug("Tentando excluir Cliente... {@g}", cliente);
+            Log.Logger.Debug("Tentando excluir cliente... {@g}", cliente);
 
             try
             {
                 repositorioCliente.Excluir(cliente);
 
-                Log.Logger.Information("Cliente {ClienteID} excluído com sucesso", cliente.ID);
+                Log.Logger.Information("Cliente {ClienteID} excluído com sucesso.", cliente.ID);
 
                 return Result.Ok();
             }
             catch (NaoPodeExcluirRegistroException ex)
             {
-                string msgErro = $"O Cliente {cliente.Nome} está relacionado com um condutor e não pode ser excluído.";
+                string msgErro = $"O cliente {cliente.Nome} está relacionado com um condutor e não pode ser excluído.";
 
                 Log.Logger.Error(ex, msgErro + "{ClienteID}", cliente.ID);
 
@@ -112,7 +112,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCliente
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar excluir o Cliente.";
+                string msgErro = "Falha no sistema ao tentar excluir o cliente.";
 
                 Log.Logger.Error(ex, msgErro + "{ClienteID}", cliente.ID);
 
@@ -163,18 +163,18 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCliente
             }
 
             if (NomeDuplicado(cliente))
-                erros.Add(new Error("Nome duplicado"));
+                erros.Add(new Error("Nome duplicado."));
 
             if (cliente.CPF != "")
             {
                 if (CPFDuplicado(cliente))
-                    erros.Add(new Error("CPF duplicado"));
+                    erros.Add(new Error("CPF duplicado."));
             }
               
             if(cliente.CNPJ != "")
             {
                 if (CNPJDuplicado(cliente))
-                    erros.Add(new Error("CNPJ duplicado"));
+                    erros.Add(new Error("CNPJ duplicado."));
             }
 
 

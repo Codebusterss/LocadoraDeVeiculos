@@ -21,7 +21,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloPlanoDeCobranca
 
         public Result<PlanoDeCobranca> Inserir(PlanoDeCobranca plano)
         {
-            Log.Logger.Debug("Tentando inserir Plano de Cobranca... {@p}", plano);
+            Log.Logger.Debug("Tentando inserir plano de cobrança... {@p}", plano);
 
             Result resultadoValidacao = Validar(plano);
 
@@ -29,7 +29,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloPlanoDeCobranca
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar inserir o Plano de Cobranca {PlanoID} - {Motivo}",
+                    Log.Logger.Warning("Falha ao tentar inserir o plano de cobrança {PlanoID} - {Motivo}",
                        plano.ID, erro.Message);
                 }
 
@@ -40,13 +40,13 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloPlanoDeCobranca
             {
                 repositorioPlanoDeCobranca.Inserir(plano);
 
-                Log.Logger.Information("Plano de Cobranca {PlanoID} inserido com sucesso", plano.ID);
+                Log.Logger.Information("Plano de Cobrança {PlanoID} inserido com sucesso.", plano.ID);
 
                 return Result.Ok(plano);
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar inserir o Plano de Cobranca";
+                string msgErro = "Falha no sistema ao tentar inserir o plano de cobrança.";
 
                 Log.Logger.Error(ex, msgErro + "{PlanoID}", plano.ID);
 
@@ -55,7 +55,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloPlanoDeCobranca
         }
         public Result<PlanoDeCobranca> Editar(PlanoDeCobranca plano)
         {
-            Log.Logger.Debug("Tentando editar Plano de Cobranca... {@p}", plano);
+            Log.Logger.Debug("Tentando editar plano de cobrança... {@p}", plano);
 
             Result resultadoValidacao = Validar(plano);
 
@@ -63,7 +63,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloPlanoDeCobranca
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar editar o Plano de Cobranca {PlanoID} - {Motivo}",
+                    Log.Logger.Warning("Falha ao tentar editar o plano de cobrança {PlanoID} - {Motivo}",
                        plano.ID, erro.Message);
                 }
 
@@ -74,13 +74,13 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloPlanoDeCobranca
             {
                 repositorioPlanoDeCobranca.Editar(plano);
 
-                Log.Logger.Information("Plano de Cobranca {PlanoID} editado com sucesso", plano.ID);
+                Log.Logger.Information("Plano de cobrança {PlanoID} editado com sucesso.", plano.ID);
 
                 return Result.Ok(plano);
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar editar o Plano de Cobranca";
+                string msgErro = "Falha no sistema ao tentar editar o plano de cobrança.";
 
                 Log.Logger.Error(ex, msgErro + "{PlanoID}", plano.ID);
 
@@ -90,19 +90,19 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloPlanoDeCobranca
 
         public Result Excluir(PlanoDeCobranca plano)
         {
-            Log.Logger.Debug("Tentando excluir Plano de Cobranca... {@p}", plano);
+            Log.Logger.Debug("Tentando excluir plano de cobrança... {@p}", plano);
 
             try
             {
                 repositorioPlanoDeCobranca.Excluir(plano);
 
-                Log.Logger.Information("Plano de Cobranca {PlanoID} excluído com sucesso", plano.ID);
+                Log.Logger.Information("Plano de cobrança {PlanoID} excluído com sucesso.", plano.ID);
 
                 return Result.Ok();
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar excluir o Plano de Cobranca";
+                string msgErro = "Falha no sistema ao tentar excluir o plano de cobrança.";
 
                 Log.Logger.Error(ex, msgErro + "{PlanoID}", plano.ID);
 
@@ -118,7 +118,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloPlanoDeCobranca
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar selecionar todos os Planos de Cobranca.";
+                string msgErro = "Falha no sistema ao tentar selecionar todos os planos de cobrança.";
                 Log.Logger.Error(ex, msgErro);
 
                 return Result.Fail(msgErro);
@@ -133,7 +133,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloPlanoDeCobranca
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar selecionar o Plano de Cobranca.";
+                string msgErro = "Falha no sistema ao tentar selecionar o plano de cobrança.";
                 Log.Logger.Error(ex, msgErro + "{CondutorID}", id);
 
                 return Result.Fail(msgErro);
@@ -145,7 +145,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloPlanoDeCobranca
         {
             var validador = new ValidadorPlanoDeCobranca();
 
-            Log.Logger.Debug("Validando Plano de Cobranca... {@p}", plano);
+            Log.Logger.Debug("Validando plano de cobrança... {@p}", plano);
 
             var resultadoValidacao = validador.Validate(plano);
 
@@ -156,7 +156,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloPlanoDeCobranca
             }
 
             if (GrupoDuplicado(plano))
-                erros.Add(new Error("Grupo de Veículos duplicado"));
+                erros.Add(new Error("Grupo de Veículos duplicado."));
 
             if (erros.Any())
             {

@@ -29,7 +29,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloFuncionario
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar inserir o Funcionário {FuncionarioId} - {Motivo}",
+                    Log.Logger.Warning("Falha ao tentar inserir o funcionário {FuncionarioID} - {Motivo}",
                        funcionario.ID, erro.Message);
                 }
 
@@ -40,15 +40,15 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloFuncionario
             {
                 repositorioFuncionario.Inserir(funcionario);
 
-                Log.Logger.Information("Funcionário {FuncionarioId} inserido com sucesso", funcionario.ID);
+                Log.Logger.Information("Funcionário {FuncionarioID} inserido com sucesso.", funcionario.ID);
 
                 return Result.Ok(funcionario);
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar inserir o funcionário";
+                string msgErro = "Falha no sistema ao tentar inserir o funcionário.";
 
-                Log.Logger.Error(ex, msgErro + "{FuncionarioId}", funcionario.ID);
+                Log.Logger.Error(ex, msgErro + "{FuncionarioID}", funcionario.ID);
 
                 return Result.Fail(msgErro);
             }
@@ -64,7 +64,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloFuncionario
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar editar o Funcionário {FuncionarioId} - {Motivo}",
+                    Log.Logger.Warning("Falha ao tentar editar o funcionário {FuncionarioID} - {Motivo}",
                        funcionario.ID, erro.Message);
                 }
 
@@ -75,15 +75,15 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloFuncionario
             {
                 repositorioFuncionario.Editar(funcionario);
 
-                Log.Logger.Information("Funcionário {FuncionarioId} editado com sucesso", funcionario.ID);
+                Log.Logger.Information("Funcionário {FuncionarioID} editado com sucesso.", funcionario.ID);
 
                 return Result.Ok(funcionario);
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar editar o funcionário";
+                string msgErro = "Falha no sistema ao tentar editar o funcionário.";
 
-                Log.Logger.Error(ex, msgErro + "{FuncionarioId}", funcionario.ID);
+                Log.Logger.Error(ex, msgErro + "{FuncionarioID}", funcionario.ID);
 
                 return Result.Fail(msgErro);
             }
@@ -97,15 +97,15 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloFuncionario
             {
                 repositorioFuncionario.Excluir(funcionario);
 
-                Log.Logger.Information("Funcionário {FuncionarioId} excluído com sucesso", funcionario.ID);
+                Log.Logger.Information("Funcionário {FuncionarioID} excluído com sucesso.", funcionario.ID);
 
                 return Result.Ok();
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar excluir o funcionário";
+                string msgErro = "Falha no sistema ao tentar excluir o funcionário.";
 
-                Log.Logger.Error(ex, msgErro + "{FuncionarioId}", funcionario.ID);
+                Log.Logger.Error(ex, msgErro + "{FuncionarioID}", funcionario.ID);
 
                 return Result.Fail(msgErro);
             }
@@ -135,7 +135,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloFuncionario
             catch (Exception ex)
             {
                 string msgErro = "Falha no sistema ao tentar selecionar o funcionário.";
-                Log.Logger.Error(ex, msgErro + "{FuncionarioId}", id);
+                Log.Logger.Error(ex, msgErro + "{FuncionarioID}", id);
 
                 return Result.Fail(msgErro);
             }
@@ -145,7 +145,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloFuncionario
         {
             var validador = new ValidadorFuncionario();
 
-            Log.Logger.Debug("Validando Funcionario... {@f}", funcionario);
+            Log.Logger.Debug("Validando funcionário... {@f}", funcionario);
 
             var resultadoValidacao = validador.Validate(funcionario);
 
@@ -156,10 +156,10 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloFuncionario
             }
 
             if (NomeDuplicado(funcionario))
-                erros.Add(new Error("Nome duplicado"));
+                erros.Add(new Error("Nome duplicado."));
 
             if (LoginDuplicado(funcionario))
-                erros.Add(new Error("Login duplicado"));
+                erros.Add(new Error("Login duplicado."));
 
             if (erros.Any())
             {

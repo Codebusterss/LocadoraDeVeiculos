@@ -22,7 +22,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculo
 
         public Result<GrupoDeVeiculo> Inserir(GrupoDeVeiculo grupo)
         {
-            Log.Logger.Debug("Tentando inserir Grupo de Veículo... {@g}", grupo);
+            Log.Logger.Debug("Tentando inserir grupo de veículos... {@g}", grupo);
 
             Result resultadoValidacao = Validar(grupo);
 
@@ -30,7 +30,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculo
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar inserir o Grupo de Veículo {GrupoId} - {Motivo}",
+                    Log.Logger.Warning("Falha ao tentar inserir o grupo de veículos {GrupoID} - {Motivo}",
                        grupo.ID, erro.Message);
                 }
 
@@ -41,15 +41,15 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculo
             {
                 repositorioGrupoDeVeiculo.Inserir(grupo);
 
-                Log.Logger.Information("Grupo de Veículo {GrupoId} inserido com sucesso", grupo.ID);
+                Log.Logger.Information("Grupo de veículos {GrupoID} inserido com sucesso.", grupo.ID);
 
                 return Result.Ok(grupo);
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar inserir o Grupo de Veículo";
+                string msgErro = "Falha no sistema ao tentar inserir o grupo de veículos.";
 
-                Log.Logger.Error(ex, msgErro + "{GrupoId}", grupo.ID);
+                Log.Logger.Error(ex, msgErro + "{GrupoID}", grupo.ID);
 
                 return Result.Fail(msgErro);
             }
@@ -57,7 +57,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculo
 
         public Result<GrupoDeVeiculo> Editar(GrupoDeVeiculo grupo)
         {
-            Log.Logger.Debug("Tentando editar Grupo de Veículo... {@g}", grupo);
+            Log.Logger.Debug("Tentando editar grupo de veículos... {@g}", grupo);
 
             Result resultadoValidacao = Validar(grupo);
 
@@ -65,7 +65,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculo
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar editar o Grupo de Veículo {GrupoId} - {Motivo}",
+                    Log.Logger.Warning("Falha ao tentar editar o grupo de veículos {GrupoID} - {Motivo}",
                        grupo.ID, erro.Message);
                 }
 
@@ -76,15 +76,15 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculo
             {
                 repositorioGrupoDeVeiculo.Editar(grupo);
 
-                Log.Logger.Information("Grupo de Veículo {GrupoId} editado com sucesso", grupo.ID);
+                Log.Logger.Information("Grupo de veículos {GrupoID} editado com sucesso.", grupo.ID);
 
                 return Result.Ok(grupo);
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar editar o Grupo de Veículo";
+                string msgErro = "Falha no sistema ao tentar editar o grupo de veículos.";
 
-                Log.Logger.Error(ex, msgErro + "{GrupoId}", grupo.ID);
+                Log.Logger.Error(ex, msgErro + "{GrupoID}", grupo.ID);
 
                 return Result.Fail(msgErro);
             }
@@ -92,29 +92,29 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculo
 
         public Result Excluir(GrupoDeVeiculo grupoDeVeiculo)
         {
-            Log.Logger.Debug("Tentando excluir Grupo de Veículo... {@g}", grupoDeVeiculo);
+            Log.Logger.Debug("Tentando excluir grupo de veículos... {@g}", grupoDeVeiculo);
 
             try
             {
                 repositorioGrupoDeVeiculo.Excluir(grupoDeVeiculo);
 
-                Log.Logger.Information("Grupo de Veículo {GrupoId} excluído com sucesso", grupoDeVeiculo.ID);
+                Log.Logger.Information("Grupo de veículos {GrupoID} excluído com sucesso.", grupoDeVeiculo.ID);
 
                 return Result.Ok();
             }
             catch (NaoPodeExcluirRegistroException ex)
             {
-                string msgErro = $"O Grupo de Veículo {grupoDeVeiculo.Nome} está relacionado com um plano de cobrança e não pode ser excluído.";
+                string msgErro = $"O Grupo de veículos {grupoDeVeiculo.Nome} está relacionado com um plano de cobrança e não pode ser excluído.";
 
-                Log.Logger.Error(ex, msgErro + "{GrupoId}", grupoDeVeiculo.ID);
+                Log.Logger.Error(ex, msgErro + "{GrupoID}", grupoDeVeiculo.ID);
 
                 return Result.Fail(msgErro);
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar excluir o Grupo de Veículo.";
+                string msgErro = "Falha no sistema ao tentar excluir o grupo de veículos.";
 
-                Log.Logger.Error(ex, msgErro + "{GrupoId}", grupoDeVeiculo.ID);
+                Log.Logger.Error(ex, msgErro + "{GrupoID}", grupoDeVeiculo.ID);
 
                 return Result.Fail(msgErro);
             }
@@ -128,7 +128,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculo
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar selecionar todos os Grupos de Veículo.";
+                string msgErro = "Falha no sistema ao tentar selecionar todos os grupos de veículos.";
                 Log.Logger.Error(ex, msgErro);
 
                 return Result.Fail(msgErro);
@@ -143,8 +143,8 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculo
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar selecionar o Grupo de Veículo.";
-                Log.Logger.Error(ex, msgErro + "{GrupoId}", id);
+                string msgErro = "Falha no sistema ao tentar selecionar o grupo de veículos.";
+                Log.Logger.Error(ex, msgErro + "{GrupoID}", id);
 
                 return Result.Fail(msgErro);
             }
@@ -154,7 +154,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculo
         {
             var validador = new ValidadorGrupoDeVeiculo();
 
-            Log.Logger.Debug("Validando Grupo de Veículo... {@g}", grupo);
+            Log.Logger.Debug("Validando grupo de veículos... {@g}", grupo);
 
             var resultadoValidacao = validador.Validate(grupo);
 
@@ -165,7 +165,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculo
             }
 
             if (NomeDuplicado(grupo))
-                erros.Add(new Error("Nome duplicado"));
+                erros.Add(new Error("Nome duplicado."));
 
             if (erros.Any())
             {
