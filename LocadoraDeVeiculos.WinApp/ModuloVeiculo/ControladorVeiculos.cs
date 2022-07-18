@@ -7,26 +7,27 @@ using LocadoraDeVeiculos.WinApp.Compartilhado;
 using LocadoraDeVeiculos.Dominio.ModuloVeiculo;
 using LocadoraDeVeiculos.Aplicacao.ModuloVeiculo;
 using LocadoraDeVeiculos.Infra.ModuloGrupoDeVeiculos;
+using LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculo;
 
 namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
 {
     public class ControladorVeiculos : ControladorBase
     {
-        private readonly RepositorioGrupoDeVeiculosEmBancoDeDados repositorioGrupoDeVeiculos;
+        private readonly IServicoGrupoDeVeiculo servicoGrupo;
         private TabelaVeiculoControl tabelaVeiculoControl;
-        private readonly ServicoVeiculo servicoVeiculo;
+        private readonly IServicoVeiculo servicoVeiculo;
 
-        public ControladorVeiculos(ServicoVeiculo servicoVeiculo, RepositorioGrupoDeVeiculosEmBancoDeDados repositorioGrupoDeVeiculos)
+        public ControladorVeiculos(IServicoVeiculo servicoVeiculo, IServicoGrupoDeVeiculo servicoGrupo)
         {
             this.servicoVeiculo = servicoVeiculo;
-            this.repositorioGrupoDeVeiculos = repositorioGrupoDeVeiculos;
+            this.servicoGrupo = servicoGrupo;
         }
 
         public override void Inserir()
         {
-            var grupos = repositorioGrupoDeVeiculos.SelecionarTodos();
+            var grupos = servicoGrupo.SelecionarTodos();
 
-            TelaCadastroVeiculo tela = new TelaCadastroVeiculo(grupos);
+            TelaCadastroVeiculo tela = new TelaCadastroVeiculo(grupos.Value);
             tela.Veiculo = new Veiculo();
             tela.GravarRegistro = servicoVeiculo.Inserir;
 
@@ -37,7 +38,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
 
         public override void Editar()
         {
-            var grupos = repositorioGrupoDeVeiculos.SelecionarTodos();
+            var grupos = servicoGrupo.SelecionarTodos();
             var id = tabelaVeiculoControl.ObtemVeiculoSelecionado();
 
             if (id == Guid.Empty)
@@ -58,7 +59,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
 
             var veiculoSelecionado = resultado.Value;
 
-            var tela = new TelaCadastroVeiculo(grupos);
+            var tela = new TelaCadastroVeiculo(grupos.Value);
 
             tela.Veiculo = veiculoSelecionado.Clone();
 

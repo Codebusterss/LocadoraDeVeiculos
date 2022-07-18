@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using LocadoraDeVeiculos.Infra.ModuloFuncionario;
 using LocadoraDeVeiculos.Dominio.ModuloFuncionario;
+using LocadoraDeVeiculos.WinApp.Compartilhado.ServiceLocator;
 
 namespace LocadoraDeVeiculos.WinApp
 {
@@ -16,6 +17,7 @@ namespace LocadoraDeVeiculos.WinApp
     {
         private RepositorioFuncionarioEmBancoDeDados repositorioFuncionario;
         public Funcionario funcionarioLogado;
+
 
         public TelaLogin()
         {
@@ -47,7 +49,8 @@ namespace LocadoraDeVeiculos.WinApp
                 if (funcionario.Login == txtBoxLogin.Text && funcionario.Senha == txtBoxSenha.Text)
                 {
                     funcionarioLogado = funcionario;
-                    TelaMenuPrincipal tela = new TelaMenuPrincipal(funcionarioLogado);
+                    var serviceLocatorAutofac = new ServiceLocatorComAutofac();
+                    TelaMenuPrincipal tela = new TelaMenuPrincipal(funcionarioLogado, serviceLocatorAutofac);
                     tela.Show();                 
                     // solução temporária, verificar como melhorar.
                     this.Hide();

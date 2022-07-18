@@ -1,4 +1,5 @@
-﻿using LocadoraDeVeiculos.Aplicacao.ModuloCondutor;
+﻿using LocadoraDeVeiculos.Aplicacao.ModuloCliente;
+using LocadoraDeVeiculos.Aplicacao.ModuloCondutor;
 using LocadoraDeVeiculos.Dominio.ModuloCliente;
 using LocadoraDeVeiculos.Dominio.ModuloCondutor;
 using LocadoraDeVeiculos.Infra.ModuloCliente;
@@ -13,21 +14,21 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
 {
     public class ControladorCondutor : ControladorBase
     {
-        private readonly ServicoCondutor servicoCondutor;
-        private readonly RepositorioClienteEmBancoDeDados repositorioCliente;
+        private readonly IServicoCondutor servicoCondutor;
+        private readonly IServicoCliente servicoCliente;
         private TabelaCondutorControl tabelaCondutor;
 
-        public ControladorCondutor(ServicoCondutor servicoCondutor, RepositorioClienteEmBancoDeDados repositorioCliente)
+        public ControladorCondutor(IServicoCondutor servicoCondutor, IServicoCliente servicoCliente)
         {
            this.servicoCondutor = servicoCondutor;
-           this.repositorioCliente = repositorioCliente;
+           this.servicoCliente = servicoCliente;
         }
 
         public override void Inserir()
         {
-            var condutores = repositorioCliente.SelecionarTodos();
+            var condutores = servicoCliente.SelecionarTodos();
 
-            TelaCadastroCondutor tela = new TelaCadastroCondutor(condutores);
+            TelaCadastroCondutor tela = new TelaCadastroCondutor(condutores.Value);
             tela.Condutor = new Condutor(); 
             tela.GravarRegistro = servicoCondutor.Inserir;
 
@@ -37,7 +38,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
         }
         public override void Editar()
         {
-            var clientes = repositorioCliente.SelecionarTodos();
+            var clientes = servicoCliente.SelecionarTodos();
             var id = tabelaCondutor.ObtemCondutorSelecionado();
 
             if (id == Guid.Empty)
@@ -58,7 +59,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
 
             var condutorSelecionado = resultado.Value;
 
-            var tela = new TelaCadastroCondutor(clientes);
+            var tela = new TelaCadastroCondutor(clientes.Value);
 
             tela.Condutor = condutorSelecionado.Clone();
 

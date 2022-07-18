@@ -12,9 +12,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxa
     public class ControladorTaxa : ControladorBase
     {
         TabelaTaxaControl tabelataxa;
-        private readonly ServicoTaxa servicoTaxa;
+        private readonly IServicoTaxa servicoTaxa;
 
-        public ControladorTaxa(ServicoTaxa servicoTaxa)
+        public ControladorTaxa(IServicoTaxa servicoTaxa)
         {
             this.servicoTaxa = servicoTaxa;
         }

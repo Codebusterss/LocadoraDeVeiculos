@@ -11,7 +11,16 @@ using LocadoraDeVeiculos.Dominio.Compartilhado;
 
 namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculo
 {
-    public class ServicoGrupoDeVeiculo
+    public interface IServicoGrupoDeVeiculo
+    {
+        Result<GrupoDeVeiculo> Editar(GrupoDeVeiculo grupoDeVeiculo);
+        Result Excluir(GrupoDeVeiculo grupoDeVeiculo);
+        Result<GrupoDeVeiculo> Inserir(GrupoDeVeiculo grupoDeVeiculo);
+        Result<GrupoDeVeiculo> SelecionarPorId(Guid id);
+        Result<List<GrupoDeVeiculo>> SelecionarTodos();
+    }
+
+    public class ServicoGrupoDeVeiculo : IServicoGrupoDeVeiculo
     {
         private IRepositorioGrupoDeVeiculo repositorioGrupoDeVeiculo;
 

@@ -14,11 +14,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculo
     public class ControladorGrupoDeVeiculo : ControladorBase
     {
         private TabelaGrupoDeVeiculoControl tabelaGrupoDeVeiculoControl;
-        private readonly ServicoGrupoDeVeiculo servicoGrupoDeVeiculo;
+        private readonly IServicoGrupoDeVeiculo servicoGrupoDeVeiculo;
 
-        private readonly RepositorioPlanoDeCobrancaEmBancoDeDados repositorioPlanoDeCobranca = new RepositorioPlanoDeCobrancaEmBancoDeDados();
-
-        public ControladorGrupoDeVeiculo(ServicoGrupoDeVeiculo servicoGrupoDeVeiculo)
+        public ControladorGrupoDeVeiculo(IServicoGrupoDeVeiculo servicoGrupoDeVeiculo)
         {
             this.servicoGrupoDeVeiculo = servicoGrupoDeVeiculo;
         }

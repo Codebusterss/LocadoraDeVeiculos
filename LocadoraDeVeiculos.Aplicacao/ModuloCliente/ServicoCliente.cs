@@ -11,7 +11,16 @@ using LocadoraDeVeiculos.Dominio.Compartilhado;
 
 namespace LocadoraDeVeiculos.Aplicacao.ModuloCliente
 {
-    public class ServicoCliente
+    public interface IServicoCliente
+    {
+        Result<Cliente> Editar(Cliente cliente);
+        Result Excluir(Cliente cliente);
+        Result<Cliente> Inserir(Cliente cliente);
+        Result<Cliente> SelecionarPorId(Guid id);
+        Result<List<Cliente>> SelecionarTodos();
+    }
+
+    public class ServicoCliente : IServicoCliente
     {
         private IRepositorioCliente repositorioCliente;
 

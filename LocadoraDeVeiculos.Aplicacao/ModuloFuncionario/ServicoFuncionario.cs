@@ -10,7 +10,16 @@ using FluentResults;
 
 namespace LocadoraDeVeiculos.Aplicacao.ModuloFuncionario
 {
-    public class ServicoFuncionario
+    public interface IServicoFuncionario
+    {
+        Result<Funcionario> Editar(Funcionario funcionario);
+        Result Excluir(Funcionario funcionario);
+        Result<Funcionario> Inserir(Funcionario funcionario);
+        Result<Funcionario> SelecionarPorId(Guid id);
+        Result<List<Funcionario>> SelecionarTodos();
+    }
+
+    public class ServicoFuncionario : IServicoFuncionario
     {
         private IRepositorioFuncionario repositorioFuncionario;
 

@@ -10,7 +10,16 @@ using FluentResults;
 
 namespace LocadoraDeVeiculos.Aplicacao.ModuloPlanoDeCobranca
 {
-    public class ServicoPlanoDeCobranca
+    public interface IServicoPlanoDeCobranca
+    {
+        Result<PlanoDeCobranca> Editar(PlanoDeCobranca tplanoaxa);
+        Result Excluir(PlanoDeCobranca plano);
+        Result<PlanoDeCobranca> Inserir(PlanoDeCobranca plano);
+        Result<PlanoDeCobranca> SelecionarPorId(Guid id);
+        Result<List<PlanoDeCobranca>> SelecionarTodos();
+    }
+
+    public class ServicoPlanoDeCobranca : IServicoPlanoDeCobranca
     {
         private IRepositorioPlanoDeCobranca repositorioPlanoDeCobranca;
 

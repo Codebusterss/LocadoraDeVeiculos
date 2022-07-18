@@ -10,7 +10,16 @@ using Serilog;
 
 namespace LocadoraDeVeiculos.Aplicacao.ModuloVeiculo
 {
-    public class ServicoVeiculo
+    public interface IServicoVeiculo
+    {
+        Result<Veiculo> Editar(Veiculo veiculo);
+        Result Excluir(Veiculo veiculo);
+        Result<Veiculo> Inserir(Veiculo veiculo);
+        Result<Veiculo> SelecionarPorId(Guid id);
+        Result<List<Veiculo>> SelecionarTodos();
+    }
+
+    public class ServicoVeiculo : IServicoVeiculo
     {
         private IRepositorioVeiculo repositorioVeiculo;
 

@@ -13,9 +13,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
     public class ControladorFuncionario : ControladorBase
     {
         private TabelaFuncionarioControl tabelaFuncionarioControl;
-        private readonly ServicoFuncionario servicoFuncionario;
+        private readonly IServicoFuncionario servicoFuncionario;
 
-        public ControladorFuncionario(ServicoFuncionario servicoFuncionario)
+        public ControladorFuncionario(IServicoFuncionario servicoFuncionario)
         {
             this.servicoFuncionario = servicoFuncionario;
         }

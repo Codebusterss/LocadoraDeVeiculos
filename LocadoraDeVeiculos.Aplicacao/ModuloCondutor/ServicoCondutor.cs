@@ -10,7 +10,16 @@ using FluentResults;
 
 namespace LocadoraDeVeiculos.Aplicacao.ModuloCondutor
 {
-    public class ServicoCondutor
+    public interface IServicoCondutor
+    {
+        Result<Condutor> Editar(Condutor condutor);
+        Result Excluir(Condutor condutor);
+        Result<Condutor> Inserir(Condutor condutor);
+        Result<Condutor> SelecionarPorId(Guid id);
+        Result<List<Condutor>> SelecionarTodos();
+    }
+
+    public class ServicoCondutor : IServicoCondutor
     {
         private IRepositorioCondutor repositorioCondutor;
 

@@ -10,7 +10,16 @@ using FluentResults;
 
 namespace LocadoraDeVeiculos.Aplicacao.ModuloTaxa
 {
-    public class ServicoTaxa
+    public interface IServicoTaxa
+    {
+        Result<Taxa> Editar(Taxa taxa);
+        Result Excluir(Taxa taxa);
+        Result<Taxa> Inserir(Taxa taxa);
+        Result<Taxa> SelecionarPorId(Guid id);
+        Result<List<Taxa>> SelecionarTodos();
+    }
+
+    public class ServicoTaxa : IServicoTaxa
     {
         private IRepositorioTaxa repositorioTaxa;
 

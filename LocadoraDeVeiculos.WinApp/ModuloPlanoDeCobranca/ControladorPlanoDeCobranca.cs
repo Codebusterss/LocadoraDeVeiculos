@@ -13,21 +13,21 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca
 {
     public class ControladorPlanoDeCobranca : ControladorBase
     {
-        private readonly RepositorioGrupoDeVeiculosEmBancoDeDados repositorioGrupoDeVeiculos;
+        private readonly IServicoGrupoDeVeiculo servicoGrupo;
         private TabelaPlanoControl tabelaPlanoControl;
-        private readonly ServicoPlanoDeCobranca servicoPlano;
+        private readonly IServicoPlanoDeCobranca servicoPlano;
 
-        public ControladorPlanoDeCobranca(ServicoPlanoDeCobranca servicoPlano, RepositorioGrupoDeVeiculosEmBancoDeDados repositorioGrupoDeVeiculos)
+        public ControladorPlanoDeCobranca(IServicoPlanoDeCobranca servicoPlano, IServicoGrupoDeVeiculo servicoGrupo)
         {
             this.servicoPlano = servicoPlano;
-            this.repositorioGrupoDeVeiculos = repositorioGrupoDeVeiculos;
+            this.servicoGrupo = servicoGrupo;
         }
 
         public override void Inserir()
         {
-            var grupos = repositorioGrupoDeVeiculos.SelecionarTodos();
+            var grupos = servicoGrupo.SelecionarTodos();
 
-            TelaCadastroPlano tela = new TelaCadastroPlano(grupos);
+            TelaCadastroPlano tela = new TelaCadastroPlano(grupos.Value);
             tela.Plano = new PlanoDeCobranca();
             tela.GravarRegistro = servicoPlano.Inserir;
 
@@ -38,7 +38,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca
 
         public override void Editar()
         {
-            var grupos = repositorioGrupoDeVeiculos.SelecionarTodos();
+            var grupos = servicoGrupo.SelecionarTodos();
             var id = tabelaPlanoControl.ObtemPlanoSelecionado();
 
             if (id == Guid.Empty)
@@ -59,7 +59,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca
 
             var planoSelecionado = resultado.Value;
 
-            var tela = new TelaCadastroPlano(grupos);
+            var tela = new TelaCadastroPlano(grupos.Value);
 
             tela.Plano = planoSelecionado.Clone();
 
