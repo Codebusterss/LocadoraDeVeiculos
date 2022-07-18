@@ -19,6 +19,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloVeiculo
         public int Ano { get; set; }
         public string TipoCombustivel { get; set; }
         public GrupoDeVeiculo GrupoDeVeiculo { get; set; }
+        public byte[] Foto { get; set; }
 
         public override void Atualizar(Veiculo registro)
         {
@@ -31,6 +32,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloVeiculo
             this.Ano = registro.Ano;
             this.TipoCombustivel = registro.TipoCombustivel;
             this.GrupoDeVeiculo = registro.GrupoDeVeiculo;
+            this.Foto = registro.Foto;
         }
 
 
@@ -39,7 +41,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloVeiculo
 
         }
 
-        public Veiculo(string modelo, string marca, string placa, string cor, double capacidadeDoTanque, double kmPercorrido, int ano, string tipoCombustivel, GrupoDeVeiculo grupoDeVeiculo) : this()
+        public Veiculo(string modelo, string marca, string placa, string cor, double capacidadeDoTanque, double kmPercorrido, int ano, string tipoCombustivel, GrupoDeVeiculo grupoDeVeiculo, byte[] foto) : this()
         {
             this.Marca = marca;
             this.Modelo = modelo;
@@ -50,6 +52,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloVeiculo
             this.Ano = ano;
             this.TipoCombustivel = tipoCombustivel;
             this.GrupoDeVeiculo = grupoDeVeiculo;
+            this.Foto = foto;
         }
 
         public override string? ToString()

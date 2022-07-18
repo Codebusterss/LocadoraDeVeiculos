@@ -53,6 +53,9 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnConfirmar = new System.Windows.Forms.Button();
             this.cbBoxGrupoDeVeiculos = new System.Windows.Forms.ComboBox();
+            this.caixaImagem = new System.Windows.Forms.PictureBox();
+            this.btnSelecionarImagem = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.caixaImagem)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -240,7 +243,7 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(364, 278);
+            this.btnCancelar.Location = new System.Drawing.Point(364, 507);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(80, 23);
             this.btnCancelar.TabIndex = 27;
@@ -250,7 +253,7 @@
             // btnConfirmar
             // 
             this.btnConfirmar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnConfirmar.Location = new System.Drawing.Point(278, 278);
+            this.btnConfirmar.Location = new System.Drawing.Point(278, 507);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(80, 23);
             this.btnConfirmar.TabIndex = 28;
@@ -266,11 +269,32 @@
             this.cbBoxGrupoDeVeiculos.Size = new System.Drawing.Size(307, 23);
             this.cbBoxGrupoDeVeiculos.TabIndex = 29;
             // 
+            // caixaImagem
+            // 
+            this.caixaImagem.Location = new System.Drawing.Point(39, 262);
+            this.caixaImagem.Name = "caixaImagem";
+            this.caixaImagem.Size = new System.Drawing.Size(387, 201);
+            this.caixaImagem.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.caixaImagem.TabIndex = 30;
+            this.caixaImagem.TabStop = false;
+            // 
+            // btnSelecionarImagem
+            // 
+            this.btnSelecionarImagem.Location = new System.Drawing.Point(39, 469);
+            this.btnSelecionarImagem.Name = "btnSelecionarImagem";
+            this.btnSelecionarImagem.Size = new System.Drawing.Size(136, 23);
+            this.btnSelecionarImagem.TabIndex = 31;
+            this.btnSelecionarImagem.Text = "Selecionar Imagem";
+            this.btnSelecionarImagem.UseVisualStyleBackColor = true;
+            this.btnSelecionarImagem.Click += new System.EventHandler(this.btnSelecionarImagem_Click);
+            // 
             // TelaCadastroVeiculo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(456, 313);
+            this.ClientSize = new System.Drawing.Size(456, 542);
+            this.Controls.Add(this.btnSelecionarImagem);
+            this.Controls.Add(this.caixaImagem);
             this.Controls.Add(this.cbBoxGrupoDeVeiculos);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.btnCancelar);
@@ -296,10 +320,14 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "TelaCadastroVeiculo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Veículos";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TelaCadastroVeiculo_FormClosing);
             this.Load += new System.EventHandler(this.TelaCadastroVeiculo_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.caixaImagem)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -332,5 +360,7 @@
         private Button btnCancelar;
         private Button btnConfirmar;
         private ComboBox cbBoxGrupoDeVeiculos;
+        private PictureBox caixaImagem;
+        private Button btnSelecionarImagem;
     }
 }

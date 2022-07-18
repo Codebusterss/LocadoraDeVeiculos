@@ -232,5 +232,18 @@ namespace LocadoraDeVeiculos.Dominio.Testes.ModuloVeiculo
             //assert
             resultado.ShouldHaveValidationErrorFor(v => v.GrupoDeVeiculo);
         }
+
+        [TestMethod]
+        public void Foto_Nao_Pode_Ser_Vazio()
+        {
+            //arrange
+            veiculo.Foto = null;
+
+            //action
+            var resultado = validador.TestValidate(veiculo);
+
+            //assert
+            resultado.ShouldHaveValidationErrorFor(v => v.Foto);
+        }
     }
 }

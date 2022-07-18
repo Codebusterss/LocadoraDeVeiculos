@@ -26,7 +26,8 @@ namespace LocadoraDeVeiculos.Infra.ModuloVeiculo
                     [KMPERCORRIDO],
                     [TIPODECOMBUSTIVEL],
                     [CAPACIDADEDOTANQUE],
-                    [GRUPO_ID]
+                    [GRUPO_ID],
+                    [FOTO]
                 )
                 VALUES
                 (
@@ -39,7 +40,8 @@ namespace LocadoraDeVeiculos.Infra.ModuloVeiculo
                     @KMPERCORRIDO,
                     @TIPODECOMBUSTIVEL,
                     @CAPACIDADEDOTANQUE,
-                    @GRUPO_ID
+                    @GRUPO_ID,
+                    @FOTO
                 )";
 
         protected override string sqlEditar =>
@@ -53,7 +55,8 @@ namespace LocadoraDeVeiculos.Infra.ModuloVeiculo
                     [KMPERCORRIDO] = @KMPERCORRIDO,
                     [TIPODECOMBUSTIVEL] = @TIPODECOMBUSTIVEL,
                     [CAPACIDADEDOTANQUE] = @CAPACIDADEDOTANQUE,
-                    [GRUPO_ID] = @GRUPO_ID
+                    [GRUPO_ID] = @GRUPO_ID,
+                    [FOTO] = @FOTO
 
                 WHERE 
                     [ID] = @ID";
@@ -73,7 +76,8 @@ namespace LocadoraDeVeiculos.Infra.ModuloVeiculo
                     [KMPERCORRIDO],
                     [TIPODECOMBUSTIVEL],
                     [CAPACIDADEDOTANQUE],
-                    [GRUPO_ID]
+                    [GRUPO_ID],
+                    [FOTO]
             FROM
                 [VEICULO]";
 
@@ -88,7 +92,8 @@ namespace LocadoraDeVeiculos.Infra.ModuloVeiculo
               [KMPERCORRIDO],
               [TIPODECOMBUSTIVEL],
               [CAPACIDADEDOTANQUE],
-              [GRUPO_ID]
+              [GRUPO_ID],
+              [FOTO]
             FROM
                 [VEICULO]
             WHERE 
@@ -105,7 +110,8 @@ namespace LocadoraDeVeiculos.Infra.ModuloVeiculo
               [KMPERCORRIDO],
               [TIPODECOMBUSTIVEL],
               [CAPACIDADEDOTANQUE],
-              [GRUPO_ID]
+              [GRUPO_ID],
+              [FOTO]
             FROM
                 [VEICULO]
             WHERE 

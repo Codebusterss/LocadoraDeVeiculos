@@ -25,6 +25,8 @@ namespace LocadoraDeVeiculos.Infra.ModuloVeiculo
             comando.Parameters.AddWithValue("KMPERCORRIDO", registro.KmPercorrido);
             comando.Parameters.AddWithValue("TIPODECOMBUSTIVEL", registro.TipoCombustivel);
             comando.Parameters.AddWithValue("CAPACIDADEDOTANQUE", registro.CapacidadeDoTanque);
+            comando.Parameters.AddWithValue("FOTO", registro.Foto);
+
         }
 
         public override Veiculo ConverterRegistro(SqlDataReader leitorVeiculo)
@@ -39,6 +41,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloVeiculo
             var kmPercorrido = Convert.ToDouble(leitorVeiculo["KMPERCORRIDO"]);
             var ano = Convert.ToInt32(leitorVeiculo["ANO"]);
             var tipoCombustivel = Convert.ToString(leitorVeiculo["TIPODECOMBUSTIVEL"]);
+            var foto = (byte[])(leitorVeiculo["FOTO"]);
 
             Veiculo veiculo = new Veiculo();
             veiculo.ID = id;
@@ -51,6 +54,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloVeiculo
             veiculo.KmPercorrido = kmPercorrido;
             veiculo.TipoCombustivel = tipoCombustivel;
             veiculo.CapacidadeDoTanque = capacidadeDoTanque;
+            veiculo.Foto = foto;
             return veiculo;
         }
     }

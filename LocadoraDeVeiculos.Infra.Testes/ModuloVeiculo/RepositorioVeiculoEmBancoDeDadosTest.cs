@@ -20,12 +20,14 @@ namespace LocadoraDeVeiculos.Infra.Testes.ModuloVeiculo
         private RepositorioGrupoDeVeiculosEmBancoDeDados repositorioGrupo;
         private Veiculo veiculo;
         private GrupoDeVeiculo grupo;
+        byte[] byteItems = new byte[] { 0x10, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10 };
 
         public RepositorioVeiculoEmBancoDeDadosTest()
         {
             grupo = GerarGrupo();
             veiculo = GerarVeiculo();
             veiculo.GrupoDeVeiculo = grupo;
+            veiculo.Foto = byteItems;
             repositorioGrupo = new RepositorioGrupoDeVeiculosEmBancoDeDados();
             repositorioVeiculo = new RepositorioVeiculoEmBancoDeDados();
         }
@@ -129,9 +131,9 @@ namespace LocadoraDeVeiculos.Infra.Testes.ModuloVeiculo
         {
             //arrange
             repositorioGrupo.Inserir(grupo);
-            var v0 = new Veiculo("Nissan", "Kicks", "QIV-3213", "Vermelho", 50, 300000, 2018, "Gasolina", grupo);
-            var v1 = new Veiculo("Nissan", "GTR", "PLD-3213", "Branco", 50, 300000, 2012, "Gasolina", grupo);
-            var v2 = new Veiculo("Eclipse", "Lancer", "DAW-3213", "Azul", 50, 300000, 2010, "Gasolina", grupo);
+            var v0 = new Veiculo("Nissan", "Kicks", "QIV-3213", "Vermelho", 50, 300000, 2018, "Gasolina", grupo, byteItems);
+            var v1 = new Veiculo("Nissan", "GTR", "PLD-3213", "Branco", 50, 300000, 2012, "Gasolina", grupo, byteItems);
+            var v2 = new Veiculo("Eclipse", "Lancer", "DAW-3213", "Azul", 50, 300000, 2010, "Gasolina", grupo, byteItems);
 
             var repositorio = new RepositorioVeiculoEmBancoDeDados();
 

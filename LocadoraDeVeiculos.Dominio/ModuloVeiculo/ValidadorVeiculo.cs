@@ -45,6 +45,9 @@ namespace LocadoraDeVeiculos.Dominio.ModuloVeiculo
             RuleFor(x => x.GrupoDeVeiculo)
                 .NotEmpty()
                 .NotNull();
+            RuleFor(x => x.Foto)
+                .NotNull()
+                .NotEmpty();
         }
     }
 }

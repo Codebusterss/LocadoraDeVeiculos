@@ -19,6 +19,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
     {
         private Veiculo veiculo;
         ValidadorRegex validador = new ValidadorRegex();
+        public string caminhoFoto = "";
 
         public TelaCadastroVeiculo(List<GrupoDeVeiculo> grupos)
         {
@@ -56,6 +57,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
             set
             {
                 veiculo = value;
+                txtBoxId.Text = veiculo.ID.ToString();
                 cbBoxGrupoDeVeiculos.SelectedItem = veiculo.GrupoDeVeiculo;
                 txtBoxModelo.Text = veiculo.Modelo;
                 txtBoxMarca.Text = veiculo.Marca;
@@ -65,6 +67,16 @@ namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
                 txtBoxCapTanque.Text = veiculo.CapacidadeDoTanque.ToString();
                 txtBoxKMPercorrido.Text = veiculo.KmPercorrido.ToString();
                 cbBoxCombustivel.SelectedItem = veiculo.TipoCombustivel;
+                if (veiculo.Foto != null)
+                    CarregarImagem();
+            }
+        }
+
+        private void CarregarImagem()
+        {
+            using (var img = new MemoryStream(veiculo.Foto))
+            {
+                caixaImagem.Image = Image.FromStream(img);
             }
         }
 
@@ -89,6 +101,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
             veiculo.CapacidadeDoTanque = Convert.ToDouble(txtBoxCapTanque.Text);
             veiculo.KmPercorrido = Convert.ToDouble(txtBoxKMPercorrido.Text);
             veiculo.TipoCombustivel = cbBoxCombustivel.SelectedItem.ToString();
+
+            if (caminhoFoto != "")
+                veiculo.Foto = GetFoto(caminhoFoto);
 
             var resultadoValidacao = GravarRegistro(veiculo);
 
@@ -118,6 +133,37 @@ namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
         private void TelaCadastroVeiculo_FormClosing(object sender, FormClosingEventArgs e)
         {
             TelaMenuPrincipal.Instancia.AtualizarRodape("");
+        }
+
+        private void btnSelecionarImagem_Click(object sender, EventArgs e)
+        {
+            var openFile = new OpenFileDialog();
+            openFile.Filter = "|*.jpg; *.jpeg; *.png; *.jfif;";
+            openFile.Multiselect = false;
+
+            if (openFile.ShowDialog() == DialogResult.OK)
+            {
+                caminhoFoto = openFile.FileName;
+            }
+
+            if (caminhoFoto != "")
+            {
+                caixaImagem.Load(caminhoFoto);
+            }
+        }
+
+        private byte[] GetFoto(string caminhoFoto)
+        {
+            byte[] imagem;
+            using (var stream = new FileStream(caminhoFoto, FileMode.Open, FileAccess.Read))
+            {
+                using (var reader = new BinaryReader(stream))
+                {
+                    imagem = reader.ReadBytes((int)stream.Length);
+                }
+            }
+
+            return imagem;
         }
     }
 }
