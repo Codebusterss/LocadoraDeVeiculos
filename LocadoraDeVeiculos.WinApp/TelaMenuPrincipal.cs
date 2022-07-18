@@ -28,6 +28,7 @@ using LocadoraDeVeiculos.Dominio.ModuloCliente;
 using LocadoraDeVeiculos.Infra.ModuloVeiculo;
 using LocadoraDeVeiculos.Dominio.ModuloVeiculo;
 using LocadoraDeVeiculos.WinApp.ModuloVeiculo;
+using LocadoraDeVeiculos.Dominio.ModuloGrupoDeVeiculo;
 
 namespace LocadoraDeVeiculos.WinApp
 {
@@ -170,7 +171,7 @@ namespace LocadoraDeVeiculos.WinApp
             List<Cliente> clientes = repositorioCliente.SelecionarTodos();
             if(clientes.Count == 0)
             {
-                MessageBox.Show("Cadastre um cliente antes de cadastrar um condutor!.",
+                MessageBox.Show("Cadastre um cliente antes de cadastrar um condutor!",
                    "Sem clientes cadastrados.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
@@ -183,12 +184,34 @@ namespace LocadoraDeVeiculos.WinApp
 
         private void planosDeCobrançaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+            var repositorioGrupo = new RepositorioGrupoDeVeiculosEmBancoDeDados();
+
+            List<GrupoDeVeiculo> grupos = repositorioGrupo.SelecionarTodos();
+            if (grupos.Count == 0)
+            {
+                MessageBox.Show("Cadastre um grupo de veículos antes de cadastrar um plano de cobrança!",
+                   "Sem clientes cadastrados.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+            }
         }
 
         private void veículosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+            var repositorioGrupo = new RepositorioGrupoDeVeiculosEmBancoDeDados();
+
+            List<GrupoDeVeiculo> grupos = repositorioGrupo.SelecionarTodos();
+            if (grupos.Count == 0)
+            {
+                MessageBox.Show("Cadastre um grupo de veículos antes de cadastrar um veículo!",
+                   "Sem clientes cadastrados.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+            }
         }
 
         private void ConfigurarTelaPrincipal(ToolStripMenuItem opcaoSelecionada)

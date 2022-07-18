@@ -32,10 +32,11 @@ namespace LocadoraDeVeiculos.Dominio.ModuloVeiculo
                 .NotNull();
             RuleFor(x => x.CapacidadeDoTanque)
                 .NotEmpty()
-                .NotNull();
+                .NotNull()
+                .GreaterThan(0);
             RuleFor(x => x.KmPercorrido)
-                .NotEmpty()
-                .NotNull();
+                .NotNull()
+                .GreaterThanOrEqualTo(0);
             RuleFor(x => x.Ano)
                 .NotEmpty()
                 .NotNull();

@@ -30,7 +30,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloFuncionario
             RuleFor(x => x.Salario)
                 .NotEmpty()
                 .NotNull()
-                .GreaterThanOrEqualTo(0);
+                .GreaterThan(0);
 
         }
     }
