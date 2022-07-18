@@ -9,7 +9,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
 {
     public class ConfiguracaoToolBoxCondutor : ConfiguracaoToolboxBase
     {
-        public override string TipoCadastro => "Condutor";
+        public override string TipoCadastro => "Condutores";
 
         public override string TooltipInserir { get { return "Inserir um condutor."; } }
 

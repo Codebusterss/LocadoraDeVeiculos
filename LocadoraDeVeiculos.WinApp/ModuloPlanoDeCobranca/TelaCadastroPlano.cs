@@ -29,16 +29,6 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca
 
         public Func<PlanoDeCobranca, Result<PlanoDeCobranca>> GravarRegistro { get; set; }
 
-        private void CarregarGrupos(List<GrupoDeVeiculo> grupos)
-        {
-            cbBoxGrupos.Items.Clear();
-
-            foreach (var grupo in grupos)
-            {
-                cbBoxGrupos.Items.Add(grupo);
-            }
-        }
-
         public PlanoDeCobranca Plano
         {
             get
@@ -111,7 +101,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca
                 if (erro.StartsWith("Falha no sistema"))
                 {
                     MessageBox.Show(erro,
-                      "Cadastro de Plano de Cobranca", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                      "Cadastro de Plano de Cobrança", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
@@ -120,13 +110,16 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca
                     DialogResult = DialogResult.None;
                 }
             }
-
         }
 
+        private void cbBoxGrupos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tabControlPlanos.Enabled = true;
+        }
 
         #endregion
 
-        #region Rodape.
+        #region Rodape
 
         private void TelaCadastroPlano_Load(object sender, EventArgs e)
         {
@@ -138,12 +131,20 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca
             TelaMenuPrincipal.Instancia.AtualizarRodape("");
         }
 
-
         #endregion
 
-        private void cbBoxGrupos_SelectedIndexChanged(object sender, EventArgs e)
+        #region Metodos
+
+        private void CarregarGrupos(List<GrupoDeVeiculo> grupos)
         {
-            tabControlPlanos.Enabled = true;
+            cbBoxGrupos.Items.Clear();
+
+            foreach (var grupo in grupos)
+            {
+                cbBoxGrupos.Items.Add(grupo);
+            }
         }
+
+        #endregion
     }
 }

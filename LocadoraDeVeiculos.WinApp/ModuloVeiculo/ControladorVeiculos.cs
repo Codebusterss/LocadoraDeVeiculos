@@ -42,7 +42,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
 
             if (id == Guid.Empty)
             {
-                MessageBox.Show("Selecione um veículo primeiro",
+                MessageBox.Show("Selecione um veículo primeiro.",
                     "Edição de Veículo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -126,7 +126,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
             {
                 List<Veiculo> veiculos = resultado.Value;
                 tabelaVeiculoControl.AtualizarRegistros(veiculos);
-                TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando {veiculos.Count} Veículos.");
+                TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando {veiculos.Count} veículos.");
             }
             else if (resultado.IsFailed)
             {

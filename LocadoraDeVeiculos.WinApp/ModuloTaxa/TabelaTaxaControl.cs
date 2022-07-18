@@ -31,7 +31,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxa
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Tipo", HeaderText = "Tipo"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Descricao", HeaderText = "Descrição"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Descrição", HeaderText = "Descrição"},
 
              
 
@@ -47,14 +47,10 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxa
                 grid.Rows.Add(t.ID, t.Valor, t.Tipo, t.Descricao);
             }
         }
+
         public Guid ObtemTaxaSelecionada()
         {
             return grid.SelecionarPorID<Guid>();
-        }
-
-        private void grid_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

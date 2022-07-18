@@ -36,8 +36,8 @@ namespace LocadoraDeVeiculos.WinApp
 
             if(funcionariosRegistrados.Count() == 0)
             {
-                MessageBox.Show("Não existem funcionários cadastros, fale com o administrador do sistema.",
-                    "Funcionários não cadastrados.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Não existem funcionários cadastrados, fale com o administrador do sistema.",
+                    "Sem funcionários cadastrados", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             for (int i = 0; i < funcionariosRegistrados.Count; i++)
@@ -49,7 +49,7 @@ namespace LocadoraDeVeiculos.WinApp
                     funcionarioLogado = funcionario;
                     TelaMenuPrincipal tela = new TelaMenuPrincipal(funcionarioLogado);
                     tela.Show();                 
-                    // solução temporária, verificar como melhorar na segunda-feira.
+                    // solução temporária, verificar como melhorar.
                     this.Hide();
                     break;
                 }
@@ -57,7 +57,7 @@ namespace LocadoraDeVeiculos.WinApp
                 if(i == j)
                 {
                     MessageBox.Show("Usuário ou senha incorretos.",
-                    "Funcionário não encontrado.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    "Funcionário não encontrado", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

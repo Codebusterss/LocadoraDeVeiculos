@@ -30,24 +30,6 @@ namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
 
         public Func<Veiculo, Result<Veiculo>> GravarRegistro { get; set; }
 
-        private void CarregarGrupos(List<GrupoDeVeiculo> grupos)
-        {
-            cbBoxGrupoDeVeiculos.Items.Clear();
-
-            foreach (var grupo in grupos)
-            {
-                cbBoxGrupoDeVeiculos.Items.Add(grupo);
-            }
-        }
-
-        private void CarregarCombutivel()
-        {
-            cbBoxCombustivel.Items.Clear();
-            cbBoxCombustivel.Items.Add("Gasolina");
-            cbBoxCombustivel.Items.Add("Etanol");
-            cbBoxCombustivel.Items.Add("Diesel"); 
-        }
-
         public Veiculo Veiculo
         {
             get
@@ -72,13 +54,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
             }
         }
 
-        private void CarregarImagem()
-        {
-            using (var img = new MemoryStream(veiculo.Foto))
-            {
-                caixaImagem.Image = Image.FromStream(img);
-            }
-        }
+        #region Botoes
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
@@ -125,16 +101,6 @@ namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
             }
         }
 
-        private void TelaCadastroVeiculo_Load(object sender, EventArgs e)
-        {
-            TelaMenuPrincipal.Instancia.AtualizarRodape("");
-        }
-
-        private void TelaCadastroVeiculo_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            TelaMenuPrincipal.Instancia.AtualizarRodape("");
-        }
-
         private void btnSelecionarImagem_Click(object sender, EventArgs e)
         {
             var openFile = new OpenFileDialog();
@@ -152,6 +118,42 @@ namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
             }
         }
 
+        #endregion  
+
+        #region Rodape
+
+        private void TelaCadastroVeiculo_Load(object sender, EventArgs e)
+        {
+            TelaMenuPrincipal.Instancia.AtualizarRodape("");
+        }
+
+        private void TelaCadastroVeiculo_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            TelaMenuPrincipal.Instancia.AtualizarRodape("");
+        }
+
+        #endregion
+
+        #region Metodos
+
+        private void CarregarGrupos(List<GrupoDeVeiculo> grupos)
+        {
+            cbBoxGrupoDeVeiculos.Items.Clear();
+
+            foreach (var grupo in grupos)
+            {
+                cbBoxGrupoDeVeiculos.Items.Add(grupo);
+            }
+        }
+
+        private void CarregarCombutivel()
+        {
+            cbBoxCombustivel.Items.Clear();
+            cbBoxCombustivel.Items.Add("Gasolina");
+            cbBoxCombustivel.Items.Add("Etanol");
+            cbBoxCombustivel.Items.Add("Diesel");
+        }
+
         private byte[] GetFoto(string caminhoFoto)
         {
             byte[] imagem;
@@ -165,5 +167,15 @@ namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
 
             return imagem;
         }
+
+        private void CarregarImagem()
+        {
+            using (var img = new MemoryStream(veiculo.Foto))
+            {
+                caixaImagem.Image = Image.FromStream(img);
+            }
+        }
+
+        #endregion
     }
 }

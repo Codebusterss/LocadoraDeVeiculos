@@ -31,11 +31,15 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
             {
                 new DataGridViewTextBoxColumn { DataPropertyName = "ID", HeaderText = "ID"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome"},              
+                new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Endereco", HeaderText = "Endereço"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "CPF", HeaderText = "CPF"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "CNPJ", HeaderText = "CNPJ"},
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Email", HeaderText = "Email"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "Endereco", HeaderText = "Endereço"},
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Telefone", HeaderText = "Telefone"},
             };
@@ -49,7 +53,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
             grid.Rows.Clear();
             foreach (Cliente cl in cliente)
             {
-                grid.Rows.Add(cl.ID, cl.Nome, cl.Endereco, cl.Email, cl.Telefone);
+                grid.Rows.Add(cl.ID, cl.Nome, cl.CPF, cl.CNPJ, cl.Email, cl.Endereco, cl.Telefone);
             }
         }
 

@@ -47,49 +47,7 @@ namespace LocadoraDeVeiculos.WinApp
             InicializarControladores();
         }
 
-        public static TelaMenuPrincipal Instancia
-        {
-            get;
-            private set;
-        }
-
-        public void AtualizarRodape(string mensagem)
-        {
-            lblStatusRodape.Text = mensagem;
-        }
-
-
-        private void InicializarControladores()
-        {
-            var repositorioGrupoDeVeiculos = new RepositorioGrupoDeVeiculosEmBancoDeDados();
-            var repositorioCliente = new RepositorioClienteEmBancoDeDados();
-            var repositorioFuncionario = new RepositorioFuncionarioEmBancoDeDados();
-            var repositorioTaxa = new RepositorioTaxaEmBancoDeDados();
-            var repositorioPlano = new RepositorioPlanoDeCobrancaEmBancoDeDados();
-            var repositorioCondutor = new RepositorioCondutorEmBancoDeDados();
-            var repositorioVeiculo = new RepositorioVeiculoEmBancoDeDados();
-
-            var servicoCliente = new ServicoCliente(repositorioCliente);
-            var servicoGrupoDeVeiculos = new ServicoGrupoDeVeiculo(repositorioGrupoDeVeiculos);
-            var servicoFuncionario = new ServicoFuncionario(repositorioFuncionario);
-            var servicoTaxa = new ServicoTaxa(repositorioTaxa);
-            var servicoPlano = new ServicoPlanoDeCobranca(repositorioPlano);
-            var servicoCondutor = new ServicoCondutor(repositorioCondutor);
-            var servicoVeiculo = new ServicoVeiculo(repositorioVeiculo);
-
-            controladores = new Dictionary<string, ControladorBase>();
-
-            controladores.Add("Grupos de Veículos", new ControladorGrupoDeVeiculo(servicoGrupoDeVeiculos));
-            controladores.Add("Clientes", new ControladorCliente(servicoCliente));
-            controladores.Add("Funcionários", new ControladorFuncionario(servicoFuncionario));
-            controladores.Add("Taxas", new ControladorTaxa(servicoTaxa));
-            controladores.Add("Planos de Cobrança", new ControladorPlanoDeCobranca(servicoPlano, repositorioGrupoDeVeiculos));
-            controladores.Add("Condutores", new ControladorCondutor(servicoCondutor, repositorioCliente));
-            controladores.Add("Veículos", new ControladorVeiculos(servicoVeiculo, repositorioGrupoDeVeiculos));
-        }
-
-
-        #region botoes.
+        #region Botoes
 
         private void btnInserir_Click(object sender, EventArgs e)
         {
@@ -132,7 +90,7 @@ namespace LocadoraDeVeiculos.WinApp
 
         #endregion
 
-        #region itens do menu.
+        #region Itens do menu
 
         private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -214,6 +172,60 @@ namespace LocadoraDeVeiculos.WinApp
             }
         }
 
+        #endregion
+
+        #region Eventos.
+
+        private void TelaMenuPrincipal_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        #endregion
+
+        #region Metodos
+
+        public static TelaMenuPrincipal Instancia
+        {
+            get;
+            private set;
+        }
+
+        public void AtualizarRodape(string mensagem)
+        {
+            lblStatusRodape.Text = mensagem;
+        }
+
+
+        private void InicializarControladores()
+        {
+            var repositorioGrupoDeVeiculos = new RepositorioGrupoDeVeiculosEmBancoDeDados();
+            var repositorioCliente = new RepositorioClienteEmBancoDeDados();
+            var repositorioFuncionario = new RepositorioFuncionarioEmBancoDeDados();
+            var repositorioTaxa = new RepositorioTaxaEmBancoDeDados();
+            var repositorioPlano = new RepositorioPlanoDeCobrancaEmBancoDeDados();
+            var repositorioCondutor = new RepositorioCondutorEmBancoDeDados();
+            var repositorioVeiculo = new RepositorioVeiculoEmBancoDeDados();
+
+            var servicoCliente = new ServicoCliente(repositorioCliente);
+            var servicoGrupoDeVeiculos = new ServicoGrupoDeVeiculo(repositorioGrupoDeVeiculos);
+            var servicoFuncionario = new ServicoFuncionario(repositorioFuncionario);
+            var servicoTaxa = new ServicoTaxa(repositorioTaxa);
+            var servicoPlano = new ServicoPlanoDeCobranca(repositorioPlano);
+            var servicoCondutor = new ServicoCondutor(repositorioCondutor);
+            var servicoVeiculo = new ServicoVeiculo(repositorioVeiculo);
+
+            controladores = new Dictionary<string, ControladorBase>();
+
+            controladores.Add("Grupos de Veículos", new ControladorGrupoDeVeiculo(servicoGrupoDeVeiculos));
+            controladores.Add("Clientes", new ControladorCliente(servicoCliente));
+            controladores.Add("Funcionários", new ControladorFuncionario(servicoFuncionario));
+            controladores.Add("Taxas", new ControladorTaxa(servicoTaxa));
+            controladores.Add("Planos de Cobrança", new ControladorPlanoDeCobranca(servicoPlano, repositorioGrupoDeVeiculos));
+            controladores.Add("Condutores", new ControladorCondutor(servicoCondutor, repositorioCliente));
+            controladores.Add("Veículos", new ControladorVeiculos(servicoVeiculo, repositorioGrupoDeVeiculos));
+        }
+
         private void ConfigurarTelaPrincipal(ToolStripMenuItem opcaoSelecionada)
         {
             var tipo = opcaoSelecionada.Text;
@@ -272,18 +284,8 @@ namespace LocadoraDeVeiculos.WinApp
 
             panelRegistros.Controls.Add(listagemControl);
         }
-        #endregion
-
-        #region Eventos.
-
-        private void TelaMenuPrincipal_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Environment.Exit(0);
-        }
-
 
         #endregion
 
- 
     }
 }

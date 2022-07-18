@@ -9,7 +9,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculo
 {
     public class ConfiguracaoToolboxGrupoDeVeiculo : ConfiguracaoToolboxBase
     {
-        public override string TipoCadastro => "Grupo de Veículos";
+        public override string TipoCadastro => "Grupos de Veículos";
 
         public override string TooltipInserir { get { return "Inserir um grupo de veículos."; } }
 

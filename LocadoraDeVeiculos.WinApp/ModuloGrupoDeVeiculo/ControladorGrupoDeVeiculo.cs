@@ -40,8 +40,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculo
 
             if (id == Guid.Empty)
             {
-                MessageBox.Show("Selecione um Grupo de Veículo primeiro.",
-                    "Edição de Grupo de Veículo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione um grupo de veículos primeiro.",
+                    "Edição de Grupo de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -50,7 +50,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculo
             if (resultado.IsFailed)
             {
                 MessageBox.Show(resultado.Errors[0].Message,
-                    "Edição de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    "Edição de Grupo de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -73,8 +73,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculo
 
             if (id == Guid.Empty)
             {
-                MessageBox.Show("Selecione um Grupo de Veículo primeiro.",
-                    "Exclusão de Grupo de Veículo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione um grupo de veículos primeiro.",
+                    "Exclusão de Grupo de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -83,13 +83,13 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculo
             if (resultadoSelecao.IsFailed)
             {
                 MessageBox.Show(resultadoSelecao.Errors[0].Message,
-                    "Exclusão de Grupo de Veículo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    "Exclusão de Grupo de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             var grupoSelecionado = resultadoSelecao.Value;
 
-            if (MessageBox.Show("Deseja realmente excluir o Grupo de Veículo?", "Exclusão de Grupo de Veículo",
+            if (MessageBox.Show("Deseja realmente excluir o grupo de veículos?", "Exclusão de Grupo de Veículos",
                  MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 var resultadoExclusao = servicoGrupoDeVeiculo.Excluir(grupoSelecionado);
@@ -98,7 +98,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculo
                     CarregarGrupos();
                 else
                     MessageBox.Show(resultadoExclusao.Errors[0].Message,
-                        "Exclusão de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        "Exclusão de Grupo de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -124,12 +124,12 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculo
             {
                 List<GrupoDeVeiculo> grupoDeVeiculos = resultado.Value;
                 tabelaGrupoDeVeiculoControl.AtualizarRegistros(grupoDeVeiculos);
-                TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando {grupoDeVeiculos.Count} Grupos de Veículo.");
+                TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando {grupoDeVeiculos.Count} grupos de veículos.");
             }
             else if (resultado.IsFailed)
             {
 
-                MessageBox.Show(resultado.Errors[0].Message, "Tela de Grupos de Veículo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(resultado.Errors[0].Message, "Tela de Grupos de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

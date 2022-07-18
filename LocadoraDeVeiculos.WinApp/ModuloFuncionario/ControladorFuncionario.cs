@@ -37,7 +37,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
 
             if (id == Guid.Empty)
             {
-                MessageBox.Show("Selecione um funcionário primeiro",
+                MessageBox.Show("Selecione um funcionário primeiro.",
                     "Edição de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -123,7 +123,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
             {
                 List<Funcionario> funcionarios = resultado.Value;
                 tabelaFuncionarioControl.AtualizarRegistros(funcionarios);
-                TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando {funcionarios.Count} Funcionários.");
+                TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando {funcionarios.Count} funcionários.");
             }
             else if (resultado.IsFailed)
             {

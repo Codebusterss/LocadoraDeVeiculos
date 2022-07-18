@@ -43,8 +43,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca
 
             if (id == Guid.Empty)
             {
-                MessageBox.Show("Selecione um plano de cobranca primeiro",
-                    "Edição de Plano de Cobranca", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione um plano de cobrança primeiro.",
+                    "Edição de Plano de Cobrança", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -53,7 +53,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca
             if (resultado.IsFailed)
             {
                 MessageBox.Show(resultado.Errors[0].Message,
-                    "Edição de Plano de Cobranca", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    "Edição de Plano de Cobrança", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -76,8 +76,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca
 
             if (id == Guid.Empty)
             {
-                MessageBox.Show("Selecione um plano de cobranca primeiro.",
-                    "Exclusão de Plano de Cobranca", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione um plano de cobrança primeiro.",
+                    "Exclusão de Plano de Cobrança", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -86,13 +86,13 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca
             if (resultadoSelecao.IsFailed)
             {
                 MessageBox.Show(resultadoSelecao.Errors[0].Message,
-                    "Exclusão de Plano de Cobranca", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    "Exclusão de Plano de Cobrança", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             var condutorSelecionado = resultadoSelecao.Value;
 
-            if (MessageBox.Show("Deseja realmente excluir o plano de cobranca?", "Exclusão de Plano de Cobranca",
+            if (MessageBox.Show("Deseja realmente excluir o plano de cobrança?", "Exclusão de Plano de Cobrança",
                  MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 var resultadoExclusao = servicoPlano.Excluir(condutorSelecionado);
@@ -101,7 +101,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca
                     CarregarPlanos();
                 else
                     MessageBox.Show(resultadoExclusao.Errors[0].Message,
-                        "Exclusão de Plano de Cobranca", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        "Exclusão de Plano de Cobrança", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -127,12 +127,12 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca
             {
                 List<PlanoDeCobranca> planos = resultado.Value;
                 tabelaPlanoControl.AtualizarRegistros(planos);
-                TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando {planos.Count} Planos de Cobranca.");
+                TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando {planos.Count} planos de Cobrança.");
             }
             else if (resultado.IsFailed)
             {
 
-                MessageBox.Show(resultado.Errors[0].Message, "Tela de Planos de Cobranca", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(resultado.Errors[0].Message, "Tela de Planos de Cobrança", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }

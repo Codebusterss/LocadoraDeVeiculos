@@ -11,10 +11,10 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca
     {
         public override string TipoCadastro => "Planos de Cobrança";
 
-        public override string TooltipInserir { get { return "Inserir um novo plano."; } }
+        public override string TooltipInserir { get { return "Inserir um novo plano de cobrança."; } }
 
-        public override string TooltipEditar { get { return "Editar um plano."; } }
+        public override string TooltipEditar { get { return "Editar um plano de cobrança."; } }
 
-        public override string TooltipExcluir { get { return "Excluir um plano."; } }
+        public override string TooltipExcluir { get { return "Excluir um plano de cobrança."; } }
     }
 }

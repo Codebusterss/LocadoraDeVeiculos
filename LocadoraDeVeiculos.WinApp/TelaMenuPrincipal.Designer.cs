@@ -38,6 +38,7 @@
             this.taxasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.planosDeCobrançaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.condutoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.veículosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelRegistros = new System.Windows.Forms.Panel();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -47,7 +48,6 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblStatusRodape = new System.Windows.Forms.ToolStripStatusLabel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.veículosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panelRegistros.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -127,6 +127,14 @@
             this.condutoresToolStripMenuItem.Text = "Condutores";
             this.condutoresToolStripMenuItem.Click += new System.EventHandler(this.condutoresToolStripMenuItem_Click);
             // 
+            // veículosToolStripMenuItem
+            // 
+            this.veículosToolStripMenuItem.Name = "veículosToolStripMenuItem";
+            this.veículosToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F7;
+            this.veículosToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.veículosToolStripMenuItem.Text = "Veículos";
+            this.veículosToolStripMenuItem.Click += new System.EventHandler(this.veículosToolStripMenuItem_Click);
+            // 
             // panelRegistros
             // 
             this.panelRegistros.BackColor = System.Drawing.SystemColors.Control;
@@ -170,7 +178,7 @@
             this.btnInserir.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnInserir.Name = "btnInserir";
             this.btnInserir.Size = new System.Drawing.Size(50, 50);
-            this.btnInserir.Text = "toolStripButton1";
+            this.btnInserir.Text = "Inserir";
             this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click);
             // 
             // btnEditar
@@ -182,7 +190,7 @@
             this.btnEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(50, 50);
-            this.btnEditar.Text = "toolStripButton1";
+            this.btnEditar.Text = "Editar";
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnExcluir
@@ -194,7 +202,7 @@
             this.btnExcluir.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(50, 50);
-            this.btnExcluir.Text = "toolStripButton1";
+            this.btnExcluir.Text = "Excluir";
             this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // statusStrip1
@@ -219,14 +227,6 @@
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // veículosToolStripMenuItem
-            // 
-            this.veículosToolStripMenuItem.Name = "veículosToolStripMenuItem";
-            this.veículosToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F7;
-            this.veículosToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
-            this.veículosToolStripMenuItem.Text = "Veículos";
-            this.veículosToolStripMenuItem.Click += new System.EventHandler(this.veículosToolStripMenuItem_Click);
             // 
             // TelaMenuPrincipal
             // 

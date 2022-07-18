@@ -39,52 +39,36 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculo
             }
         }
 
-        #region Botoes.
+        #region Botoes
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            if (validador.ApenasLetra(txtBoxNomeDoGrupo.Text))
+
+            grupoDeVeiculo.Nome = txtBoxNomeDoGrupo.Text;
+
+            var resultadoValidacao = GravarRegistro(grupoDeVeiculo);
+            if (resultadoValidacao.IsFailed)
             {
-                grupoDeVeiculo.Nome = txtBoxNomeDoGrupo.Text;
+                string erro = resultadoValidacao.Errors[0].Message;
 
-                var resultadoValidacao = GravarRegistro(grupoDeVeiculo);
-                if (resultadoValidacao.IsFailed)
+                if (erro.StartsWith("Falha no sistema"))
                 {
-                    string erro = resultadoValidacao.Errors[0].Message;
+                    MessageBox.Show(erro,
+                      "Cadastro de Grupo de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    TelaMenuPrincipal.Instancia.AtualizarRodape(erro);
 
-                    if (erro.StartsWith("Falha no sistema"))
-                    {
-                        MessageBox.Show(erro,
-                          "Cadastro de Grupo de Veículo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                        TelaMenuPrincipal.Instancia.AtualizarRodape(erro);
-
-                        DialogResult = DialogResult.None;
-                    }
+                    DialogResult = DialogResult.None;
                 }
             }
-            else
-            {
-                MessageBox.Show("Insira apenas letras no campo 'Nome'",
-                "Cadastro de Grupo de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
-                DialogResult = DialogResult.None;
-
-                return;
-            }
-
-        }
-
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         #endregion
 
-        #region rodape.
+        #region Rodape
 
         private void TelaCadastroGrupoDeVeiculo_Load(object sender, EventArgs e)
         {

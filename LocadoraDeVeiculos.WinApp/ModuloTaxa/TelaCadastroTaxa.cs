@@ -26,33 +26,6 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxa
         }
         public Func<Taxa, Result<Taxa>> GravarRegistro { get; set; }
 
-        private void btnCadastrarTaxa_Click(object sender, EventArgs e)
-        {
-            if (validador.ApenasLetra(txtTaxaDescricao.Text))
-            {
-                taxa.Tipo = GravarTipoTaxa();
-                taxa.Valor = ConverterValor();
-                taxa.Descricao = txtTaxaDescricao.Text;
-
-                var resultadoValidacao = GravarRegistro(Taxa);
-                if (resultadoValidacao.IsFailed)
-                {
-                    string erro = resultadoValidacao.Errors[0].Message;
-
-                    if (erro.StartsWith("Falha no sistema"))
-                    {
-                        MessageBox.Show(erro,
-                          "Cadastro de Taxa", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                        TelaMenuPrincipal.Instancia.AtualizarRodape(erro);
-
-                        DialogResult = DialogResult.None;
-                    }
-                }
-            }
-        }
         public Taxa Taxa
         {
             get
@@ -65,12 +38,55 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxa
                 ColarTipoTaxa();
                 txtBoxTaxaValor.Text = taxa.Valor.ToString();
                 txtTaxaDescricao.Text = taxa.Descricao;
-
-
-
-
             }
         }
+
+        #region Botoes
+
+        private void btnCadastrarTaxa_Click(object sender, EventArgs e)
+        {
+
+            taxa.Tipo = GravarTipoTaxa();
+            taxa.Valor = ConverterValor();
+            taxa.Descricao = txtTaxaDescricao.Text;
+
+            var resultadoValidacao = GravarRegistro(Taxa);
+            if (resultadoValidacao.IsFailed)
+            {
+                string erro = resultadoValidacao.Errors[0].Message;
+
+                if (erro.StartsWith("Falha no sistema"))
+                {
+                    MessageBox.Show(erro,
+                      "Cadastro de Taxa", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    TelaMenuPrincipal.Instancia.AtualizarRodape(erro);
+
+                    DialogResult = DialogResult.None;
+                }
+            }
+
+        }
+
+        #endregion
+
+        #region Rodape
+
+        private void TelaCadastroTaxa_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            TelaMenuPrincipal.Instancia.AtualizarRodape("");
+        }
+
+        private void TelaCadastroTaxa_Load(object sender, EventArgs e)
+        {
+            TelaMenuPrincipal.Instancia.AtualizarRodape("");
+        }
+
+        #endregion
+
+        #region Metodos
 
         private double ConverterValor()
         {
@@ -78,25 +94,25 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxa
             double valor = 0;
 
             bool estavalido = double.TryParse(txtBoxTaxaValor.Text, out valor);
-            if(estavalido == false)
+            if (estavalido == false)
             {
-                MessageBox.Show("Insira apenas números no campo 'Valor'",
-                "Cadastro de Taxas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Insira apenas números no campo 'Valor'.",
+                "Cadastro de Taxa", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             return valor;
-            
+
         }
 
         private string GravarTipoTaxa()
         {
             string tipo = "";
-            if  (radioBtnFixoTaxa.Checked == true)
+            if (radioBtnFixoTaxa.Checked == true)
             {
                 tipo = "Fixo";
             }
-            if (radioBtnDiarioTaxa.Checked == true) 
+            if (radioBtnDiarioTaxa.Checked == true)
             {
-                tipo = "Diário";
+                tipo = "Diaria";
             }
             return tipo;
         }
@@ -115,6 +131,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxa
             return tipo;
         }
 
+        #endregion
 
     }
 }

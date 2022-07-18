@@ -49,7 +49,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
             grid.Rows.Clear();
             foreach (Funcionario funcionario in funcionarios)
             {
-                grid.Rows.Add(funcionario.ID, funcionario.Nome, funcionario.Login, funcionario.Salario, funcionario.DataAdmissao);
+                grid.Rows.Add(funcionario.ID, funcionario.Nome, funcionario.Login, funcionario.Salario, funcionario.DataAdmissao.ToShortDateString());
             }
         }
 

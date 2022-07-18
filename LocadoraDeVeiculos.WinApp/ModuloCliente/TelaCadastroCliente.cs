@@ -38,85 +38,70 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
                 txtBoxEndereco.Text = cliente.Endereco;
                 txtBoxNome.Text = cliente.Nome;
                 txtBoxTelefone.Text = cliente.Telefone;
-                
+
                 ChecarCPFCNPJ();
             }
         }
 
-        #region Botoes.
+        #region Botoes
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
-            if (validador.ApenasLetra(txtBoxNome.Text))
+
+            cliente.Nome = txtBoxNome.Text;
+            cliente.Email = txtBoxEmail.Text;
+            cliente.Telefone = txtBoxTelefone.Text;
+            cliente.Endereco = txtBoxEndereco.Text;
+            if (rdBtnCPF.Checked == true)
             {
-                cliente.Nome = txtBoxNome.Text;
-                cliente.Email = txtBoxEmail.Text;
-                cliente.Telefone = txtBoxTelefone.Text;
-                cliente.Endereco = txtBoxEndereco.Text;
-                if(rdBtnCPF.Checked == true)
-                {
-                    cliente.PessoaFisica = true;
-                    cliente.CPF = txtBoxCPFCNPJ.Text;
-                    cliente.CNPJ = "";
-                }
-                else
-                {
-                    cliente.PessoaFisica = false;
-                    cliente.CPF = "";
-                    cliente.CNPJ = txtBoxCPFCNPJ.Text;
-                }
-
-                var resultadoValidacao = GravarRegistro(cliente);
-
-
-                if (resultadoValidacao.IsFailed)
-                {
-                    string erro = resultadoValidacao.Errors[0].Message;
-
-                    if (erro.StartsWith("Falha no sistema"))
-                    {
-                        MessageBox.Show(erro,
-                          "Cadastro de Condutor", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                        TelaMenuPrincipal.Instancia.AtualizarRodape(erro);
-
-                        DialogResult = DialogResult.None;
-                    }
-                }
+                cliente.PessoaFisica = true;
+                cliente.CPF = txtBoxCPFCNPJ.Text;
+                cliente.CNPJ = "";
             }
             else
             {
-                MessageBox.Show("Insira apenas letras no campo 'Nome'",
-                "Cadastro de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
-                DialogResult = DialogResult.None;
-
-                return;
+                cliente.PessoaFisica = false;
+                cliente.CPF = "";
+                cliente.CNPJ = txtBoxCPFCNPJ.Text;
             }
-        }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            this.Close();
+            var resultadoValidacao = GravarRegistro(cliente);
+
+
+            if (resultadoValidacao.IsFailed)
+            {
+                string erro = resultadoValidacao.Errors[0].Message;
+
+                if (erro.StartsWith("Falha no sistema"))
+                {
+                    MessageBox.Show(erro,
+                      "Cadastro de Condutor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    TelaMenuPrincipal.Instancia.AtualizarRodape(erro);
+
+                    DialogResult = DialogResult.None;
+                }
+            }
+
         }
 
         private void rdBtnCPF_CheckedChanged(object sender, EventArgs e)
         {
-           
+
             txtBoxCPFCNPJ.Mask = "000,000,000-00";
         }
 
         private void rdBtnCNPJ_CheckedChanged(object sender, EventArgs e)
         {
-         
+
             txtBoxCPFCNPJ.Mask = "00,000,000/0000-00";
         }
 
         #endregion
 
-        #region rodape.
+        #region Rodape
 
         private void TelaCadastroCliente_Load(object sender, EventArgs e)
         {
@@ -130,21 +115,27 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
 
         #endregion
 
+        #region Metodos
+
         private void ChecarCPFCNPJ()
         {
-            if(cliente.CPF == "" && cliente.CNPJ == "")
+            if (cliente.CPF == "" && cliente.CNPJ == "")
             {
                 txtBoxCPFCNPJ.Text = "";
             }
-            else if(cliente.CPF != "")
+            else if (cliente.CPF != "")
             {
                 txtBoxCPFCNPJ.Text = cliente.CPF;
+                rdBtnCPF.Checked = true;
             }
             else
             {
                 txtBoxCPFCNPJ.Text = cliente.CNPJ;
+                rdBtnCNPJ.Checked = true;
             }
         }
-        
+
+        #endregion
+
     }
 }

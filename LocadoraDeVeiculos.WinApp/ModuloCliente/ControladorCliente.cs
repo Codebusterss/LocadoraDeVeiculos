@@ -38,7 +38,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
 
             if (id == Guid.Empty)
             {
-                MessageBox.Show("Selecione um Cliente primeiro.",
+                MessageBox.Show("Selecione um cliente primeiro.",
                     "Edição de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -48,7 +48,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
             if (resultado.IsFailed)
             {
                 MessageBox.Show(resultado.Errors[0].Message,
-                    "Edição de cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    "Edição de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -71,7 +71,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
 
             if (id == Guid.Empty)
             {
-                MessageBox.Show("Selecione um Cliente primeiro.",
+                MessageBox.Show("Selecione um cliente primeiro.",
                     "Exclusão de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -87,7 +87,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
 
             var grupoSelecionado = resultadoSelecao.Value;
 
-            if (MessageBox.Show("Deseja realmente excluir o Cliente?", "Exclusão de Cliente",
+            if (MessageBox.Show("Deseja realmente excluir o cliente?", "Exclusão de Cliente",
                  MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 var resultadoExclusao = servicoCliente.Excluir(grupoSelecionado);
@@ -122,7 +122,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
             {
                 List<Cliente> clientes = resultado.Value;
                 tabelaClienteControl.AtualizarRegistros(clientes);
-                TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando {clientes.Count} Clientes.");
+                TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando {clientes.Count} clientes.");
             }
             else if (resultado.IsFailed)
             {

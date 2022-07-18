@@ -37,7 +37,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxa
 
             if (id == Guid.Empty)
             {
-                MessageBox.Show("Selecione uma taxa primeiro",
+                MessageBox.Show("Selecione uma taxa primeiro.",
                     "Edição de Taxa", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -111,7 +111,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxa
             {
                 List<Taxa> taxas = resultado.Value;
                 tabelataxa.AtualizarRegistros(taxas);
-                TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando {taxas.Count} Taxas.");
+                TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando {taxas.Count} taxas.");
             }
             else if (resultado.IsFailed)
             {

@@ -177,6 +177,8 @@
             this.Name = "TelaCadastroTaxa";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Taxas";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TelaCadastroTaxa_FormClosing);
+            this.Load += new System.EventHandler(this.TelaCadastroTaxa_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

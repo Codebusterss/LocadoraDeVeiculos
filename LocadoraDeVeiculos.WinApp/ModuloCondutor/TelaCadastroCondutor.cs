@@ -26,16 +26,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
         {
             InitializeComponent();
             CarregarCondutor(clientes);
-          
-        }
-        private void CarregarCondutor(List<Cliente> clientes)
-        {
-            comboBoxCondCliente.Items.Clear();
 
-            foreach (var cliente in clientes)
-            {
-                comboBoxCondCliente.Items.Add(cliente);
-            }
         }
 
         public Func<Condutor, Result<Condutor>> GravarRegistro { get; set; }
@@ -59,11 +50,13 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
                 textBoxCondCPF.Text = condutor.CPF;
                 textBoxCondCNH.Text = condutor.CNH;
 
-               
+
             }
         }
 
-        private void button1_Click(object sender, EventArgs e) //gravar
+        #region Botoes
+
+        private void button1_Click(object sender, EventArgs e)
         {
 
             condutor.Cliente = comboBoxCondCliente.SelectedItem as Cliente;
@@ -76,61 +69,52 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
                 return;
             }
 
-            if (validador.ApenasLetra(textBoxCondNome.Text))
+
+
+            condutor.Nome = textBoxCondNome.Text;
+            condutor.Email = textBoxCondEmail.Text;
+            condutor.Telefone = textBoxTelefone.Text;
+            condutor.Endereco = textBoxCondEndereco.Text;
+            condutor.CPF = textBoxCondCPF.Text;
+            condutor.CNH = textBoxCondCNH.Text;
+            condutor.ValidadeCNH = DateTime.Parse(dateTimePickerCondValidade.Text);
+
+
+            var resultadoValidacao = GravarRegistro(condutor);
+
+
+            if (resultadoValidacao.IsFailed)
             {
-               
-                condutor.Nome = textBoxCondNome.Text;
-                condutor.Email = textBoxCondEmail.Text;
-                condutor.Telefone = textBoxTelefone.Text;
-                condutor.Endereco = textBoxCondEndereco.Text;
-                condutor.CPF = textBoxCondCPF.Text;
-                condutor.CNH = textBoxCondCNH.Text;
-                condutor.ValidadeCNH = DateTime.Parse(dateTimePickerCondValidade.Text);
+                string erro = resultadoValidacao.Errors[0].Message;
 
-
-                var resultadoValidacao = GravarRegistro(condutor);
-
-                
-                if (resultadoValidacao.IsFailed)
+                if (erro.StartsWith("Falha no sistema"))
                 {
-                    string erro = resultadoValidacao.Errors[0].Message;
-
-                    if (erro.StartsWith("Falha no sistema"))
-                    {
-                        MessageBox.Show(erro,
-                          "Cadastro de Condutor", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                        TelaMenuPrincipal.Instancia.AtualizarRodape(erro);
-
-                        DialogResult = DialogResult.None;
-                    }
+                    MessageBox.Show(erro,
+                      "Cadastro de Condutor", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                else
+                {
+                    TelaMenuPrincipal.Instancia.AtualizarRodape(erro);
 
+                    DialogResult = DialogResult.None;
+                }
             }
-            else
-            {
-                MessageBox.Show("Insira apenas letras no campo 'Nome'",
-                "Cadastro de Condutor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
-                DialogResult = DialogResult.None;
 
-                return;
-            }
+
         }
-       
+
         private void checkBoxClienteCondutor_CheckedChanged(object sender, EventArgs e)
         {
 
             List<Cliente> clientes = repositorioClienteEmBanco.SelecionarTodos();
-          
+
             string arrumar = "";
 
-            
+
             if (comboBoxCondCliente.Text == "")
             {
-                MessageBox.Show("Selecione um cliente primeiro",
+                MessageBox.Show("Selecione um cliente primeiro.",
                   "Cadastro de Condutores", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
@@ -144,16 +128,16 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
                 }
             }
 
-            if(clienteSelecionado.PessoaFisica == false)
+            if (clienteSelecionado.PessoaFisica == false)
             {
                 MessageBox.Show("Condutor não pode ser uma empresa.",
                 "Cadastro de Condutores", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            else 
+            else
             {
                 foreach (Cliente cliente in clientes)
                 {
-                    if(comboBoxCondCliente.Text == cliente.Nome)
+                    if (comboBoxCondCliente.Text == cliente.Nome)
                     {
                         textBoxCondNome.Text = cliente.Nome;
                         textBoxCondEmail.Text = cliente.Email;
@@ -167,17 +151,40 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
             }
         }
 
-       
-
-
         private void comboBoxCondCliente_SelectedIndexChanged(object sender, EventArgs e)
         {
             checkBoxClienteCondutor.Enabled = true;
         }
 
+        #endregion
+
+        #region Rodape
+
         private void TelaCadastroCondutor_Load(object sender, EventArgs e)
         {
             TelaMenuPrincipal.Instancia.AtualizarRodape("");
         }
+
+        private void TelaCadastroCondutor_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            TelaMenuPrincipal.Instancia.AtualizarRodape("");
+        }
+
+        #endregion
+
+        #region Metodos
+
+        private void CarregarCondutor(List<Cliente> clientes)
+        {
+            comboBoxCondCliente.Items.Clear();
+
+            foreach (var cliente in clientes)
+            {
+                comboBoxCondCliente.Items.Add(cliente);
+            }
+        }
+
+        #endregion
+
     }
 }

@@ -42,7 +42,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
 
             if (id == Guid.Empty)
             {
-                MessageBox.Show("Selecione um condutor primeiro",
+                MessageBox.Show("Selecione um condutor primeiro.",
                     "Edição de Condutor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -127,7 +127,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
             {
                 List<Condutor> condutores = resultado.Value;
                 tabelaCondutor.AtualizarRegistros(condutores);
-                TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando {condutores.Count} Condutores.");
+                TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando {condutores.Count} condutores.");
             }
             else if (resultado.IsFailed)
             {
