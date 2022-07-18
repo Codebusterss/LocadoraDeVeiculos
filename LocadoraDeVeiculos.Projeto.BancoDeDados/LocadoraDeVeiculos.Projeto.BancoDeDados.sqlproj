@@ -63,10 +63,11 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\CLIENTE.sql" />
+    <Build Include="dbo\Tables\CONDUTOR.sql" />
     <Build Include="dbo\Tables\FUNCIONARIO.sql" />
     <Build Include="dbo\Tables\GRUPODEVEICULOS.sql" />
     <Build Include="dbo\Tables\PLANODECOBRANCA.sql" />
     <Build Include="dbo\Tables\TAXA.sql" />
-    <Build Include="dbo\Tables\CONDUTOR.sql" />
+    <Build Include="dbo\Tables\VEICULO.sql" />
   </ItemGroup>
 </Project>
