@@ -127,7 +127,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca
             {
                 List<PlanoDeCobranca> planos = resultado.Value;
                 tabelaPlanoControl.AtualizarRegistros(planos);
-                TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando {planos.Count} planos de Cobrança.");
+                TelaMenuPrincipal.Instancia.AtualizarRodape($"Visualizando {planos.Count} planos de cobrança.");
             }
             else if (resultado.IsFailed)
             {
