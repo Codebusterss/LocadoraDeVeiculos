@@ -19,8 +19,11 @@ A Locadora de Veículos é um projeto da Academia do Programador 2022, sendo o p
 <div> ✔️ Proteção com Login <div>
 <div> ✔️ Gerencia os funcionários <div>
 <div> ✔️ Gerencia os clientes <div>
+<div> ✔️ Gerencia as taxas <div>
+<div> ✔️ Gerencia os planos de cobrança <div>
 <div> ✔️ Gerencia os condutores <div>
-<div> ❌ Gerencia os veículos <div>
+<div> ✔️ Gerencia os veículos <div>
+<div> ✔️ Gerencia os grupos de veículos <div>
 <div> ❌ Gerencia as locações <div>
       
 ## Como rodar a aplicação 🔃 
