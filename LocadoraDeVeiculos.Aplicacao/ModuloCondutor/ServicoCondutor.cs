@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using FluentValidation.Results;
 using FluentResults;
+using LocadoraDeVeiculos.ORM.ModuloCondutor;
+using LocadoraDeVeiculos.Dominio.Compartilhado;
 
 namespace LocadoraDeVeiculos.Aplicacao.ModuloCondutor
 {
@@ -21,11 +23,13 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCondutor
 
     public class ServicoCondutor : IServicoCondutor
     {
-        private IRepositorioCondutor repositorioCondutor;
+        private RepositorioCondutorORM repositorioCondutor;
+        private IContextoPersistencia contextoPersistencia;
 
-        public ServicoCondutor(IRepositorioCondutor repositorioCondutor) 
+        public ServicoCondutor(RepositorioCondutorORM repositorioCondutor, IContextoPersistencia contextoPersistencia)
         {
             this.repositorioCondutor = repositorioCondutor;
+            this.contextoPersistencia = contextoPersistencia;
         }
 
         public Result<Condutor> Inserir(Condutor condutor)
@@ -48,6 +52,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCondutor
             try
             {
                 repositorioCondutor.Inserir(condutor);
+                contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Condutor {CondutorID} inserido com sucesso.", condutor.ID);
 
@@ -82,6 +87,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCondutor
             try
             {
                 repositorioCondutor.Editar(condutor);
+                contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Condutor {CondutorID} editado com sucesso.", condutor.ID);
 
@@ -104,6 +110,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCondutor
             try
             {
                 repositorioCondutor.Excluir(condutor);
+                contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Condutor {CondutorID} excluído com sucesso.", condutor.ID);
 
@@ -198,7 +205,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCondutor
                    condutorEncontrado.CPF == condutor.CPF &&
                    condutorEncontrado.ID != condutor.ID;
         }
-       
+
 
         private bool CNHDuplicado(Condutor condutor)
         {
