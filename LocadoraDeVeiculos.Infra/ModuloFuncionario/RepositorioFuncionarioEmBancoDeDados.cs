@@ -23,7 +23,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloFuncionario
                     [LOGIN],
                     [SENHA],
                     [SALARIO],
-                    [DATADEADMISSAO],
+                    [DATAADMISSAO],
                     [ADMIN]
                 )
             VALUES
@@ -33,7 +33,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloFuncionario
                     @LOGIN,
                     @SENHA,
                     @SALARIO,
-                    @DATADEADMISSAO,
+                    @DATAADMISSAO,
                     @ADMIN
                 );";
 
@@ -44,7 +44,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloFuncionario
                         [LOGIN] = @LOGIN,
                         [SENHA] = @SENHA,
                         [SALARIO] = @SALARIO,
-                        [DATADEADMISSAO] = @DATADEADMISSAO,
+                        [DATAADMISSAO] = @DATAADMISSAO,
                         [ADMIN] = @ADMIN
                     WHERE [ID] = @ID";
 
@@ -59,7 +59,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloFuncionario
                 [LOGIN],
                 [SENHA],
                 [SALARIO],
-                [DATADEADMISSAO],
+                [DATAADMISSAO],
                 [ADMIN]
             FROM
                 [FUNCIONARIO]";
@@ -71,7 +71,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloFuncionario
                 [LOGIN],
                 [SENHA],
                 [SALARIO],
-                [DATADEADMISSAO],
+                [DATAADMISSAO],
                 [ADMIN]
             FROM
                 [FUNCIONARIO]
@@ -84,7 +84,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloFuncionario
                    [NOME] NOME,
                    [LOGIN] LOGIN,
                    [SENHA] SENHA,
-                   [DATADEADMISSAO] DATADEADMISSAO,
+                   [DATAADMISSAO] DATAADMISSAO,
                    [SALARIO] SALARIO,
                    [ADMIN] ADMIN
             FROM
@@ -98,7 +98,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloFuncionario
                    [NOME] NOME,
                    [LOGIN] LOGIN,
                    [SENHA] SENHA,
-                   [DATADEADMISSAO] DATADEADMISSAO,
+                   [DATAADMISSAO] DATAADMISSAO,
                    [SALARIO] SALARIO,
                    [ADMIN] ADMIN
             FROM

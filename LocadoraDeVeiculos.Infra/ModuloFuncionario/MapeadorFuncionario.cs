@@ -19,7 +19,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloFuncionario
             comando.Parameters.AddWithValue("LOGIN", funcionario.Login);
             comando.Parameters.AddWithValue("SENHA", funcionario.Senha);
             comando.Parameters.AddWithValue("SALARIO", funcionario.Salario);
-            comando.Parameters.AddWithValue("DATADEADMISSAO", funcionario.DataAdmissao);
+            comando.Parameters.AddWithValue("DATAADMISSAO", funcionario.DataAdmissao);
             comando.Parameters.AddWithValue("ADMIN", funcionario.Admin);
         }
 
@@ -32,7 +32,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloFuncionario
             var login = Convert.ToString(leitorFuncionario["LOGIN"]);
             var senha = Convert.ToString(leitorFuncionario["SENHA"]);
             var salario = Convert.ToSingle(leitorFuncionario["SALARIO"]);
-            var dataAdmissao = Convert.ToDateTime(leitorFuncionario["DATADEADMISSAO"]);
+            var dataAdmissao = Convert.ToDateTime(leitorFuncionario["DATAADMISSAO"]);
             var admin = Convert.ToBoolean(leitorFuncionario["ADMIN"]);
            
 

@@ -1,8 +1,5 @@
 using LocadoraDeVeiculos.Infra.Logging;
-using Serilog;
-using System;
-using System.IO;
-using System.Windows.Forms;
+using LocadoraDeVeiculos.ORM.Compartilhado;
 
 namespace LocadoraDeVeiculos.WinApp
 {
@@ -11,6 +8,7 @@ namespace LocadoraDeVeiculos.WinApp
         [STAThread]
         static void Main()
         {
+            MigradorBancoDadosLocadoraDeVeiculos.AtualizarBancoDados();
             ConfiguracaoLogs.ConfigurarEscritaLogs();
             ApplicationConfiguration.Initialize();
             Application.Run(new TelaLogin());

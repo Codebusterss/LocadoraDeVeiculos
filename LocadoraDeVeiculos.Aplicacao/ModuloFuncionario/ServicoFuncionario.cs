@@ -7,6 +7,8 @@ using FluentValidation.Results;
 using Serilog;
 using LocadoraDeVeiculos.Dominio.ModuloFuncionario;
 using FluentResults;
+using LocadoraDeVeiculos.ORM.ModuloFuncionario;
+using LocadoraDeVeiculos.Dominio.Compartilhado;
 
 namespace LocadoraDeVeiculos.Aplicacao.ModuloFuncionario
 {
@@ -21,11 +23,13 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloFuncionario
 
     public class ServicoFuncionario : IServicoFuncionario
     {
-        private IRepositorioFuncionario repositorioFuncionario;
+        private RepositorioFuncionarioORM repositorioFuncionario;
+        private IContextoPersistencia contextoPersistencia;
 
-        public ServicoFuncionario(IRepositorioFuncionario repositorioFuncionario)
+        public ServicoFuncionario(RepositorioFuncionarioORM repositorioFuncionario, IContextoPersistencia contextoPersistencia)
         {
             this.repositorioFuncionario = repositorioFuncionario;
+            this.contextoPersistencia = contextoPersistencia;
         }
 
         public Result<Funcionario> Inserir(Funcionario funcionario)
@@ -48,6 +52,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloFuncionario
             try
             {
                 repositorioFuncionario.Inserir(funcionario);
+                contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Funcionário {FuncionarioID} inserido com sucesso.", funcionario.ID);
 
@@ -83,6 +88,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloFuncionario
             try
             {
                 repositorioFuncionario.Editar(funcionario);
+                contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Funcionário {FuncionarioID} editado com sucesso.", funcionario.ID);
 
@@ -105,6 +111,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloFuncionario
             try
             {
                 repositorioFuncionario.Excluir(funcionario);
+                contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Funcionário {FuncionarioID} excluído com sucesso.", funcionario.ID);
 
