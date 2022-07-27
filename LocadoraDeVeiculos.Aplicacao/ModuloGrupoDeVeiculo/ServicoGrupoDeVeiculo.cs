@@ -8,6 +8,7 @@ using LocadoraDeVeiculos.Dominio.ModuloGrupoDeVeiculo;
 using FluentValidation.Results;
 using FluentResults;
 using LocadoraDeVeiculos.Dominio.Compartilhado;
+using LocadoraDeVeiculos.ORM.ModuloGrupoDeVeiculo;
 
 namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculo
 {
@@ -22,11 +23,13 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculo
 
     public class ServicoGrupoDeVeiculo : IServicoGrupoDeVeiculo
     {
-        private IRepositorioGrupoDeVeiculo repositorioGrupoDeVeiculo;
+        private RepositorioGrupoORM repositorioGrupoDeVeiculo;
+        private IContextoPersistencia contextoPersistencia;
 
-        public ServicoGrupoDeVeiculo(IRepositorioGrupoDeVeiculo repositorioGrupoDeVeiculo)
+        public ServicoGrupoDeVeiculo(RepositorioGrupoORM repositorioGrupo, IContextoPersistencia contextoPersistencia)
         {
-            this.repositorioGrupoDeVeiculo = repositorioGrupoDeVeiculo;
+            this.repositorioGrupoDeVeiculo = repositorioGrupo;
+            this.contextoPersistencia = contextoPersistencia;
         }
 
         public Result<GrupoDeVeiculo> Inserir(GrupoDeVeiculo grupo)
@@ -49,6 +52,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculo
             try
             {
                 repositorioGrupoDeVeiculo.Inserir(grupo);
+                contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Grupo de veículos {GrupoID} inserido com sucesso.", grupo.ID);
 
@@ -84,6 +88,8 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculo
             try
             {
                 repositorioGrupoDeVeiculo.Editar(grupo);
+                contextoPersistencia.GravarDados();
+
 
                 Log.Logger.Information("Grupo de veículos {GrupoID} editado com sucesso.", grupo.ID);
 
@@ -106,6 +112,8 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculo
             try
             {
                 repositorioGrupoDeVeiculo.Excluir(grupoDeVeiculo);
+                contextoPersistencia.GravarDados();
+
 
                 Log.Logger.Information("Grupo de veículos {GrupoID} excluído com sucesso.", grupoDeVeiculo.ID);
 

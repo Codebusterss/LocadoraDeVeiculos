@@ -18,7 +18,7 @@ namespace LocadoraDeVeiculos.Infra.Testes.Compartilhado
 
             Db.ExecutarSql("DELETE FROM CLIENTE;");
 
-            Db.ExecutarSql("DELETE FROM FUNCIONARIO;");
+            //Db.ExecutarSql("DELETE FROM FUNCIONARIO;");
 
             Db.ExecutarSql("DELETE FROM VEICULO;");
 

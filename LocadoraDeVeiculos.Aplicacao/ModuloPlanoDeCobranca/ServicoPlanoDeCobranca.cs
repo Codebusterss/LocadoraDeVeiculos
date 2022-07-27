@@ -7,6 +7,8 @@ using FluentValidation.Results;
 using Serilog;
 using LocadoraDeVeiculos.Dominio.ModuloPlanoDeCobranca;
 using FluentResults;
+using LocadoraDeVeiculos.ORM.ModuloPlanoDeCobranca;
+using LocadoraDeVeiculos.Dominio.Compartilhado;
 
 namespace LocadoraDeVeiculos.Aplicacao.ModuloPlanoDeCobranca
 {
@@ -21,11 +23,13 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloPlanoDeCobranca
 
     public class ServicoPlanoDeCobranca : IServicoPlanoDeCobranca
     {
-        private IRepositorioPlanoDeCobranca repositorioPlanoDeCobranca;
+        private RepositorioPlanoORM repositorioPlanoDeCobranca;
+        private IContextoPersistencia contextoPersistencia;
 
-        public ServicoPlanoDeCobranca(IRepositorioPlanoDeCobranca repositorioPlanoDeCobranca)
+        public ServicoPlanoDeCobranca(RepositorioPlanoORM repositorioPlano, IContextoPersistencia contextoPersistencia)
         {
-            this.repositorioPlanoDeCobranca = repositorioPlanoDeCobranca;
+            this.repositorioPlanoDeCobranca = repositorioPlano;
+            this.contextoPersistencia = contextoPersistencia;
         }
 
         public Result<PlanoDeCobranca> Inserir(PlanoDeCobranca plano)
@@ -48,6 +52,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloPlanoDeCobranca
             try
             {
                 repositorioPlanoDeCobranca.Inserir(plano);
+                contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Plano de Cobrança {PlanoID} inserido com sucesso.", plano.ID);
 
@@ -82,6 +87,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloPlanoDeCobranca
             try
             {
                 repositorioPlanoDeCobranca.Editar(plano);
+                contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Plano de cobrança {PlanoID} editado com sucesso.", plano.ID);
 
@@ -104,6 +110,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloPlanoDeCobranca
             try
             {
                 repositorioPlanoDeCobranca.Excluir(plano);
+                contextoPersistencia.GravarDados();
 
                 Log.Logger.Information("Plano de cobrança {PlanoID} excluído com sucesso.", plano.ID);
 
