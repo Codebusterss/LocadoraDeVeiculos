@@ -25,8 +25,9 @@ namespace LocadoraDeVeiculos.Dominio.ModuloLocacao
         public DateTime DataLocacao { get; set; }
         public DateTime DataDevolucao { get; set; }
         public bool StatusLocacao { get; set; }
+        public double Valor { get; set; }
 
-        public Locacao(Funcionario funcionario, Condutor condutor, Veiculo veiculo, PlanoDeCobranca plano, List<Taxa> taxas, DateTime dataLocacao, DateTime dataDevolucao, bool statusLocacao)
+        public Locacao(Funcionario funcionario, Condutor condutor, Veiculo veiculo, PlanoDeCobranca plano, List<Taxa> taxas, DateTime dataLocacao, DateTime dataDevolucao, bool statusLocacao, double valor)
         {
             Funcionario = funcionario;
             Condutor = condutor;
@@ -36,6 +37,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloLocacao
             DataLocacao = dataLocacao;
             DataDevolucao = dataDevolucao;
             StatusLocacao = statusLocacao;
+            Valor = valor;
         }
 
         public Locacao Clonar()
@@ -54,7 +56,8 @@ namespace LocadoraDeVeiculos.Dominio.ModuloLocacao
                    EqualityComparer<List<Taxa>>.Default.Equals(Taxas, locacao.Taxas) &&
                    DataLocacao == locacao.DataLocacao &&
                    DataDevolucao == locacao.DataDevolucao &&
-                   StatusLocacao == locacao.StatusLocacao;
+                   StatusLocacao == locacao.StatusLocacao &&
+                   Valor == locacao.Valor;
         }
     }
 
