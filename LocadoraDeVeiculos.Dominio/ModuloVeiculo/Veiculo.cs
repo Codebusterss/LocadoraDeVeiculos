@@ -21,21 +21,6 @@ namespace LocadoraDeVeiculos.Dominio.ModuloVeiculo
         public GrupoDeVeiculo GrupoDeVeiculo { get; set; }
         public byte[] Foto { get; set; }
 
-        public override void Atualizar(Veiculo registro)
-        {
-            this.Marca = registro.Marca;
-            this.Modelo = registro.Modelo;
-            this.Placa = registro.Placa;
-            this.Cor = registro.Cor;
-            this.CapacidadeDoTanque = registro.CapacidadeDoTanque;
-            this.KmPercorrido = registro.KmPercorrido;
-            this.Ano = registro.Ano;
-            this.TipoCombustivel = registro.TipoCombustivel;
-            this.GrupoDeVeiculo = registro.GrupoDeVeiculo;
-            this.Foto = registro.Foto;
-        }
-
-
         public Veiculo()
         {
 

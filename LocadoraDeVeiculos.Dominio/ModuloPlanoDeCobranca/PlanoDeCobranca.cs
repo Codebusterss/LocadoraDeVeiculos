@@ -34,17 +34,6 @@ namespace LocadoraDeVeiculos.Dominio.ModuloPlanoDeCobranca
             ControladoValorKM = controladoValorKM;
         }
 
-        public override void Atualizar(PlanoDeCobranca registro)
-        {
-            this.GrupoDeVeiculos = registro.GrupoDeVeiculos;
-            this.DiarioValorDia = registro.DiarioValorDia;
-            this.DiarioValorKM = registro.DiarioValorKM;
-            this.LivreValorDia = registro.LivreValorDia;
-            this.ControladoValorDia = registro.ControladoValorDia;
-            this.ControladoLimiteKM = registro.ControladoLimiteKM;
-            this.ControladoValorKM = registro.ControladoValorKM;
-        }
-
         public override string? ToString()
         {
             return base.ToString();

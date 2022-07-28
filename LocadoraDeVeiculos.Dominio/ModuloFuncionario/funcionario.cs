@@ -28,16 +28,6 @@ public class Funcionario : EntidadeBase<Funcionario>
     public bool Admin { get; set; }
     public DateTime DataAdmissao { get; set; }
 
-    public override void Atualizar(Funcionario registro)
-    {
-        this.Nome = registro.Nome;
-        this.Login = registro.Login;
-        this.Senha = registro.Senha;
-        this.Salario = registro.Salario;
-        this.Admin = registro.Admin;
-        this.DataAdmissao = registro.DataAdmissao;
-    }
-
     public override string? ToString()
     {
         return base.ToString();

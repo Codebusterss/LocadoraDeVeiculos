@@ -21,11 +21,6 @@ namespace LocadoraDeVeiculos.Dominio.ModuloGrupoDeVeiculo
             Nome = nome;
         }
 
-        public override void Atualizar(GrupoDeVeiculo registro)
-        {
-            this.Nome = registro.Nome;
-        }
-
         public override string ToString()
         {
             return Nome;

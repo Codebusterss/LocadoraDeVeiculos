@@ -24,12 +24,6 @@ namespace LocadoraDeVeiculos.Dominio.ModuloTaxa
             Tipo = tipo;
             Descricao = descricao;
         }
-        public override void Atualizar(Taxa registro)
-        {
-            this.Valor = registro.Valor;
-            this.Tipo = registro.Tipo;
-            this.Descricao = registro.Descricao;
-        }
         public override string ToString()
         {
             return Tipo;

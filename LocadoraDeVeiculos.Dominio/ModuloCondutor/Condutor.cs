@@ -47,19 +47,6 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCondutor
             CondutorCliente = condutorcliente;
         }
 
-        public override void Atualizar(Condutor registro)
-        {
-            this.Nome = registro.Nome;
-            this.CPF = registro.CPF;
-            this.CNH = registro.CNH;
-            this.ValidadeCNH = registro.ValidadeCNH;
-            this.Email = registro.Endereco;
-            this.Telefone = registro.Telefone;
-            this.Endereco = registro.Endereco;
-            this.CondutorCliente = registro.CondutorCliente;
-            this.Cliente = registro.Cliente;
-        }
-
         public override string? ToString()
         {
             return base.ToString();

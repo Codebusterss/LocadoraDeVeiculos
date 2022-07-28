@@ -34,16 +34,6 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCliente
             PessoaFisica = pessoaFisica;
         }
 
-        public override void Atualizar(Cliente registro)
-        {
-            this.Nome = registro.Nome;
-            this.CNPJ = registro.CNPJ;
-            this.CPF = registro.CPF;
-            this.Endereco = registro.Endereco;
-            this.Email = registro.Endereco;
-            this.Telefone = registro.Telefone;
-            this.PessoaFisica = registro.PessoaFisica;
-        }
         public Cliente Clone()
         {
             return MemberwiseClone() as Cliente;
