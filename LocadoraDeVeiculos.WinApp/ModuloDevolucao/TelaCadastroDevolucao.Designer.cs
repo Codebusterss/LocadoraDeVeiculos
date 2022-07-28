@@ -30,7 +30,6 @@
         {
             this.funcionario = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -38,16 +37,21 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.txtBoxFuncionario = new System.Windows.Forms.TextBox();
+            this.textBoxCondutor = new System.Windows.Forms.TextBox();
+            this.textBoxCliente = new System.Windows.Forms.TextBox();
+            this.textBoxPlanoCobranca = new System.Windows.Forms.TextBox();
+            this.textBoxVeiculo = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.textBoxQuilVeiculo = new System.Windows.Forms.TextBox();
+            this.dateTimeDataLocacao = new System.Windows.Forms.DateTimePicker();
+            this.dateTimeDataDevolucao = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
+            this.comboBoxNivelTanque = new System.Windows.Forms.ComboBox();
+            this.btnGravar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBoxValorTotal = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // funcionario
@@ -68,19 +72,10 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Condutor:";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(21, 156);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(160, 25);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Grupo de Veiculos:";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(505, 53);
+            this.label4.Location = new System.Drawing.Point(527, 109);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(69, 25);
             this.label4.TabIndex = 3;
@@ -89,16 +84,16 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(502, 162);
+            this.label5.Location = new System.Drawing.Point(109, 165);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(72, 25);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Veiculo:";
+            this.label5.Text = "Veículo:";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(415, 106);
+            this.label6.Location = new System.Drawing.Point(434, 165);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(162, 25);
             this.label6.TabIndex = 5;
@@ -107,7 +102,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(34, 393);
+            this.label7.Location = new System.Drawing.Point(434, 282);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(167, 25);
             this.label7.TabIndex = 6;
@@ -116,7 +111,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(34, 218);
+            this.label8.Location = new System.Drawing.Point(34, 227);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(147, 25);
             this.label8.TabIndex = 7;
@@ -125,7 +120,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(407, 221);
+            this.label9.Location = new System.Drawing.Point(434, 227);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(167, 25);
             this.label9.TabIndex = 8;
@@ -134,99 +129,150 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(34, 341);
+            this.label1.Location = new System.Drawing.Point(39, 341);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(142, 25);
             this.label1.TabIndex = 9;
             this.label1.Text = "Nivel do tanque:";
             // 
-            // textBox1
+            // txtBoxFuncionario
             // 
-            this.textBox1.Location = new System.Drawing.Point(187, 47);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(194, 31);
-            this.textBox1.TabIndex = 10;
+            this.txtBoxFuncionario.Location = new System.Drawing.Point(187, 47);
+            this.txtBoxFuncionario.Name = "txtBoxFuncionario";
+            this.txtBoxFuncionario.Size = new System.Drawing.Size(214, 31);
+            this.txtBoxFuncionario.TabIndex = 10;
             // 
-            // textBox2
+            // textBoxCondutor
             // 
-            this.textBox2.Location = new System.Drawing.Point(187, 103);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(194, 31);
-            this.textBox2.TabIndex = 11;
+            this.textBoxCondutor.Location = new System.Drawing.Point(187, 103);
+            this.textBoxCondutor.Name = "textBoxCondutor";
+            this.textBoxCondutor.Size = new System.Drawing.Size(214, 31);
+            this.textBoxCondutor.TabIndex = 11;
             // 
-            // textBox3
+            // textBoxCliente
             // 
-            this.textBox3.Location = new System.Drawing.Point(187, 156);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(194, 31);
-            this.textBox3.TabIndex = 12;
+            this.textBoxCliente.Location = new System.Drawing.Point(602, 100);
+            this.textBoxCliente.Name = "textBoxCliente";
+            this.textBoxCliente.Size = new System.Drawing.Size(194, 31);
+            this.textBoxCliente.TabIndex = 14;
             // 
-            // textBox5
+            // textBoxPlanoCobranca
             // 
-            this.textBox5.Location = new System.Drawing.Point(583, 47);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(194, 31);
-            this.textBox5.TabIndex = 14;
+            this.textBoxPlanoCobranca.Location = new System.Drawing.Point(607, 159);
+            this.textBoxPlanoCobranca.Name = "textBoxPlanoCobranca";
+            this.textBoxPlanoCobranca.Size = new System.Drawing.Size(194, 31);
+            this.textBoxPlanoCobranca.TabIndex = 15;
             // 
-            // textBox6
+            // textBoxVeiculo
             // 
-            this.textBox6.Location = new System.Drawing.Point(580, 106);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(194, 31);
-            this.textBox6.TabIndex = 15;
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(580, 162);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(194, 31);
-            this.textBox7.TabIndex = 16;
+            this.textBoxVeiculo.Location = new System.Drawing.Point(187, 165);
+            this.textBoxVeiculo.Name = "textBoxVeiculo";
+            this.textBoxVeiculo.Size = new System.Drawing.Size(214, 31);
+            this.textBoxVeiculo.TabIndex = 16;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(34, 282);
+            this.label10.Location = new System.Drawing.Point(-1, 279);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(202, 25);
             this.label10.TabIndex = 18;
             this.label10.Text = "Quilometragem Veiculo:";
             // 
-            // textBox9
+            // textBoxQuilVeiculo
             // 
-            this.textBox9.Location = new System.Drawing.Point(242, 279);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(194, 31);
-            this.textBox9.TabIndex = 19;
+            this.textBoxQuilVeiculo.Location = new System.Drawing.Point(198, 276);
+            this.textBoxQuilVeiculo.Name = "textBoxQuilVeiculo";
+            this.textBoxQuilVeiculo.Size = new System.Drawing.Size(203, 31);
+            this.textBoxQuilVeiculo.TabIndex = 19;
             // 
-            // textBox10
+            // dateTimeDataLocacao
             // 
-            this.textBox10.Location = new System.Drawing.Point(187, 335);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(194, 31);
-            this.textBox10.TabIndex = 20;
+            this.dateTimeDataLocacao.Location = new System.Drawing.Point(187, 221);
+            this.dateTimeDataLocacao.Name = "dateTimeDataLocacao";
+            this.dateTimeDataLocacao.Size = new System.Drawing.Size(214, 31);
+            this.dateTimeDataLocacao.TabIndex = 21;
             // 
-            // dateTimePicker1
+            // dateTimeDataDevolucao
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(187, 218);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(214, 31);
-            this.dateTimePicker1.TabIndex = 21;
+            this.dateTimeDataDevolucao.Location = new System.Drawing.Point(607, 221);
+            this.dateTimeDataDevolucao.Name = "dateTimeDataDevolucao";
+            this.dateTimeDataDevolucao.Size = new System.Drawing.Size(214, 31);
+            this.dateTimeDataDevolucao.TabIndex = 22;
+            // 
+            // dateTimePicker3
+            // 
+            this.dateTimePicker3.Location = new System.Drawing.Point(607, 279);
+            this.dateTimePicker3.Name = "dateTimePicker3";
+            this.dateTimePicker3.Size = new System.Drawing.Size(214, 31);
+            this.dateTimePicker3.TabIndex = 23;
+            // 
+            // comboBoxNivelTanque
+            // 
+            this.comboBoxNivelTanque.FormattingEnabled = true;
+            this.comboBoxNivelTanque.Items.AddRange(new object[] {
+            "Cheio",
+            "Meio tanque",
+            "Vazio"});
+            this.comboBoxNivelTanque.Location = new System.Drawing.Point(198, 341);
+            this.comboBoxNivelTanque.Name = "comboBoxNivelTanque";
+            this.comboBoxNivelTanque.Size = new System.Drawing.Size(203, 33);
+            this.comboBoxNivelTanque.TabIndex = 24;
+            // 
+            // btnGravar
+            // 
+            this.btnGravar.Location = new System.Drawing.Point(647, 603);
+            this.btnGravar.Name = "btnGravar";
+            this.btnGravar.Size = new System.Drawing.Size(112, 43);
+            this.btnGravar.TabIndex = 25;
+            this.btnGravar.Text = "Gravar";
+            this.btnGravar.UseVisualStyleBackColor = true;
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Location = new System.Drawing.Point(765, 603);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(112, 43);
+            this.btnCancelar.TabIndex = 26;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(21, 586);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(97, 25);
+            this.label11.TabIndex = 27;
+            this.label11.Text = "Valor total:";
+            // 
+            // textBoxValorTotal
+            // 
+            this.textBoxValorTotal.Location = new System.Drawing.Point(124, 583);
+            this.textBoxValorTotal.Name = "textBoxValorTotal";
+            this.textBoxValorTotal.Size = new System.Drawing.Size(236, 31);
+            this.textBoxValorTotal.TabIndex = 28;
             // 
             // TelaCadastroDevolucao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(849, 578);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.textBox10);
-            this.Controls.Add(this.textBox9);
+            this.ClientSize = new System.Drawing.Size(890, 658);
+            this.Controls.Add(this.textBoxValorTotal);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnGravar);
+            this.Controls.Add(this.comboBoxNivelTanque);
+            this.Controls.Add(this.dateTimePicker3);
+            this.Controls.Add(this.dateTimeDataDevolucao);
+            this.Controls.Add(this.dateTimeDataLocacao);
+            this.Controls.Add(this.textBoxQuilVeiculo);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxVeiculo);
+            this.Controls.Add(this.textBoxPlanoCobranca);
+            this.Controls.Add(this.textBoxCliente);
+            this.Controls.Add(this.textBoxCondutor);
+            this.Controls.Add(this.txtBoxFuncionario);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -234,7 +280,6 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.funcionario);
             this.Name = "TelaCadastroDevolucao";
@@ -248,7 +293,6 @@
 
         private Label funcionario;
         private Label label2;
-        private Label label3;
         private Label label4;
         private Label label5;
         private Label label6;
@@ -256,15 +300,20 @@
         private Label label8;
         private Label label9;
         private Label label1;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox5;
-        private TextBox textBox6;
-        private TextBox textBox7;
+        private TextBox txtBoxFuncionario;
+        private TextBox textBoxCondutor;
+        private TextBox textBoxCliente;
+        private TextBox textBoxPlanoCobranca;
+        private TextBox textBoxVeiculo;
         private Label label10;
-        private TextBox textBox9;
-        private TextBox textBox10;
-        private DateTimePicker dateTimePicker1;
+        private TextBox textBoxQuilVeiculo;
+        private DateTimePicker dateTimeDataLocacao;
+        private DateTimePicker dateTimeDataDevolucao;
+        private DateTimePicker dateTimePicker3;
+        private ComboBox comboBoxNivelTanque;
+        private Button btnGravar;
+        private Button btnCancelar;
+        private Label label11;
+        private TextBox textBoxValorTotal;
     }
 }
