@@ -17,7 +17,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloCondutor
             @"INSERT INTO [CONDUTOR]
                 (
                     [ID],
-                    [CLIENTE_ID],
+                    [CLIENTEID],
                     [NOME],
                     [VALIDADECNH],
                     [CPF],
@@ -31,7 +31,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloCondutor
             VALUES
                 ( 
                     @ID,
-                    @CLIENTE_ID,
+                    @CLIENTEID,
                     @NOME,
                     @VALIDADECNH,
                     @CPF,
@@ -45,7 +45,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloCondutor
         protected override string sqlEditar =>
             @" UPDATE [CONDUTOR]
                     SET 
-                        [CLIENTE_ID] = @CLIENTE_ID,
+                        [CLIENTEID] = @CLIENTEID,
                         [NOME] = @NOME,
                         [VALIDADECNH] = @VALIDADECNH,
                         [CPF] = @CPF,
@@ -63,7 +63,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloCondutor
         protected override string sqlSelecionarTodos =>
             @"SELECT 
                 [ID], 
-                [CLIENTE_ID],
+                [CLIENTEID],
                 [NOME],
                 [VALIDADECNH],
                 [CPF],
@@ -78,7 +78,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloCondutor
         protected override string sqlSelecionarPorId =>
             @"SELECT 
                 [ID],  
-                [CLIENTE_ID],
+                [CLIENTEID],
                 [NOME],
                 [VALIDADECNH],
                 [CPF],
@@ -95,7 +95,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloCondutor
         protected string sqlSelecionarPorNome =>
                 @"SELECT 
                    [ID] ID, 
-                   [CLIENTE_ID] CLIENTE_ID,
+                   [CLIENTEID] CLIENTEID,
                    [NOME] NOME,
                    [VALIDADECNH] VALIDADECNH,
                    [CPF] CPF,
@@ -114,7 +114,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloCondutor
         protected string sqlSelecionarPorCPF =>
                 @"SELECT 
                    [ID] ID,     
-                   [CLIENTE_ID] CLIENTE_ID,
+                   [CLIENTEID] CLIENTEID,
                    [NOME] NOME,
                    [VALIDADECNH] VALIDADECNH,
                    [CPF] CPF,
@@ -131,7 +131,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloCondutor
         protected string sqlSelecionarPorCNH =>
                 @"SELECT 
                    [ID] ID,
-                   [CLIENTE_ID] CLIENTE_ID,
+                   [CLIENTEID] CLIENTEID,
                    [NOME] NOME,
                    [VALIDADECNH] VALIDADECNH,
                    [CPF] CPF,

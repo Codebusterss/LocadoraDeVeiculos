@@ -16,7 +16,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloCondutor
         public override void ConfigurarParametros(Condutor condutor, SqlCommand comando)
         {
             comando.Parameters.AddWithValue("ID", condutor.ID);
-            comando.Parameters.AddWithValue("CLIENTE_ID", condutor.Cliente.ID); //puxa cliente
+            comando.Parameters.AddWithValue("CLIENTEID", condutor.Cliente.ID); //puxa cliente
             comando.Parameters.AddWithValue("NOME", condutor.Nome);
             comando.Parameters.AddWithValue("CNH", condutor.CNH);
             comando.Parameters.AddWithValue("CPF", condutor.CPF);
@@ -40,7 +40,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloCondutor
         public override Condutor ConverterRegistro(SqlDataReader leitorCondutor)
         {
             var id = Guid.Parse(leitorCondutor["ID"].ToString());
-            var clienteCond = Guid.Parse(leitorCondutor["CLIENTE_ID"].ToString());
+            var clienteCond = Guid.Parse(leitorCondutor["CLIENTEID"].ToString());
             var nome = Convert.ToString(leitorCondutor["NOME"]);
             var cnh = Convert.ToString(leitorCondutor["CNH"]);
             var cpf = Convert.ToString(leitorCondutor["CPF"]);

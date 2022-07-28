@@ -61,7 +61,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloVeiculo
 
             var tela = new TelaCadastroVeiculo(grupos.Value);
 
-            tela.Veiculo = veiculoSelecionado.Clone();
+            tela.Veiculo = veiculoSelecionado;
 
             tela.GravarRegistro = servicoVeiculo.Editar;
 

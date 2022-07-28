@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,25 +38,25 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculo
 
             if (id == Guid.Empty)
             {
-                MessageBox.Show("Selecione um grupo de veículos primeiro.",
-                    "Edição de Grupo de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione um grupo primeiro",
+                "Edição de Grupos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
-            }
+            }   
 
-            var resultado = servicoGrupoDeVeiculo.SelecionarPorId(id);
+            var resultadoSelecao = servicoGrupoDeVeiculo.SelecionarPorId(id);
 
-            if (resultado.IsFailed)
+            if (resultadoSelecao.IsFailed)
             {
-                MessageBox.Show(resultado.Errors[0].Message,
+                MessageBox.Show(resultadoSelecao.Errors[0].Message,
                     "Edição de Grupo de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            var grupoSelecionado = resultado.Value;
+            var grupoSelecionado = resultadoSelecao.Value;
 
             var tela = new TelaCadastroGrupoDeVeiculo();
 
-            tela.GrupoDeVeiculo = grupoSelecionado.Clone();
+            tela.GrupoDeVeiculo = grupoSelecionado;
 
             tela.GravarRegistro = servicoGrupoDeVeiculo.Editar;
 

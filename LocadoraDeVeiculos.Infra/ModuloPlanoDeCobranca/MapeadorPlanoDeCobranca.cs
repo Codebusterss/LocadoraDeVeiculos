@@ -18,7 +18,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloPlanoDeCobranca
         public override void ConfigurarParametros(PlanoDeCobranca planoDeCobranca, SqlCommand comando)
         {
             comando.Parameters.AddWithValue("ID", planoDeCobranca.ID);
-            comando.Parameters.AddWithValue("GRUPODEVEICULOS_ID", planoDeCobranca.GrupoDeVeiculos.ID);
+            comando.Parameters.AddWithValue("GRUPODEVEICULOSID", planoDeCobranca.GrupoDeVeiculos.ID);
             comando.Parameters.AddWithValue("DIARIOVALORDIA", planoDeCobranca.DiarioValorDia);
             comando.Parameters.AddWithValue("DIARIOVALORKM", planoDeCobranca.DiarioValorKM);
             comando.Parameters.AddWithValue("LIVREVALORDIA", planoDeCobranca.LivreValorDia);
@@ -32,7 +32,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloPlanoDeCobranca
         public override PlanoDeCobranca ConverterRegistro(SqlDataReader leitorPlanoDeCobranca)
         {
             var id = Guid.Parse(leitorPlanoDeCobranca["ID"].ToString());
-            var grupoDeVeiculosID = Guid.Parse(leitorPlanoDeCobranca["GRUPODEVEICULOS_ID"].ToString());
+            var grupoDeVeiculosID = Guid.Parse(leitorPlanoDeCobranca["GRUPODEVEICULOSID"].ToString());
             var diarioValorDia = Convert.ToDouble(leitorPlanoDeCobranca["DIARIOVALORDIA"]);
             var diarioValorKM = Convert.ToDouble(leitorPlanoDeCobranca["DIARIOVALORKM"]);
             var livreValorDia = Convert.ToDouble(leitorPlanoDeCobranca["LIVREVALORDIA"]);

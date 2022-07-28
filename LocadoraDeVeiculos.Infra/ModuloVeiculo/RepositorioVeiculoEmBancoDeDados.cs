@@ -24,9 +24,9 @@ namespace LocadoraDeVeiculos.Infra.ModuloVeiculo
                     [COR],
                     [PLACA],
                     [KMPERCORRIDO],
-                    [TIPODECOMBUSTIVEL],
+                    [TIPOCOMBUSTIVEL],
                     [CAPACIDADEDOTANQUE],
-                    [GRUPO_ID],
+                    [GRUPODEVEICULOID],
                     [FOTO]
                 )
                 VALUES
@@ -38,9 +38,9 @@ namespace LocadoraDeVeiculos.Infra.ModuloVeiculo
                     @COR,
                     @PLACA,
                     @KMPERCORRIDO,
-                    @TIPODECOMBUSTIVEL,
+                    @TIPOCOMBUSTIVEL,
                     @CAPACIDADEDOTANQUE,
-                    @GRUPO_ID,
+                    @GRUPODEVEICULOID,
                     @FOTO
                 )";
 
@@ -53,9 +53,9 @@ namespace LocadoraDeVeiculos.Infra.ModuloVeiculo
                     [COR] = @COR,
                     [PLACA] = @PLACA,
                     [KMPERCORRIDO] = @KMPERCORRIDO,
-                    [TIPODECOMBUSTIVEL] = @TIPODECOMBUSTIVEL,
+                    [TIPOCOMBUSTIVEL] = @TIPOCOMBUSTIVEL,
                     [CAPACIDADEDOTANQUE] = @CAPACIDADEDOTANQUE,
-                    [GRUPO_ID] = @GRUPO_ID,
+                    [GRUPODEVEICULOID] = @GRUPODEVEICULOID,
                     [FOTO] = @FOTO
 
                 WHERE 
@@ -74,9 +74,9 @@ namespace LocadoraDeVeiculos.Infra.ModuloVeiculo
                     [COR],
                     [PLACA],
                     [KMPERCORRIDO],
-                    [TIPODECOMBUSTIVEL],
+                    [TIPOCOMBUSTIVEL],
                     [CAPACIDADEDOTANQUE],
-                    [GRUPO_ID],
+                    [GRUPODEVEICULOID],
                     [FOTO]
             FROM
                 [VEICULO]";
@@ -90,9 +90,9 @@ namespace LocadoraDeVeiculos.Infra.ModuloVeiculo
               [COR],
               [PLACA],
               [KMPERCORRIDO],
-              [TIPODECOMBUSTIVEL],
+              [TIPOCOMBUSTIVEL],
               [CAPACIDADEDOTANQUE],
-              [GRUPO_ID],
+              [GRUPODEVEICULOID],
               [FOTO]
             FROM
                 [VEICULO]
@@ -108,9 +108,9 @@ namespace LocadoraDeVeiculos.Infra.ModuloVeiculo
               [COR],
               [PLACA],
               [KMPERCORRIDO],
-              [TIPODECOMBUSTIVEL],
+              [TIPOCOMBUSTIVEL],
               [CAPACIDADEDOTANQUE],
-              [GRUPO_ID],
+              [GRUPODEVEICULOID],
               [FOTO]
             FROM
                 [VEICULO]

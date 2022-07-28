@@ -52,11 +52,11 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
                 return;
             }
 
-            var grupoSelecionado = resultado.Value;
+            var clienteSelecionado = resultado.Value;
 
             var tela = new TelaCadastroCliente();
 
-            tela.Cliente = grupoSelecionado.Clone();
+            tela.Cliente = clienteSelecionado;
 
             tela.GravarRegistro = servicoCliente.Editar;
 

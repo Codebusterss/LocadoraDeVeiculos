@@ -20,24 +20,22 @@ namespace LocadoraDeVeiculos.Infra.ModuloCliente
                     [ID],
                     [NOME],
                     [CNPJ],
-                    [CPF],
-                   
+                    [CPF],                  
                     [ENDERECO],
                     [EMAIL],
                     [TELEFONE],
-                    [TIPOCLIENTE]
+                    [PESSOAFISICA]
                 )
             VALUES
                 (
                     @ID,
                     @NOME,
                     @CNPJ,
-                    @CPF,
-                 
+                    @CPF,               
                     @ENDERECO,
                     @EMAIL,
                     @TELEFONE,
-                    @TIPOCLIENTE
+                    @PESSOAFISICA
                 );";
 
         protected override string sqlEditar =>
@@ -45,12 +43,11 @@ namespace LocadoraDeVeiculos.Infra.ModuloCliente
                     SET 
                         [NOME] = @NOME,
                         [CNPJ] = @CNPJ,
-                        [CPF] = @CPF,
-                       
+                        [CPF] = @CPF,                   
                         [ENDERECO] = @ENDERECO,
                         [EMAIL] = @EMAIL,
                         [TELEFONE] = @TELEFONE,
-                        [TIPOCLIENTE] = @TIPOCLIENTE
+                        [PESSOAFISICA] = @PESSOAFISICA
                     WHERE [ID] = @ID";
 
         protected override string sqlExcluir =>
@@ -62,12 +59,11 @@ namespace LocadoraDeVeiculos.Infra.ModuloCliente
                 [ID],       
                 [NOME],
                 [CNPJ],
-                [CPF],
-                
+                [CPF],              
                 [ENDERECO],
                 [EMAIL],
                 [TELEFONE],
-                [TIPOCLIENTE]
+                [PESSOAFISICA]
             FROM
                 [CLIENTE]";
 
@@ -76,12 +72,11 @@ namespace LocadoraDeVeiculos.Infra.ModuloCliente
                 [ID],       
                 [NOME],
                 [CNPJ],
-                [CPF],
-                
+                [CPF],               
                 [ENDERECO],
                 [EMAIL],
                 [TELEFONE],
-                [TIPOCLIENTE]
+                [PESSOAFISICA]
             FROM
                 [CLIENTE]
             WHERE 
@@ -92,12 +87,11 @@ namespace LocadoraDeVeiculos.Infra.ModuloCliente
                    [ID] ID,       
                    [NOME] NOME,
                    [CNPJ] CNPJ,
-                   [CPF] CPF,
-                 
+                   [CPF] CPF,     
                    [ENDERECO] ENDERECO,
                    [EMAIL] EMAIL,
                    [TELEFONE] TELEFONE,
-                   [TIPOCLIENTE] TIPOCLIENTE
+                   [PESSOAFISICA] PESSOAFISICA
             FROM
                 [CLIENTE]
             WHERE 
@@ -108,12 +102,11 @@ namespace LocadoraDeVeiculos.Infra.ModuloCliente
                    [ID] ID,       
                    [NOME] NOME,
                    [CNPJ] CNPJ,
-                   [CPF] CPF,
-                   
+                   [CPF] CPF,             
                    [ENDERECO] ENDERECO,
                    [EMAIL] EMAIL,
                    [TELEFONE] TELEFONE,
-                   [TIPOCLIENTE] TIPOCLIENTE
+                   [PESSOAFISICA] PESSOAFISICA
             FROM
                 [CLIENTE]
             WHERE 
@@ -124,12 +117,11 @@ namespace LocadoraDeVeiculos.Infra.ModuloCliente
                    [ID] ID,       
                    [NOME] NOME,
                    [CNPJ] CNPJ,
-                   [CPF] CPF,
-                 
+                   [CPF] CPF,                
                    [ENDERECO] ENDERECO,
                    [EMAIL] EMAIL,
                    [TELEFONE] TELEFONE,
-                   [TIPOCLIENTE] TIPOCLIENTE
+                   [PESSOAFISICA] PESSOAFISICA
             FROM
                 [CLIENTE]
             WHERE 

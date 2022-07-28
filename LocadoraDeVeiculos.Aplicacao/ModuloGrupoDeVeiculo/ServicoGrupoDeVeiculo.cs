@@ -9,6 +9,7 @@ using FluentValidation.Results;
 using FluentResults;
 using LocadoraDeVeiculos.Dominio.Compartilhado;
 using LocadoraDeVeiculos.ORM.ModuloGrupoDeVeiculo;
+using Microsoft.EntityFrameworkCore;
 
 namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculo
 {
@@ -121,7 +122,18 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculo
             }
             catch (NaoPodeExcluirRegistroException ex)
             {
-                string msgErro = $"O Grupo de veículos {grupoDeVeiculo.Nome} está relacionado com um plano de cobrança e não pode ser excluído.";
+                string msgErro = "";
+
+                if (ex is DbUpdateException || ex is InvalidOperationException)
+                {
+                    msgErro = $"O grupo de veículos {grupoDeVeiculo.Nome} está relacionado com um veículo ou plano de cobrança e não pode ser excluído";
+
+                    contextoPersistencia.DesfazerAlteracoes();
+                }
+                else
+                {
+                    msgErro = "Falha no sistema ao tentar excluir o Grupo de Veículos";
+                }
 
                 Log.Logger.Error(ex, msgErro + "{GrupoID}", grupoDeVeiculo.ID);
 

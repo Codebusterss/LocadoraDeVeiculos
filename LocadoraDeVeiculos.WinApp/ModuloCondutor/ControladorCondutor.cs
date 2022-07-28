@@ -61,7 +61,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
 
             var tela = new TelaCadastroCondutor(clientes.Value);
 
-            tela.Condutor = condutorSelecionado.Clone();
+            tela.Condutor = condutorSelecionado;
 
             tela.GravarRegistro = servicoCondutor.Editar;
 

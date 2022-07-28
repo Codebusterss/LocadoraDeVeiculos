@@ -9,6 +9,7 @@ using LocadoraDeVeiculos.Dominio.ModuloCliente;
 using FluentResults;
 using LocadoraDeVeiculos.Dominio.Compartilhado;
 using LocadoraDeVeiculos.ORM.ModuloCliente;
+using Microsoft.EntityFrameworkCore;
 
 namespace LocadoraDeVeiculos.Aplicacao.ModuloCliente
 {
@@ -122,9 +123,20 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCliente
             }
             catch (NaoPodeExcluirRegistroException ex)
             {
-                string msgErro = $"O cliente {cliente.Nome} está relacionado com um condutor e não pode ser excluído.";
+                string msgErro = "";
 
-                Log.Logger.Error(ex, msgErro + "{ClienteID}", cliente.ID);
+                if (ex is DbUpdateException || ex is InvalidOperationException)
+                {
+                    msgErro = $"O cliente {cliente.Nome} está relacionado com um condutor e não pode ser excluído";
+
+                    contextoPersistencia.DesfazerAlteracoes();
+                }
+                else
+                {
+                    msgErro = "Falha no sistema ao tentar excluir o Cliente";
+                }
+
+                Log.Logger.Error(ex, msgErro + "{ClienteId}", cliente.ID);
 
                 return Result.Fail(msgErro);
             }

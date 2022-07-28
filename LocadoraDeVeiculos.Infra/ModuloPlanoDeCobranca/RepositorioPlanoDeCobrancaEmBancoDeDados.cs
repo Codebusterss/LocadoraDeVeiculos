@@ -19,7 +19,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloPlanoDeCobranca
             @"INSERT INTO [PLANODECOBRANCA]
                 (
                     [ID],
-                    [GRUPODEVEICULOS_ID],  
+                    [GRUPODEVEICULOSID],  
                     [DIARIOVALORDIA],
                     [DIARIOVALORKM],
                     [LIVREVALORDIA],
@@ -30,7 +30,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloPlanoDeCobranca
             VALUES
                 (
                     @ID,
-                    @GRUPODEVEICULOS_ID,
+                    @GRUPODEVEICULOSID,
                     @DIARIOVALORDIA,
                     @DIARIOVALORKM,
                     @LIVREVALORDIA,
@@ -42,7 +42,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloPlanoDeCobranca
         protected override string sqlEditar =>
             @" UPDATE [PLANODECOBRANCA]
                     SET 
-                        [GRUPODEVEICULOS_ID] = @GRUPODEVEICULOS_ID,
+                        [GRUPODEVEICULOSID] = @GRUPODEVEICULOSID,
                         [DIARIOVALORDIA] = @DIARIOVALORDIA,
                         [DIARIOVALORKM] = @DIARIOVALORKM,
                         [LIVREVALORDIA] = @LIVREVALORDIA,
@@ -58,7 +58,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloPlanoDeCobranca
         protected override string sqlSelecionarTodos =>
             @"SELECT 
                 [ID],       
-                [GRUPODEVEICULOS_ID],
+                [GRUPODEVEICULOSID],
                 [DIARIOVALORDIA],
                 [DIARIOVALORKM],
                 [LIVREVALORDIA],
@@ -71,7 +71,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloPlanoDeCobranca
         protected override string sqlSelecionarPorId =>
             @"SELECT 
                 [ID],       
-                [GRUPODEVEICULOS_ID],
+                [GRUPODEVEICULOSID],
                 [DIARIOVALORDIA],
                 [DIARIOVALORKM],
                 [LIVREVALORDIA],
@@ -85,7 +85,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloPlanoDeCobranca
         protected string sqlSelecionarPorIdDoGrupo =>
             @"SELECT 
                 [ID],       
-                [GRUPODEVEICULOS_ID],
+                [GRUPODEVEICULOSID],
                 [DIARIOVALORDIA],
                 [DIARIOVALORKM],
                 [LIVREVALORDIA],
@@ -95,7 +95,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloPlanoDeCobranca
             FROM
                 [PLANODECOBRANCA]
             WHERE 
-                [GRUPODEVEICULOS_ID] = @GRUPODEVEICULOS_ID";
+                [GRUPODEVEICULOSID] = @GRUPODEVEICULOSID";
 
         public PlanoDeCobranca SelecionarPlanoPorGrupo(Guid idGrupo)
         {

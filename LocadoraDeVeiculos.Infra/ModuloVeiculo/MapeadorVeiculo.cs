@@ -16,14 +16,14 @@ namespace LocadoraDeVeiculos.Infra.ModuloVeiculo
         public override void ConfigurarParametros(Veiculo registro, SqlCommand comando)
         {
             comando.Parameters.AddWithValue("ID", registro.ID);
-            comando.Parameters.AddWithValue("GRUPO_ID", registro.GrupoDeVeiculo.ID);
+            comando.Parameters.AddWithValue("GRUPODEVEICULOID", registro.GrupoDeVeiculo.ID);
             comando.Parameters.AddWithValue("MODELO", registro.Modelo);
             comando.Parameters.AddWithValue("MARCA", registro.Marca);
             comando.Parameters.AddWithValue("ANO", registro.Ano);
             comando.Parameters.AddWithValue("COR", registro.Cor);
             comando.Parameters.AddWithValue("PLACA", registro.Placa);
             comando.Parameters.AddWithValue("KMPERCORRIDO", registro.KmPercorrido);
-            comando.Parameters.AddWithValue("TIPODECOMBUSTIVEL", registro.TipoCombustivel);
+            comando.Parameters.AddWithValue("TIPOCOMBUSTIVEL", registro.TipoCombustivel);
             comando.Parameters.AddWithValue("CAPACIDADEDOTANQUE", registro.CapacidadeDoTanque);
             comando.Parameters.AddWithValue("FOTO", registro.Foto);
 
@@ -32,7 +32,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloVeiculo
         public override Veiculo ConverterRegistro(SqlDataReader leitorVeiculo)
         {
             var id = Guid.Parse(leitorVeiculo["ID"].ToString());
-            var grupoDeVeiculo = Guid.Parse(leitorVeiculo["GRUPO_ID"].ToString());
+            var grupoDeVeiculo = Guid.Parse(leitorVeiculo["GRUPODEVEICULOID"].ToString());
             var modelo = Convert.ToString(leitorVeiculo["MODELO"]);
             var marca = Convert.ToString(leitorVeiculo["MARCA"]);
             var placa = Convert.ToString(leitorVeiculo["PLACA"]);
@@ -40,7 +40,7 @@ namespace LocadoraDeVeiculos.Infra.ModuloVeiculo
             var capacidadeDoTanque = Convert.ToDouble(leitorVeiculo["CAPACIDADEDOTANQUE"]);
             var kmPercorrido = Convert.ToDouble(leitorVeiculo["KMPERCORRIDO"]);
             var ano = Convert.ToInt32(leitorVeiculo["ANO"]);
-            var tipoCombustivel = Convert.ToString(leitorVeiculo["TIPODECOMBUSTIVEL"]);
+            var tipoCombustivel = Convert.ToString(leitorVeiculo["TIPOCOMBUSTIVEL"]);
             var foto = (byte[])(leitorVeiculo["FOTO"]);
 
             Veiculo veiculo = new Veiculo();
