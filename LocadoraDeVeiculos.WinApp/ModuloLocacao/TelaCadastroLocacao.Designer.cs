@@ -52,6 +52,8 @@
             this.checkBoxIndividual = new System.Windows.Forms.CheckBox();
             this.btnGravar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtBoxValorTotal = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -101,7 +103,7 @@
             this.cbBoxCondutor.FormattingEnabled = true;
             this.cbBoxCondutor.Location = new System.Drawing.Point(676, 41);
             this.cbBoxCondutor.Name = "cbBoxCondutor";
-            this.cbBoxCondutor.Size = new System.Drawing.Size(196, 33);
+            this.cbBoxCondutor.Size = new System.Drawing.Size(220, 33);
             this.cbBoxCondutor.TabIndex = 7;
             // 
             // label5
@@ -151,7 +153,7 @@
             this.cbBoxPlanoCobranca.FormattingEnabled = true;
             this.cbBoxPlanoCobranca.Location = new System.Drawing.Point(676, 102);
             this.cbBoxPlanoCobranca.Name = "cbBoxPlanoCobranca";
-            this.cbBoxPlanoCobranca.Size = new System.Drawing.Size(196, 33);
+            this.cbBoxPlanoCobranca.Size = new System.Drawing.Size(220, 33);
             this.cbBoxPlanoCobranca.TabIndex = 13;
             // 
             // label8
@@ -167,7 +169,7 @@
             // 
             this.txtBoxKMveiculo.Location = new System.Drawing.Point(676, 167);
             this.txtBoxKMveiculo.Name = "txtBoxKMveiculo";
-            this.txtBoxKMveiculo.Size = new System.Drawing.Size(196, 31);
+            this.txtBoxKMveiculo.Size = new System.Drawing.Size(220, 31);
             this.txtBoxKMveiculo.TabIndex = 15;
             // 
             // label9
@@ -246,7 +248,7 @@
             // 
             // btnGravar
             // 
-            this.btnGravar.Location = new System.Drawing.Point(702, 462);
+            this.btnGravar.Location = new System.Drawing.Point(694, 526);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(120, 48);
             this.btnGravar.TabIndex = 29;
@@ -255,18 +257,36 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(828, 462);
+            this.btnCancelar.Location = new System.Drawing.Point(820, 526);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(120, 48);
             this.btnCancelar.TabIndex = 30;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(31, 486);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(166, 25);
+            this.label3.TabIndex = 31;
+            this.label3.Text = "Valor total previsto:";
+            // 
+            // txtBoxValorTotal
+            // 
+            this.txtBoxValorTotal.Location = new System.Drawing.Point(200, 483);
+            this.txtBoxValorTotal.Name = "txtBoxValorTotal";
+            this.txtBoxValorTotal.Size = new System.Drawing.Size(264, 31);
+            this.txtBoxValorTotal.TabIndex = 32;
+            // 
             // TelaCadastroLocacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(960, 513);
+            this.ClientSize = new System.Drawing.Size(947, 582);
+            this.Controls.Add(this.txtBoxValorTotal);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGravar);
             this.Controls.Add(this.checkBoxIndividual);
@@ -324,5 +344,7 @@
         private CheckBox checkBoxIndividual;
         private Button btnGravar;
         private Button btnCancelar;
+        private Label label3;
+        private TextBox txtBoxValorTotal;
     }
 }
