@@ -24,7 +24,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
         private Locacao locacao;
         List<PlanoDeCobranca> planos = new List<PlanoDeCobranca>();
         List<Taxa> taxas = new List<Taxa>();
-        Funcionario funcionarioLogado = new Funcionario();        
+
         public TelaCadastroLocacao(List<Cliente> clientes, List<Condutor> condutores, List<Veiculo> veiculos, List<Taxa> taxas, List<PlanoDeCobranca> planos, List<Funcionario> funcionarios)
         {
             InitializeComponent();
@@ -52,11 +52,23 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
                 cbBoxCliente.SelectedItem = locacao.Cliente;
                 cbBoxCondutor.SelectedItem = locacao.Condutor;
                 cbBoxVeiculo.SelectedItem = locacao.Veiculo;
-                if(dateTimeDataLocacao.Value < DateTime.MinValue && dateTimeDataLocacao.Value > DateTime.MaxValue)
+                if(locacao.DataLocacao.Equals(DateTime.MinValue))
+                {
+                    dateTimeDataLocacao.Value = DateTime.Now;
+                    dateTimeDataLocacao.Value = DateTime.Now;
+                }
+                else
                 {
                     dateTimeDataLocacao.Value = locacao.DataLocacao;
                     dateTimeDataDevolucao.Value = locacao.DataDevolucao;
-                }          
+                }        
+                if(locacao.Taxas != null)
+                {
+                    foreach(Taxa taxa in locacao.Taxas)
+                    {
+                        lstBoxTaxa.Items.Add(taxa);
+                    }
+                }
                 txtBoxValorTotal.Text = locacao.Valor.ToString();
                 ChecarSeguro();
             }
@@ -171,6 +183,23 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
             {
                 MessageBox.Show("Condutor está relacionado ao cliente errado!",
                       "Cadastro de Locações", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                DialogResult = DialogResult.None;
+                return;
+            }
+        }
+
+        private void VerificarCondutor()
+        {
+            Condutor condutorSelecionado = (Condutor)cbBoxCondutor.SelectedItem;
+
+            if (condutorSelecionado.ValidadeCNH < DateTime.Now)
+            {   
+                MessageBox.Show("A CNH do condutor está expirada!",
+                      "Cadastro de Locações", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                DialogResult = DialogResult.None;
+                return;
             }
         }
 
@@ -228,7 +257,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
 
         private void btnCalcular_Click(object sender, EventArgs e)
         {
-            double valor = 0;
+            double valor;
             double valorTaxa = 0;
 
             if (cbBoxPlanoCobranca.Text == "")
@@ -236,6 +265,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
                 MessageBox.Show("Selecione um plano primeiro!",
                       "Cadastro de Locações", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
+                DialogResult = DialogResult.None;
                 return;
             }
             else if (cbBoxVeiculo.Text == "")
@@ -243,12 +273,13 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
                 MessageBox.Show("Selecione um veículo primeiro!",
                       "Cadastro de Locações", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
+                DialogResult = DialogResult.None;
                 return;
             }
 
             foreach (var item in taxas)
             {
-                valorTaxa = +item.Valor;
+                valorTaxa = valorTaxa + item.Valor;
             }
             
             Veiculo veiculoSelecionado = (Veiculo)cbBoxVeiculo.SelectedItem;
@@ -275,9 +306,33 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
 
         private void btnAddTaxa_Click(object sender, EventArgs e)
         {
-            lstBoxTaxa.Items.Add(cbBoxTaxas.SelectedItem);
-            taxas.Add((Taxa)cbBoxTaxas.SelectedItem);
-            cbBoxTaxas.SelectedIndex = -1;
+
+            foreach(Taxa taxa in lstBoxTaxa.Items)
+            {
+                if(cbBoxTaxas.SelectedItem == taxa)
+                {
+                    MessageBox.Show("Taxa já selecionada!",
+                      "Cadastro de Locações", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    DialogResult = DialogResult.None;
+                    return;
+                }
+            }
+
+            if(cbBoxTaxas.SelectedIndex == -1)
+            {
+                MessageBox.Show("Selecione uma taxa para adicionar primeiro!",
+                      "Cadastro de Locações", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                DialogResult = DialogResult.None;
+                return;
+            }
+            else
+            {
+                lstBoxTaxa.Items.Add(cbBoxTaxas.SelectedItem);
+                taxas.Add((Taxa)cbBoxTaxas.SelectedItem);
+                cbBoxTaxas.Items.Remove(cbBoxTaxas.SelectedItem);
+            }   
         }
 
         private void dateTimeDataLocacao_ValueChanged(object sender, EventArgs e)
@@ -289,6 +344,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
             {
                 MessageBox.Show("Data de Locação não pode ser menor que a data atual!",
                       "Cadastro de Locações", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                DialogResult = DialogResult.None;
+                return;
             }
         }
 
@@ -298,7 +356,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
             locacao.Funcionario = (Funcionario)cbBoxFuncionarios.SelectedItem;
             locacao.Veiculo = (Veiculo)cbBoxVeiculo.SelectedItem;
             VerificarCliente();
-            locacao.Cliente = (Cliente)cbBoxCliente.SelectedItem;  
+            locacao.Cliente = (Cliente)cbBoxCliente.SelectedItem;
+            VerificarCondutor();
             locacao.Condutor = (Condutor)cbBoxCondutor.SelectedItem;
             locacao.DataLocacao = dateTimeDataLocacao.Value;
             locacao.DataDevolucao = dateTimeDataDevolucao.Value;
@@ -337,6 +396,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
 
         private void TelaCadastroLocacao_Load(object sender, EventArgs e)
         {
+            dateTimeDataLocacao.MinDate = DateTime.Now;
+            dateTimeDataDevolucao.MinDate = DateTime.Now.AddDays(1);
             TelaMenuPrincipal.Instancia.AtualizarRodape("");
         }
 
@@ -346,6 +407,5 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
         }
 
         #endregion
-
     }
 }

@@ -2,6 +2,7 @@
 using LocadoraDeVeiculos.Infra.Compartilhado;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -95,6 +96,29 @@ namespace LocadoraDeVeiculos.Infra.ModuloLocacao
             FROM
                 [LOCACAO]
             WHERE 
-                [ID] = @ID"; 
+                [ID] = @ID";
+
+        protected string sqlSelecionarLocacaoPorVeiculoID =>
+            @"SELECT 
+                [ID],
+                    [VEICULOID],
+                    [FUNCIONARIOID],
+                    [CLIENTEID],
+                    [CONDUTORID],
+                    [PLANOID],
+                    [DATALOCACAO],
+                    [DATADEVOLUCAO],
+                    [STATUSLOCACAO],
+                    [SEGURO],
+                    [VALOR]
+            FROM
+                [LOCACAO]
+            WHERE 
+                [VEICULOID] = @VEICULOID";
+
+        public Locacao SelecionarLocacaoPorVeiculoID(Guid idVeiculo)
+        {
+            return SelecionarPorParametro(sqlSelecionarLocacaoPorVeiculoID, new SqlParameter("VEICULOID", idVeiculo));
+        }
     }
 }

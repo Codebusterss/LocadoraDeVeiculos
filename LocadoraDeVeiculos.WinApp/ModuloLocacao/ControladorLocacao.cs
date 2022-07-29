@@ -107,7 +107,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
 
             if (id == Guid.Empty)
             {
-                MessageBox.Show("Selecione um grupo de veículos primeiro.",
+                MessageBox.Show("Selecione uma locação primeiro.",
                     "Exclusão de Locações", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }

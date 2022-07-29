@@ -1,5 +1,4 @@
 Locação -
 
-Validar se a CNH do Condutor é menor do 2 anos.
-Validar se o carro já está em outra locação.
-Validar o botão de adicionar taxas (não pode estar vazio).
+Criar tabela taxa-locação
+Arrumar erros que continuam inserindo apesar da messagebox

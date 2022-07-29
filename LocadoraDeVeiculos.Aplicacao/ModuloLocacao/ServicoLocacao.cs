@@ -174,12 +174,24 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloLocacao
                 erros.Add(new Error(item.ErrorMessage));
             }
 
+            if (CarroAlugado(locacao))
+                erros.Add(new Error("Carro já alugado."));
+
             if (erros.Any())
             {
                 return Result.Fail(erros);
             }
 
             return Result.Ok();
+        }
+
+        private bool CarroAlugado(Locacao locacao)
+        {
+            var locacaoEncontrada = repositorioLocacao.SelecionarLocacaoPorVeiculoID(locacao.Veiculo.ID);
+
+            return locacaoEncontrada != null &&
+                   locacaoEncontrada.Veiculo.ID == locacao.Veiculo.ID &&
+                   locacaoEncontrada.ID != locacao.ID;
         }
     }
 }

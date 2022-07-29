@@ -1,4 +1,5 @@
 ﻿using LocadoraDeVeiculos.Dominio.Compartilhado;
+using LocadoraDeVeiculos.Dominio.ModuloLocacao;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +13,11 @@ namespace LocadoraDeVeiculos.Dominio.ModuloTaxa
        public double Valor { get; set; }
        public string Tipo { get; set; }
        public string Descricao { get; set; }
-
+       public List<Locacao> Locacoes { get; set; }
 
         public Taxa()
         {
-
+                
         }
         public Taxa(double valor, string tipo, string descricao) : this()
         {
@@ -35,13 +36,14 @@ namespace LocadoraDeVeiculos.Dominio.ModuloTaxa
             return MemberwiseClone() as Taxa;
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return obj is Taxa taxa &&
-                   ID == taxa.ID &&
+                   ID.Equals(taxa.ID) &&
                    Valor == taxa.Valor &&
                    Tipo == taxa.Tipo &&
-                   Descricao == taxa.Descricao;
+                   Descricao == taxa.Descricao &&
+                   EqualityComparer<List<Locacao>>.Default.Equals(Locacoes, taxa.Locacoes);
         }
     }
 }

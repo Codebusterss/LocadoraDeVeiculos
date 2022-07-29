@@ -34,6 +34,7 @@ namespace LocadoraDeVeiculos.ORM.ModuloCliente
         {
             return clientes.FirstOrDefault(x => x.Nome == nome);
         }
+
         public Cliente SelecionarClientePorCNPJ(string cnpj)
         {
             return clientes.FirstOrDefault(x => x.CNPJ == cnpj);

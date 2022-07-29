@@ -40,6 +40,11 @@ namespace LocadoraDeVeiculos.ORM.ModuloLocacao
             return locacoes.SingleOrDefault(x => x.ID == id);
         }
 
+        public Locacao SelecionarLocacaoPorVeiculoID(Guid id)
+        {
+            return locacoes.FirstOrDefault(x => x.Veiculo.ID == id);
+        }
+
         public List<Locacao> SelecionarTodos()
         {
             return locacoes

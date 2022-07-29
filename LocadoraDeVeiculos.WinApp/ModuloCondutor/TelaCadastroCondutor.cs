@@ -49,7 +49,14 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
                 checkBoxClienteCondutor.Checked = condutor.CondutorCliente;
                 textBoxCondCPF.Text = condutor.CPF;
                 textBoxCondCNH.Text = condutor.CNH;
-
+                if (condutor.ValidadeCNH.Equals(DateTime.MinValue))
+                {
+                    dateTimePickerCondValidade.Value = DateTime.Now;
+                }
+                else
+                {
+                    dateTimePickerCondValidade.Value = condutor.ValidadeCNH;
+                }
 
             }
         }

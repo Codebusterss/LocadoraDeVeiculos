@@ -33,6 +33,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "CNH", HeaderText = "CNH"},
 
+                new DataGridViewTextBoxColumn { DataPropertyName = "Validade CNH", HeaderText = "Validade CNH"},
+
                 new DataGridViewTextBoxColumn { DataPropertyName = "Email", HeaderText = "Email"},
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Telefone", HeaderText = "Telefone"}
@@ -45,7 +47,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
             grid.Rows.Clear();
             foreach (Condutor c in condutor)
             {
-                grid.Rows.Add(c.ID, c.Cliente.Nome, c.Nome, c.CNH, c.Email, c.Telefone);
+                grid.Rows.Add(c.ID, c.Cliente.Nome, c.Nome, c.CNH, c.ValidadeCNH, c.Email, c.Telefone);
             }
         }
       
