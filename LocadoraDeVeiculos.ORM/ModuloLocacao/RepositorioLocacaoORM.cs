@@ -42,7 +42,14 @@ namespace LocadoraDeVeiculos.ORM.ModuloLocacao
 
         public List<Locacao> SelecionarTodos()
         {
-            return locacoes.ToList();
+            return locacoes
+                .Include(x => x.Funcionario)
+                .Include(x => x.Condutor)
+                .Include(x => x.Veiculo)
+                .Include(x => x.Plano)
+                .Include(x => x.Taxas)
+                .Include(x => x.Cliente)
+                .ToList();
         }
     }
 }

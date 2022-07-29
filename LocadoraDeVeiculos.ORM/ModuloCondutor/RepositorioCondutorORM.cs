@@ -52,7 +52,7 @@ namespace LocadoraDeVeiculos.ORM.ModuloCondutor
 
         public List<Condutor> SelecionarTodos()
         {
-            return condutor.ToList();
+            return condutor.Include(x => x.Cliente).ToList();
         }
     }
 }
