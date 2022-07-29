@@ -16,8 +16,8 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloLocacao
     public interface IServicoLocacao
     {
         Result<Locacao> Editar(Locacao locacao);
-        Result Excluir(Locacao locacao));
-        Result<Locacao> Inserir(Locacao locacao));
+        Result Excluir(Locacao locacao);
+        Result<Locacao> Inserir(Locacao locacao);
         Result<Locacao> SelecionarPorId(Guid id);
         Result<List<Locacao>> SelecionarTodos();
     }
@@ -27,24 +27,24 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloLocacao
         private RepositorioLocacaoORM repositorioLocacao;
         private IContextoPersistencia contextoPersistencia;
 
-        public ServicoLocacao(RepositorioLocacaoORM repositorioGrupo, IContextoPersistencia contextoPersistencia)
+        public ServicoLocacao(RepositorioLocacaoORM repositoriolocacao, IContextoPersistencia contextoPersistencia)
         {
-            this.repositorioLocacao = repositorioGrupo;
+            this.repositorioLocacao = repositoriolocacao;
             this.contextoPersistencia = contextoPersistencia;
         }
 
-        public Result<Locacao> Inserir(Locacao grupo)
+        public Result<Locacao> Inserir(Locacao locacao)
         {
-            Log.Logger.Debug("Tentando inserir grupo de veículos... {@g}", grupo);
+            Log.Logger.Debug("Tentando inserir locação... {@l}", locacao);
 
-            Result resultadoValidacao = Validar(grupo);
+            Result resultadoValidacao = Validar(locacao);
 
             if (resultadoValidacao.IsFailed)
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar inserir o grupo de veículos {GrupoID} - {Motivo}",
-                       grupo.ID, erro.Message);
+                    Log.Logger.Warning("Falha ao tentar inserir a locação {LocacaoID} - {Motivo}",
+                       locacao.ID, erro.Message);
                 }
 
                 return Result.Fail(resultadoValidacao.Errors);
@@ -52,35 +52,35 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloLocacao
 
             try
             {
-                repositorioLocacao.Inserir(grupo);
+                repositorioLocacao.Inserir(locacao);
                 contextoPersistencia.GravarDados();
 
-                Log.Logger.Information("Grupo de veículos {GrupoID} inserido com sucesso.", grupo.ID);
+                Log.Logger.Information("Locação {LocacaoID} inserida com sucesso.", locacao.ID);
 
-                return Result.Ok(grupo);
+                return Result.Ok(locacao);
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar inserir o grupo de veículos.";
+                string msgErro = "Falha no sistema ao tentar inserir a locação.";
 
-                Log.Logger.Error(ex, msgErro + "{GrupoID}", grupo.ID);
+                Log.Logger.Error(ex, msgErro + "{LocacaoID}", locacao.ID);
 
                 return Result.Fail(msgErro);
             }
         }
 
-        public Result<Locacao> Editar(Locacao grupo)
+        public Result<Locacao> Editar(Locacao locacao)
         {
-            Log.Logger.Debug("Tentando editar grupo de veículos... {@g}", grupo);
+            Log.Logger.Debug("Tentando editar locação... {@l}", locacao);
 
-            Result resultadoValidacao = Validar(grupo);
+            Result resultadoValidacao = Validar(locacao);
 
             if (resultadoValidacao.IsFailed)
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {
-                    Log.Logger.Warning("Falha ao tentar editar o grupo de veículos {GrupoID} - {Motivo}",
-                       grupo.ID, erro.Message);
+                    Log.Logger.Warning("Falha ao tentar editar a locação {LocacaoID} - {Motivo}",
+                       locacao.ID, erro.Message);
                 }
 
                 return Result.Fail(resultadoValidacao.Errors);
@@ -88,19 +88,19 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloLocacao
 
             try
             {
-                repositorioLocacao.Editar(grupo);
+                repositorioLocacao.Editar(locacao);
                 contextoPersistencia.GravarDados();
 
 
-                Log.Logger.Information("Grupo de veículos {GrupoID} editado com sucesso.", grupo.ID);
+                Log.Logger.Information("locação {LocacaoID} editada com sucesso.", locacao.ID);
 
-                return Result.Ok(grupo);
+                return Result.Ok(locacao);
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar editar o grupo de veículos.";
+                string msgErro = "Falha no sistema ao tentar editar a locação.";
 
-                Log.Logger.Error(ex, msgErro + "{GrupoID}", grupo.ID);
+                Log.Logger.Error(ex, msgErro + "{LocacaoID}", locacao.ID);
 
                 return Result.Fail(msgErro);
             }
@@ -108,7 +108,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloLocacao
 
         public Result Excluir(Locacao Locacao)
         {
-            Log.Logger.Debug("Tentando excluir grupo de veículos... {@g}", Locacao);
+            Log.Logger.Debug("Tentando excluir locação... {@l}", Locacao);
 
             try
             {
@@ -116,34 +116,15 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloLocacao
                 contextoPersistencia.GravarDados();
 
 
-                Log.Logger.Information("Grupo de veículos {GrupoID} excluído com sucesso.", Locacao.ID);
+                Log.Logger.Information("Locação {LocacaoID} excluída com sucesso.", Locacao.ID);
 
                 return Result.Ok();
             }
-            catch (NaoPodeExcluirRegistroException ex)
-            {
-                string msgErro = "";
-
-                if (ex is DbUpdateException || ex is InvalidOperationException)
-                {
-                    msgErro = $"O grupo de veículos {Locacao.Nome} está relacionado com um veículo ou plano de cobrança e não pode ser excluído";
-
-                    contextoPersistencia.DesfazerAlteracoes();
-                }
-                else
-                {
-                    msgErro = "Falha no sistema ao tentar excluir o Grupo de Veículos";
-                }
-
-                Log.Logger.Error(ex, msgErro + "{GrupoID}", Locacao.ID);
-
-                return Result.Fail(msgErro);
-            }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar excluir o grupo de veículos.";
+                string msgErro = "Falha no sistema ao tentar excluir a locação.";
 
-                Log.Logger.Error(ex, msgErro + "{GrupoID}", Locacao.ID);
+                Log.Logger.Error(ex, msgErro + "{LocacaoID}", Locacao.ID);
 
                 return Result.Fail(msgErro);
             }
@@ -157,7 +138,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloLocacao
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar selecionar todos os grupos de veículos.";
+                string msgErro = "Falha no sistema ao tentar selecionar todas as locações.";
                 Log.Logger.Error(ex, msgErro);
 
                 return Result.Fail(msgErro);
@@ -172,29 +153,26 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloLocacao
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar selecionar o grupo de veículos.";
-                Log.Logger.Error(ex, msgErro + "{GrupoID}", id);
+                string msgErro = "Falha no sistema ao tentar selecionar a locação.";
+                Log.Logger.Error(ex, msgErro + "{LocacaoID}", id);
 
                 return Result.Fail(msgErro);
             }
         }
 
-        private Result Validar(Locacao grupo)
+        private Result Validar(Locacao locacao)
         {
             var validador = new ValidadorLocacao();
 
-            Log.Logger.Debug("Validando grupo de veículos... {@g}", grupo);
+            Log.Logger.Debug("Validando locação... {@l}", locacao);
 
-            var resultadoValidacao = validador.Validate(grupo);
+            var resultadoValidacao = validador.Validate(locacao);
 
             List<Error> erros = new List<Error>();
             foreach (ValidationFailure item in resultadoValidacao.Errors)
             {
                 erros.Add(new Error(item.ErrorMessage));
             }
-
-            if (NomeDuplicado(grupo))
-                erros.Add(new Error("Nome duplicado."));
 
             if (erros.Any())
             {
@@ -203,15 +181,5 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloLocacao
 
             return Result.Ok();
         }
-
-        private bool NomeDuplicado(Locacao Locacao)
-        {
-            var grupoEncontrado = repositorioLocacao.SelecionarGrupoPorNome(Locacao.Nome);
-
-            return grupoEncontrado != null &&
-                   grupoEncontrado.Nome == Locacao.Nome &&
-                   grupoEncontrado.ID != Locacao.ID;
-        }
-
     }
 }

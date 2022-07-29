@@ -30,7 +30,7 @@ public class Funcionario : EntidadeBase<Funcionario>
 
     public override string? ToString()
     {
-        return base.ToString();
+        return Nome;
     }
 
     public override bool Equals(object obj)

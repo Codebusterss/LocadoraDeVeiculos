@@ -42,7 +42,8 @@ namespace LocadoraDeVeiculos.Dominio.ModuloVeiculo
 
         public override string? ToString()
         {
-            return base.ToString();
+            string toString = Marca + " " + Modelo + " " + Ano;
+            return toString;
         }
 
         public Veiculo Clone()

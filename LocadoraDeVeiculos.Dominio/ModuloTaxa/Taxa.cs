@@ -24,10 +24,10 @@ namespace LocadoraDeVeiculos.Dominio.ModuloTaxa
             Tipo = tipo;
             Descricao = descricao;
         }
+
         public override string ToString()
         {
-            return Tipo;
-            
+            return Descricao;       
         }
 
         public Taxa Clone()

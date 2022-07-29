@@ -232,7 +232,7 @@
             // 
             this.textBoxCondCNH.Location = new System.Drawing.Point(95, 122);
             this.textBoxCondCNH.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxCondCNH.Mask = "000,000,000-000";
+            this.textBoxCondCNH.Mask = "000.000.000-000";
             this.textBoxCondCNH.Name = "textBoxCondCNH";
             this.textBoxCondCNH.Size = new System.Drawing.Size(173, 23);
             this.textBoxCondCNH.TabIndex = 22;
@@ -241,7 +241,7 @@
             // 
             this.textBoxCondCPF.Location = new System.Drawing.Point(97, 154);
             this.textBoxCondCPF.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxCondCPF.Mask = "000,000,000-00";
+            this.textBoxCondCPF.Mask = "000.000.000-00";
             this.textBoxCondCPF.Name = "textBoxCondCPF";
             this.textBoxCondCPF.Size = new System.Drawing.Size(171, 23);
             this.textBoxCondCPF.TabIndex = 23;

@@ -90,13 +90,13 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
         private void rdBtnCPF_CheckedChanged(object sender, EventArgs e)
         {
 
-            txtBoxCPFCNPJ.Mask = "000,000,000-00";
+            txtBoxCPFCNPJ.Mask = "000.000.000-00";
         }
 
         private void rdBtnCNPJ_CheckedChanged(object sender, EventArgs e)
         {
 
-            txtBoxCPFCNPJ.Mask = "00,000,000/0000-00";
+            txtBoxCPFCNPJ.Mask = "00.000.000/0000-00";
         }
 
         #endregion

@@ -18,4 +18,4 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
         public override string TooltipExcluir { get { return "Excluir uma locação."; } }
     }
 }
-}
+

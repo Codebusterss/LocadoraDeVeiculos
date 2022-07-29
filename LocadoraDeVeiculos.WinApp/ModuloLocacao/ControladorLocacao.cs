@@ -1,4 +1,10 @@
-﻿using LocadoraDeVeiculos.Aplicacao.ModuloLocacao;
+﻿using LocadoraDeVeiculos.Aplicacao.ModuloCliente;
+using LocadoraDeVeiculos.Aplicacao.ModuloCondutor;
+using LocadoraDeVeiculos.Aplicacao.ModuloFuncionario;
+using LocadoraDeVeiculos.Aplicacao.ModuloLocacao;
+using LocadoraDeVeiculos.Aplicacao.ModuloPlanoDeCobranca;
+using LocadoraDeVeiculos.Aplicacao.ModuloTaxa;
+using LocadoraDeVeiculos.Aplicacao.ModuloVeiculo;
 using LocadoraDeVeiculos.Dominio.ModuloLocacao;
 using LocadoraDeVeiculos.WinApp.Compartilhado;
 using System;
@@ -13,15 +19,39 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
     {
         private TabelaLocacaoControl tabelaLocacaoControl;
         private readonly IServicoLocacao servicoLocacao;
+        private readonly IServicoCliente servicoCliente;
+        private readonly IServicoTaxa servicoTaxa;
+        private readonly IServicoCondutor servicoCondutor;
+        private readonly IServicoVeiculo servicoVeiculo;
+        private readonly IServicoPlanoDeCobranca servicoPlano;
+        private readonly IServicoFuncionario servicoFuncionario;
 
-        public ControladorLocacao(IServicoLocacao servicoLocacao)
+
+        Funcionario funcionarioLogado = new Funcionario();
+
+
+
+        public ControladorLocacao(IServicoLocacao servicoLocacao, IServicoCliente servicoCliente, IServicoTaxa servicoTaxa, IServicoCondutor servicoCondutor, IServicoVeiculo servicoVeiculo, IServicoPlanoDeCobranca servicoPlano, IServicoFuncionario servicoFuncionario)
         {
             this.servicoLocacao = servicoLocacao;
+            this.servicoCliente = servicoCliente;
+            this.servicoTaxa = servicoTaxa;
+            this.servicoCondutor = servicoCondutor;
+            this.servicoVeiculo = servicoVeiculo;
+            this.servicoPlano = servicoPlano;
+            this.servicoFuncionario = servicoFuncionario;
         }
 
         public override void Inserir()
         {
-            TelaCadastroLocacao tela = new TelaCadastroLocacao();
+            var clientes = servicoCliente.SelecionarTodos();
+            var condutores = servicoCondutor.SelecionarTodos();
+            var veiculos = servicoVeiculo.SelecionarTodos();
+            var taxas = servicoTaxa.SelecionarTodos();
+            var planos = servicoPlano.SelecionarTodos();
+            var funcionarios = servicoFuncionario.SelecionarTodos();
+
+            TelaCadastroLocacao tela = new TelaCadastroLocacao(clientes.Value, condutores.Value, veiculos.Value, taxas.Value, planos.Value, funcionarios.Value);
             tela.Locacao = new Locacao();
             tela.GravarRegistro = servicoLocacao.Inserir;
 
@@ -52,7 +82,15 @@ namespace LocadoraDeVeiculos.WinApp.ModuloLocacao
 
             var locacaoSelecionada = resultadoSelecao.Value;
 
-            var tela = new TelaCadastroLocacao();
+            var clientes = servicoCliente.SelecionarTodos();
+            var condutores = servicoCondutor.SelecionarTodos();
+            var veiculos = servicoVeiculo.SelecionarTodos();
+            var taxas = servicoTaxa.SelecionarTodos();
+            var planos = servicoPlano.SelecionarTodos();
+            var funcionarios = servicoFuncionario.SelecionarTodos();
+
+
+            TelaCadastroLocacao tela = new TelaCadastroLocacao(clientes.Value, condutores.Value, veiculos.Value, taxas.Value, planos.Value, funcionarios.Value);
 
             tela.Locacao = locacaoSelecionada;
 

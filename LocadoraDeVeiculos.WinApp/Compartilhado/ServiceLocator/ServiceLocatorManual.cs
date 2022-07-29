@@ -2,6 +2,7 @@
 using LocadoraDeVeiculos.Aplicacao.ModuloCondutor;
 using LocadoraDeVeiculos.Aplicacao.ModuloFuncionario;
 using LocadoraDeVeiculos.Aplicacao.ModuloGrupoDeVeiculo;
+using LocadoraDeVeiculos.Aplicacao.ModuloLocacao;
 using LocadoraDeVeiculos.Aplicacao.ModuloPlanoDeCobranca;
 using LocadoraDeVeiculos.Aplicacao.ModuloTaxa;
 using LocadoraDeVeiculos.Aplicacao.ModuloVeiculo;
@@ -10,6 +11,7 @@ using LocadoraDeVeiculos.ORM.ModuloCliente;
 using LocadoraDeVeiculos.ORM.ModuloCondutor;
 using LocadoraDeVeiculos.ORM.ModuloFuncionario;
 using LocadoraDeVeiculos.ORM.ModuloGrupoDeVeiculo;
+using LocadoraDeVeiculos.ORM.ModuloLocacao;
 using LocadoraDeVeiculos.ORM.ModuloPlanoDeCobranca;
 using LocadoraDeVeiculos.ORM.ModuloTaxa;
 using LocadoraDeVeiculos.ORM.ModuloVeiculo;
@@ -17,6 +19,7 @@ using LocadoraDeVeiculos.WinApp.ModuloCliente;
 using LocadoraDeVeiculos.WinApp.ModuloCondutor;
 using LocadoraDeVeiculos.WinApp.ModuloFuncionario;
 using LocadoraDeVeiculos.WinApp.ModuloGrupoDeVeiculo;
+using LocadoraDeVeiculos.WinApp.ModuloLocacao;
 using LocadoraDeVeiculos.WinApp.ModuloPlanoDeCobranca;
 using LocadoraDeVeiculos.WinApp.ModuloTaxa;
 using LocadoraDeVeiculos.WinApp.ModuloVeiculo;
@@ -27,6 +30,7 @@ namespace LocadoraDeVeiculos.WinApp.Compartilhado
     public class ServiceLocatorManual : IServiceLocator
     {
         private Dictionary<string, ControladorBase> controladores;
+        Funcionario funcionarioLogado = new Funcionario();
 
         public ServiceLocatorManual()
         {
@@ -83,7 +87,11 @@ namespace LocadoraDeVeiculos.WinApp.Compartilhado
             var repositorioVeiculo = new RepositorioVeiculoORM(contextoDadosOrm);
             var servicoVeiculo = new ServicoVeiculo(repositorioVeiculo, contextoDadosOrm);
             controladores.Add("ControladorVeiculos", new ControladorVeiculos(servicoVeiculo, servicoGrupo));
-            
+
+            var repositorioLocacao = new RepositorioLocacaoORM(contextoDadosOrm);
+            var servicoLocacao = new ServicoLocacao(repositorioLocacao, contextoDadosOrm);
+            controladores.Add("ControladorLocacao", new ControladorLocacao(servicoLocacao, servicoCliente, servicoTaxa, servicoCondutor, servicoVeiculo, servicoPlano, servicoFuncionario));
+
         }
     }
 }

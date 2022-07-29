@@ -48,40 +48,36 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(120, 60);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(84, 36);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(34, 25);
+            this.label1.Size = new System.Drawing.Size(21, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "ID:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(89, 121);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(62, 73);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 25);
+            this.label2.Size = new System.Drawing.Size(43, 15);
             this.label2.TabIndex = 1;
             this.label2.Text = "Nome:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(107, 253);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(75, 152);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(58, 25);
+            this.label3.Size = new System.Drawing.Size(39, 15);
             this.label3.TabIndex = 2;
             this.label3.Text = "Email:";
             // 
             // rdBtnCPF
             // 
             this.rdBtnCPF.AutoSize = true;
-            this.rdBtnCPF.Location = new System.Drawing.Point(14, 182);
-            this.rdBtnCPF.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.rdBtnCPF.Location = new System.Drawing.Point(10, 109);
             this.rdBtnCPF.Name = "rdBtnCPF";
-            this.rdBtnCPF.Size = new System.Drawing.Size(67, 29);
+            this.rdBtnCPF.Size = new System.Drawing.Size(46, 19);
             this.rdBtnCPF.TabIndex = 3;
             this.rdBtnCPF.TabStop = true;
             this.rdBtnCPF.Text = "CPF";
@@ -91,10 +87,9 @@
             // rdBtnCNPJ
             // 
             this.rdBtnCNPJ.AutoSize = true;
-            this.rdBtnCNPJ.Location = new System.Drawing.Point(89, 182);
-            this.rdBtnCNPJ.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.rdBtnCNPJ.Location = new System.Drawing.Point(62, 109);
             this.rdBtnCNPJ.Name = "rdBtnCNPJ";
-            this.rdBtnCNPJ.Size = new System.Drawing.Size(76, 29);
+            this.rdBtnCNPJ.Size = new System.Drawing.Size(52, 19);
             this.rdBtnCNPJ.TabIndex = 4;
             this.rdBtnCNPJ.TabStop = true;
             this.rdBtnCNPJ.Text = "CNPJ";
@@ -104,64 +99,57 @@
             // txtBoxID
             // 
             this.txtBoxID.Enabled = false;
-            this.txtBoxID.Location = new System.Drawing.Point(173, 60);
-            this.txtBoxID.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtBoxID.Location = new System.Drawing.Point(121, 36);
             this.txtBoxID.Name = "txtBoxID";
-            this.txtBoxID.Size = new System.Drawing.Size(70, 31);
+            this.txtBoxID.Size = new System.Drawing.Size(50, 23);
             this.txtBoxID.TabIndex = 1;
             // 
             // txtBoxNome
             // 
-            this.txtBoxNome.Location = new System.Drawing.Point(173, 118);
-            this.txtBoxNome.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtBoxNome.Location = new System.Drawing.Point(121, 71);
             this.txtBoxNome.Name = "txtBoxNome";
-            this.txtBoxNome.Size = new System.Drawing.Size(293, 31);
+            this.txtBoxNome.Size = new System.Drawing.Size(206, 23);
             this.txtBoxNome.TabIndex = 2;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(83, 322);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(58, 193);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(81, 25);
+            this.label4.Size = new System.Drawing.Size(54, 15);
             this.label4.TabIndex = 8;
             this.label4.Text = "Telefone:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(75, 389);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(52, 233);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(89, 25);
+            this.label5.Size = new System.Drawing.Size(59, 15);
             this.label5.TabIndex = 9;
             this.label5.Text = "Endereço:";
             // 
             // txtBoxEmail
             // 
-            this.txtBoxEmail.Location = new System.Drawing.Point(173, 250);
-            this.txtBoxEmail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtBoxEmail.Location = new System.Drawing.Point(121, 150);
             this.txtBoxEmail.Name = "txtBoxEmail";
             this.txtBoxEmail.PlaceholderText = "email@provedor.com";
-            this.txtBoxEmail.Size = new System.Drawing.Size(235, 31);
+            this.txtBoxEmail.Size = new System.Drawing.Size(166, 23);
             this.txtBoxEmail.TabIndex = 7;
             // 
             // txtBoxEndereco
             // 
-            this.txtBoxEndereco.Location = new System.Drawing.Point(173, 383);
-            this.txtBoxEndereco.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtBoxEndereco.Location = new System.Drawing.Point(121, 230);
             this.txtBoxEndereco.Name = "txtBoxEndereco";
-            this.txtBoxEndereco.Size = new System.Drawing.Size(293, 31);
+            this.txtBoxEndereco.Size = new System.Drawing.Size(206, 23);
             this.txtBoxEndereco.TabIndex = 9;
             // 
             // btnAdicionar
             // 
             this.btnAdicionar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnAdicionar.Location = new System.Drawing.Point(332, 446);
-            this.btnAdicionar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnAdicionar.Location = new System.Drawing.Point(232, 268);
             this.btnAdicionar.Name = "btnAdicionar";
-            this.btnAdicionar.Size = new System.Drawing.Size(107, 38);
+            this.btnAdicionar.Size = new System.Drawing.Size(75, 23);
             this.btnAdicionar.TabIndex = 10;
             this.btnAdicionar.Text = "Cadastrar";
             this.btnAdicionar.UseVisualStyleBackColor = true;
@@ -170,36 +158,33 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(441, 446);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnCancelar.Location = new System.Drawing.Point(309, 268);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(107, 38);
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 11;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
             // txtBoxTelefone
             // 
-            this.txtBoxTelefone.Location = new System.Drawing.Point(173, 322);
-            this.txtBoxTelefone.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtBoxTelefone.Location = new System.Drawing.Point(121, 193);
             this.txtBoxTelefone.Mask = "(00)00000-0000";
             this.txtBoxTelefone.Name = "txtBoxTelefone";
-            this.txtBoxTelefone.Size = new System.Drawing.Size(235, 31);
+            this.txtBoxTelefone.Size = new System.Drawing.Size(166, 23);
             this.txtBoxTelefone.TabIndex = 8;
             // 
             // txtBoxCPFCNPJ
             // 
-            this.txtBoxCPFCNPJ.Location = new System.Drawing.Point(173, 182);
-            this.txtBoxCPFCNPJ.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtBoxCPFCNPJ.Location = new System.Drawing.Point(121, 109);
             this.txtBoxCPFCNPJ.Name = "txtBoxCPFCNPJ";
-            this.txtBoxCPFCNPJ.Size = new System.Drawing.Size(235, 31);
+            this.txtBoxCPFCNPJ.Size = new System.Drawing.Size(166, 23);
             this.txtBoxCPFCNPJ.TabIndex = 16;
             // 
             // TelaCadastroCliente
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(569, 497);
+            this.ClientSize = new System.Drawing.Size(398, 298);
             this.Controls.Add(this.txtBoxCPFCNPJ);
             this.Controls.Add(this.txtBoxTelefone);
             this.Controls.Add(this.btnCancelar);
@@ -216,7 +201,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "TelaCadastroCliente";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

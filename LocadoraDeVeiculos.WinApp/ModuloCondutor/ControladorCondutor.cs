@@ -26,9 +26,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
 
         public override void Inserir()
         {
-            var condutores = servicoCliente.SelecionarTodos();
+            var clientes = servicoCliente.SelecionarTodos();
 
-            TelaCadastroCondutor tela = new TelaCadastroCondutor(condutores.Value);
+            TelaCadastroCondutor tela = new TelaCadastroCondutor(clientes.Value);
             tela.Condutor = new Condutor(); 
             tela.GravarRegistro = servicoCondutor.Inserir;
 

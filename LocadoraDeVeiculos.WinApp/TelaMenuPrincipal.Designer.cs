@@ -48,6 +48,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblStatusRodape = new System.Windows.Forms.ToolStripStatusLabel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.locaçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panelRegistros.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -74,7 +75,8 @@
             this.taxasToolStripMenuItem,
             this.planosDeCobrançaToolStripMenuItem,
             this.condutoresToolStripMenuItem,
-            this.veículosToolStripMenuItem});
+            this.veículosToolStripMenuItem,
+            this.locaçõesToolStripMenuItem});
             this.cadastrosToolStripMenu.Name = "cadastrosToolStripMenu";
             this.cadastrosToolStripMenu.Size = new System.Drawing.Size(71, 20);
             this.cadastrosToolStripMenu.Text = "Cadastros";
@@ -228,6 +230,14 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // locaçõesToolStripMenuItem
+            // 
+            this.locaçõesToolStripMenuItem.Name = "locaçõesToolStripMenuItem";
+            this.locaçõesToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F8;
+            this.locaçõesToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.locaçõesToolStripMenuItem.Text = "Locações";
+            this.locaçõesToolStripMenuItem.Click += new System.EventHandler(this.locaçõesToolStripMenuItem_Click);
+            // 
             // TelaMenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -277,5 +287,6 @@
         private ToolStripMenuItem planosDeCobrançaToolStripMenuItem;
         private ToolStripMenuItem condutoresToolStripMenuItem;
         private ToolStripMenuItem veículosToolStripMenuItem;
+        private ToolStripMenuItem locaçõesToolStripMenuItem;
     }
 }

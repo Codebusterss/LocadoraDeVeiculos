@@ -15,6 +15,14 @@ using LocadoraDeVeiculos.WinApp.ModuloVeiculo;
 using LocadoraDeVeiculos.Dominio.ModuloGrupoDeVeiculo;
 using LocadoraDeVeiculos.Infra.ModuloCliente;
 using LocadoraDeVeiculos.Infra.ModuloGrupoDeVeiculos;
+using LocadoraDeVeiculos.Infra.ModuloTaxa;
+using LocadoraDeVeiculos.Infra.ModuloVeiculo;
+using LocadoraDeVeiculos.Infra.ModuloPlanoDeCobranca;
+using LocadoraDeVeiculos.Dominio.ModuloTaxa;
+using LocadoraDeVeiculos.Dominio.ModuloPlanoDeCobranca;
+using LocadoraDeVeiculos.Dominio.ModuloCondutor;
+using LocadoraDeVeiculos.Infra.ModuloCondutor;
+using LocadoraDeVeiculos.WinApp.ModuloLocacao;
 
 namespace LocadoraDeVeiculos.WinApp
 {
@@ -134,7 +142,7 @@ namespace LocadoraDeVeiculos.WinApp
             if (grupos.Count == 0)
             {
                 MessageBox.Show("Cadastre um grupo de veículos antes de cadastrar um plano de cobrança!",
-                   "Sem clientes cadastrados.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                   "Sem grupos cadastrados.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
@@ -150,11 +158,57 @@ namespace LocadoraDeVeiculos.WinApp
             if (grupos.Count == 0)
             {
                 MessageBox.Show("Cadastre um grupo de veículos antes de cadastrar um veículo!",
-                   "Sem clientes cadastrados.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                   "Sem grupos cadastrados.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
                 ConfigurarTelaPrincipal(serviceLocator.Get<ControladorVeiculos>());
+            }
+        }
+
+        private void locaçõesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var repositorioCondutores = new RepositorioCondutorEmBancoDeDados();
+            var repositorioTaxas  = new RepositorioTaxaEmBancoDeDados();
+            var repositorioVeiculos = new RepositorioVeiculoEmBancoDeDados();
+            var repositorioPlanos = new RepositorioPlanoDeCobrancaEmBancoDeDados();
+            var repositorioCliente = new RepositorioClienteEmBancoDeDados();
+
+
+            List<Cliente> clientes = repositorioCliente.SelecionarTodos();
+            List<Taxa> taxas = repositorioTaxas.SelecionarTodos();
+            List<PlanoDeCobranca> planos = repositorioPlanos.SelecionarTodos();
+            List<Veiculo> veiculos = repositorioVeiculos.SelecionarTodos();
+            List<Condutor> condutor = repositorioCondutores.SelecionarTodos();
+            if (clientes.Count == 0)
+            {
+                MessageBox.Show("Cadastre um cliente antes de cadastrar uma locação!",
+                   "Sem clientes cadastrados.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (taxas.Count == 0)
+            {
+                MessageBox.Show("Cadastre pelo menos uma taxa antes de cadastrar um locação!",
+                   "Sem taxas cadastradas.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (planos.Count == 0)
+            {
+                MessageBox.Show("Cadastre um plano de cobrança antes de cadastrar um locação!",
+                   "Sem planos cadastrados.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (veiculos.Count == 0)
+            {
+                MessageBox.Show("Cadastre um veículo antes de cadastrar um locação!",
+                   "Sem veículos cadastrados.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (condutor.Count == 0)
+            {
+                MessageBox.Show("Cadastre um condutor antes de cadastrar um locação!",
+                   "Sem condutores cadastrados.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                ConfigurarTelaPrincipal(serviceLocator.Get<ControladorLocacao>());
+
             }
         }
 
@@ -240,6 +294,5 @@ namespace LocadoraDeVeiculos.WinApp
         }
 
         #endregion
-
     }
 }
